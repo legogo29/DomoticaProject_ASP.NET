@@ -16,7 +16,7 @@
         <div class="panel-body">
         <h2>Heading 2</h2>
         <label class="switch">
-            <input type="checkbox">
+            <asp:CheckBox ID="SlideBoxPanel2" runat="server" OnCheckedChanged="SlideBoxPanel2_CheckedChanged" AutoPostBack="True" />
             <div class="slider"></div>
         </label>
         </div>
@@ -34,6 +34,7 @@
     <div id="panel4" class="panel panel-default" draggable="true" ondragstart="drag(event)">
         <div class="panel-body">
         <h2>Heading 4</h2>
+        <asp:Label ID="Label_panel4" runat="server" Text=""></asp:Label>
         <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
         </div>
     </div>

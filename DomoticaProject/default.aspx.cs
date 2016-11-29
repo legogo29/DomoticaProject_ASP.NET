@@ -11,7 +11,12 @@ namespace DomoticaProject
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Label_panel4.Text = SlideBoxPanel2.Checked.ToString();
+        }
 
+        protected void SlideBoxPanel2_CheckedChanged(object sender, EventArgs e)
+        {
+            Label_panel4.Text = SlideBoxPanel2.Checked.ToString();
         }
     }
 }
