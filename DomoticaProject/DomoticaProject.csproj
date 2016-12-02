@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="default.aspx" />
+    <Content Include="house.aspx" />
     <Content Include="login.aspx" />
     <Content Include="Style.css">
       <DependentUpon>Style.less</DependentUpon>
@@ -75,6 +76,13 @@
     </Compile>
     <Compile Include="default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="house.aspx.cs">
+      <DependentUpon>house.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="house.aspx.designer.cs">
+      <DependentUpon>house.aspx</DependentUpon>
     </Compile>
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>

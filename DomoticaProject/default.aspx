@@ -16,7 +16,7 @@
         <div class="panel-body">
         <h2>Heading 2</h2>
         <label class="switch">
-            <input type="checkbox">
+            <input type="checkbox" />
             <div class="slider"></div>
         </label>
         </div>
