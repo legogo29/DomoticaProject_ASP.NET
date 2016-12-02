@@ -17,7 +17,7 @@
         <h2>Heading 2</h2>
         <label class="switch">
             <asp:CheckBox ID="SlideBoxPanel2" runat="server" OnCheckedChanged="SlideBoxPanel2_CheckedChanged" AutoPostBack="True" />
-            <div class="slider"></div>
+            <span class="slider"></span>
         </label>
         </div>
     </div>
