@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div>
         <h2>Lampen</h2>
-        <ul>
+        <ul runat="server">
             <li>
                 <label class="lampName">Lamp 0</label>
                 <label class="switch">
@@ -39,6 +39,13 @@
                 <label>Lamp 4</label>
                 <label class="switch">
                     <input type="checkbox" />
+                    <div class="slider round"></div>
+                </label>
+            </li>
+            <li>
+                <label>Lamp Test</label>
+                <label class="switch">
+                    <<asp:CheckBox ID="CheckBox1" runat="server" />
                     <div class="slider round"></div>
                 </label>
             </li>
