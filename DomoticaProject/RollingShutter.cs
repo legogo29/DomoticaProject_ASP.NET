@@ -5,26 +5,59 @@ using System.Web;
 
 namespace DomoticaProject
 {
-    public class RollingShutter : Actuator
+    public class RollingShutter
     {
-        public RollingShutter(int index) : base(index)
-        {
-        }
-
-        public RollingShutter(int index, string location) : base(index, location)
-        {
-        }
-
         public enum States : int
         {
-            Close = 0,
-            Open = 1,
+            Open = 0,
+            Close = 1,
             Half = 2
         }
 
-        public void ChangeState(States state)
+        public RollingShutter(int index)
         {
-            this.state = (int)state;
+            this.index = index;
+        }
+
+        public RollingShutter(int index, string location)
+        {
+            this.index = index;
+            this.location = location;
+        }
+
+        private int index;
+        public int Index
+        {
+            get
+            {
+                return this.index;
+            }
+        }
+
+        private States state;
+        public States State
+        {
+            get
+            {
+                return this.state;
+            }
+            set
+            {
+                this.state = value;
+            }
+        }
+
+        private string location;
+        public string Location
+        {
+            get
+            {
+                return this.location;
+            }
+            set
+            {
+                this.location = value;
+            }
         }
     }
 }
