@@ -70,10 +70,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Actuator.cs" />
     <Compile Include="DaHaus.cs" />
-    <Compile Include="Heater.cs" />
-    <Compile Include="Lamp.cs" />
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -81,6 +78,7 @@
     <Compile Include="default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Heater.cs" />
     <Compile Include="house.aspx.cs">
       <DependentUpon>house.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -88,6 +86,7 @@
     <Compile Include="house.aspx.designer.cs">
       <DependentUpon>house.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Lamp.cs" />
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

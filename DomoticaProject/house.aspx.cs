@@ -9,40 +9,53 @@ namespace DomoticaProject
 {
     public partial class house : System.Web.UI.Page
     {
-        private Lamp[] Lamps = new Lamp[5];
-        private RollingShutter[] RollingShutters = new RollingShutter[2];
-        private Heater Heater = new Heater(0);
+        private DaHaus daHaus = new DaHaus("127.0.0.1", 11000);
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            CheckBox1.CheckedChanged += new EventHandler(CheckBox1_CheckedChanged);
+            this.daHaus.Connect();
+            this.daHaus.UpdateLamps();
+            this.daHaus.UpdateRollingShutter();
+            this.daHaus.UpdateHeater();
+            this.daHaus.Close();
 
-            /*
-            if (!IsPostBack)
-            {
-                GenerateLamps();
-                GenerateRollingShutters();
-            }
-            */
-        }
+            if (this.daHaus.Lamps[0].State == Lamp.States.On)
+                lamp0.Checked = true;
+            else
+                lamp0.Checked = false;
 
-        private void CheckBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            bool state = CheckBox1.Checked;
+            if (this.daHaus.Lamps[1].State == Lamp.States.On)
+                lamp1.Checked = true;
+            else
+                lamp1.Checked = false;
 
-            ChangePassword 
-        }
+            if (this.daHaus.Lamps[2].State == Lamp.States.On)
+                lamp2.Checked = true;
+            else
+                lamp2.Checked = false;
 
-        private void GenerateLamps()
-        {
-            for (int i = 0; i < Lamps.Length; i++)
-                Lamps[i] = new Lamp(i);
-        }
+            if (this.daHaus.Lamps[3].State == Lamp.States.On)
+                lamp3.Checked = true;
+            else
+                lamp3.Checked = false;
 
-        private void GenerateRollingShutters()
-        {
-            for (int i = 0; i < RollingShutters.Length; i++)
-                RollingShutters[i] = new RollingShutter(i);
+            if (this.daHaus.Lamps[4].State == Lamp.States.On)
+                lamp4.Checked = true;
+            else
+                lamp4.Checked = false;
+
+
+            if (this.daHaus.RollingShutters[0].State == RollingShutter.States.Open)
+                window0.Checked = false;
+            else
+                window0.Checked = true;
+
+            if (this.daHaus.RollingShutters[1].State == RollingShutter.States.Open)
+                window1.Checked = false;
+            else
+                window1.Checked = true;
+
+            heater.InnerText = this.daHaus.Heater.Degree.ToString(".0");
         }
     }
 }

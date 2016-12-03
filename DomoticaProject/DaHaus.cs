@@ -211,14 +211,14 @@ namespace DomoticaProject
                 rollingShutter.State = state;
         }
 
-        public void ChangeHeaterDegree(Heater heater, float heat)
+        public void ChangeHeaterDegree(float degree)
         {
-            this.request = String.Format("heater {0}", heat.ToString("N1"));
+            this.request = String.Format("heater {0:0.0}", degree);
 
             this.SendRequest();
 
             if (!this.transmitFailed)
-                heater.Degree = heat;
+                this.Heater.Degree = degree;
         }
 
         public void UpdateLamps()
@@ -254,7 +254,7 @@ namespace DomoticaProject
             this.Request = String.Format("heater");
             this.SendRequest();
 
-            Match match = Regex.Match(this.Response, @"\d+");
+            Match match = Regex.Match(this.Response, @"[0-9]{2}(?:\,[0-9])?");
             this.Heater.Degree = float.Parse(match.Value);
         }
     }
