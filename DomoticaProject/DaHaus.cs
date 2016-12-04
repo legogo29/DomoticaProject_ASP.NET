@@ -255,7 +255,8 @@ namespace DomoticaProject
             this.SendRequest();
 
             Match match = Regex.Match(this.Response, @"[0-9]{2}(?:\,[0-9])?");
-            this.Heater.Degree = float.Parse(match.Value);
+            if(match.Value != "")
+                this.Heater.Degree = float.Parse(match.Value);
         }
     }
 }
