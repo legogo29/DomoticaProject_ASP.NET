@@ -13,8 +13,8 @@ namespace DomoticaProject.Api
         // GET api/<controller>
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" , valuestate.ToString() };
-
+            return new string[] { "value1", "value2", valuestate.ToString() };
+        }
         // GET api/<controller>/5
         public string Get(int id)
         {
