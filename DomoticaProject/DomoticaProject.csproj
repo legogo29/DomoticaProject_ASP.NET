@@ -91,7 +91,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DaHaus.cs" />
+    <Compile Include="DaHaus\DaHaus.cs" />
     <Compile Include="Api\ValuesController.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="default.aspx.cs">
@@ -101,7 +101,7 @@
     <Compile Include="default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Heater.cs" />
+    <Compile Include="DaHaus\Heater.cs" />
     <Compile Include="house.aspx.cs">
       <DependentUpon>house.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -109,7 +109,7 @@
     <Compile Include="house.aspx.designer.cs">
       <DependentUpon>house.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Lamp.cs" />
+    <Compile Include="DaHaus\Lamp.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -121,7 +121,7 @@
       <DependentUpon>login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RollingShutter.cs" />
+    <Compile Include="DaHaus\RollingShutter.cs" />
     <Compile Include="Site1.Master.cs">
       <DependentUpon>Site1.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

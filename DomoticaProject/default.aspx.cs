@@ -10,7 +10,7 @@ namespace DomoticaProject
 {
     public partial class _default : System.Web.UI.Page
     {
-        ValuesController Valuescontroller = new ValuesController();
+        ValuesController ValuesController = new ValuesController();
         protected void Page_Load(object sender, EventArgs e)
         {
             Label_panel4.Text = SlideBoxPanel2.Checked.ToString();
