@@ -44,16 +44,34 @@ namespace DomoticaProject
             else
                 lamp4.Checked = false;
 
+            switch (this.daHaus.RollingShutters[0].State)
+            {
+                //Color grey
+                case RollingShutter.States.Open:
+                    window0.Checked = false;
+                    break;
+                //Color orange?
+                case RollingShutter.States.Half:
+                    window0.Checked = true;
+                    break;
+                //Color green
+                case RollingShutter.States.Close:
+                    window0.Checked = true;
+                    break;
+            }
 
-            if (this.daHaus.RollingShutters[0].State == RollingShutter.States.Open)
-                window0.Checked = false;
-            else
-                window0.Checked = true;
-
-            if (this.daHaus.RollingShutters[1].State == RollingShutter.States.Open)
-                window1.Checked = false;
-            else
-                window1.Checked = true;
+            switch (this.daHaus.RollingShutters[1].State)
+            {
+                case RollingShutter.States.Open:
+                    window1.Checked = false;
+                    break;
+                case RollingShutter.States.Half:
+                    window1.Checked = true;
+                    break;
+                case RollingShutter.States.Close:
+                    window1.Checked = true;
+                    break;
+            }
 
             heater.InnerText = this.daHaus.Heater.Degree.ToString(".0");
         }
