@@ -235,7 +235,7 @@ namespace DomoticaProject
             }
         }
 
-        public void UpdateRollingShutter()
+        public void UpdateRollingShutters()
         {
             foreach (RollingShutter rollingShutter in this.RollingShutters)
             {

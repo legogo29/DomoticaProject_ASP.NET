@@ -15,7 +15,7 @@ namespace DomoticaProject
         {
             this.daHaus.Connect();
             this.daHaus.UpdateLamps();
-            this.daHaus.UpdateRollingShutter();
+            this.daHaus.UpdateRollingShutters();
             this.daHaus.UpdateHeater();
             this.daHaus.Close();
 
