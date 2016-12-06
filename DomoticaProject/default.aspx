@@ -16,7 +16,15 @@
         <div class="panel-body">
         <h2>Heading 2</h2>
         <label class="switch">
-            <asp:CheckBox ID="SlideBoxPanel2" runat="server" OnCheckedChanged="SlideBoxPanel2_CheckedChanged" AutoPostBack="True" />
+            <asp:CheckBox ID="SlideBoxPanel2_1" runat="server" OnCheckedChanged="SlideBoxPanel2_CheckedChanged" AutoPostBack="True" />
+            <span class="slider"></span>
+        </label>
+        <label class="switch">
+            <asp:CheckBox ID="SlideBoxPanel2_2" runat="server" OnCheckedChanged="SlideBoxPanel2_CheckedChanged" AutoPostBack="True" />
+            <span class="slider"></span>
+        </label>
+        <label class="switch">
+            <asp:CheckBox ID="SlideBoxPanel2_3" runat="server" OnCheckedChanged="SlideBoxPanel2_CheckedChanged" AutoPostBack="True" />
             <span class="slider"></span>
         </label>
         </div>
