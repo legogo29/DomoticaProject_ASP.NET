@@ -213,7 +213,7 @@ namespace DomoticaProject
 
         public void ChangeHeaterDegree(float degree)
         {
-            this.request = String.Format("heater {0:0.0}", degree);
+            this.request = String.Format("heater {0:.0}", degree);
 
             this.SendRequest();
 
