@@ -13,38 +13,43 @@ namespace DomoticaProject
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.daHaus.Connect();
-            this.daHaus.UpdateLamps();
-            this.daHaus.UpdateRollingShutters();
-            this.daHaus.UpdateHeater();
-            this.daHaus.Close();
+            daHaus.Connect();
+            daHaus.UpdateLamps();
+            daHaus.UpdateRollingShutters();
+            daHaus.UpdateHeater();
+            daHaus.Close();
 
-            if (this.daHaus.Lamps[0].State == Lamp.States.On)
+            this.ShowStates();
+        }
+
+        protected void ShowStates()
+        {
+            if (daHaus.Lamps[0].State == Lamp.States.On)
                 lamp0.Checked = true;
             else
                 lamp0.Checked = false;
 
-            if (this.daHaus.Lamps[1].State == Lamp.States.On)
+            if (daHaus.Lamps[1].State == Lamp.States.On)
                 lamp1.Checked = true;
             else
                 lamp1.Checked = false;
 
-            if (this.daHaus.Lamps[2].State == Lamp.States.On)
+            if (daHaus.Lamps[2].State == Lamp.States.On)
                 lamp2.Checked = true;
             else
                 lamp2.Checked = false;
 
-            if (this.daHaus.Lamps[3].State == Lamp.States.On)
+            if (daHaus.Lamps[3].State == Lamp.States.On)
                 lamp3.Checked = true;
             else
                 lamp3.Checked = false;
 
-            if (this.daHaus.Lamps[4].State == Lamp.States.On)
+            if (daHaus.Lamps[4].State == Lamp.States.On)
                 lamp4.Checked = true;
             else
                 lamp4.Checked = false;
 
-            switch (this.daHaus.RollingShutters[0].State)
+            switch (daHaus.RollingShutters[0].State)
             {
                 //Color grey
                 case RollingShutter.States.Open:
@@ -62,7 +67,7 @@ namespace DomoticaProject
                     break;
             }
 
-            switch (this.daHaus.RollingShutters[1].State)
+            switch (daHaus.RollingShutters[1].State)
             {
                 case RollingShutter.States.Open:
                     window1.Checked = false;
@@ -76,7 +81,7 @@ namespace DomoticaProject
                     break;
             }
 
-            heater.InnerText = this.daHaus.Heater.Degree.ToString(".0");
+            heater.InnerText = daHaus.Heater.Degree.ToString(".0");
         }
     }
 }
