@@ -34,6 +34,8 @@ namespace DomoticaProject
             this.Heater = new Heater(0);
         }
 
+        public string Request;
+
         private string ip;
         public string Ip
         {
@@ -79,20 +81,6 @@ namespace DomoticaProject
             }
         }
 
-        private string request;
-        public string Request
-        {
-            get
-            {
-                return this.request;
-            }
-            set
-            {
-                this.request = value + "\r\n";
-            }
-
-        }
-
         private bool connected;
         public bool Connected
         {
@@ -118,7 +106,6 @@ namespace DomoticaProject
             try
             {
                 if (!this.Connected)
-
                     this.client = new TcpClient(this.ip, this.port);
             }
             catch (Exception exception)
@@ -131,7 +118,7 @@ namespace DomoticaProject
         {
             if (this.Connected)
             {
-                this.Request = "exit";
+                this.Request = "exit\r\n";
                 this.SendRequest();
             }
 
@@ -191,30 +178,53 @@ namespace DomoticaProject
             }
         }
 
-        public void ChangeLampState(Lamp lamp, Lamp.States state)
+        public void TurnOnLamp(int index)
         {
-            this.request = String.Format("lamp {0} {1}", lamp.Index, state.ToString().ToLower());
+            Lamp.States state = Lamp.States.On;
 
+            this.Request = String.Format("lamp {0} {1}\r\n", index, state);
             this.SendRequest();
 
             if (!this.transmitFailed)
-                lamp.State = state;
+                this.Lamps[index].State = state;
         }
 
-        public void ChangeRollingShutterState(RollingShutter rollingShutter, RollingShutter.States state)
+        public void TurnOffLamp(int index)
         {
-            this.request = String.Format("window {0} {1}", rollingShutter.Index, state.ToString().ToLower());
+            Lamp.States state = Lamp.States.Off;
 
+            this.Request = String.Format("lamp {0} {1}\r\n", index, state);
             this.SendRequest();
 
             if (!this.transmitFailed)
-                rollingShutter.State = state;
+                this.Lamps[index].State = state;
+        }
+
+        public void OpenRollingShutter(int index)
+        {
+            RollingShutter.States state = RollingShutter.States.Open;
+
+            this.Request = String.Format("window {0} {1}\r\n", index, state);
+            this.SendRequest();
+
+            if (!this.transmitFailed)
+                this.RollingShutters[index].State = state;
+        }
+
+        public void CloseRollingShutter(int index)
+        {
+            RollingShutter.States state = RollingShutter.States.Closed;
+
+            this.Request = String.Format("window {0} {1}\r\n", index, state);
+            this.SendRequest();
+
+            if (!this.transmitFailed)
+                this.RollingShutters[index].State = state;
         }
 
         public void ChangeHeaterDegree(float degree)
         {
-            this.request = String.Format("heater {0:.0}", degree);
-
+            this.Request = String.Format("heater {0:.0}\r\n", degree);
             this.SendRequest();
 
             if (!this.transmitFailed)
@@ -223,39 +233,54 @@ namespace DomoticaProject
 
         public void UpdateLamps()
         {
+            Match match;
+
             foreach (Lamp lamp in this.Lamps)
             {
-                this.Request = String.Format("lamp {0}", lamp.Index);
+                this.Request = String.Format("lamp {0}\r\n", lamp.Index);
                 this.SendRequest();
 
-                if (this.Response.ToLower().Contains("on"))
-                    lamp.State = Lamp.States.On;
-                else
-                    lamp.State = Lamp.States.Off;
+                match = Regex.Match(this.Response, @"\b(?:On|Off)\b");
             }
         }
 
         public void UpdateRollingShutters()
         {
+            Match match;
+
             foreach (RollingShutter rollingShutter in this.RollingShutters)
             {
-                this.Request = String.Format("window {0}", rollingShutter.Index);
+                this.Request = String.Format("window {0}\r\n", rollingShutter.Index);
                 this.SendRequest();
 
-                if (this.Response.ToLower().Contains("open"))
-                    rollingShutter.State = RollingShutter.States.Open;
-                else
-                    rollingShutter.State = RollingShutter.States.Close;
+                match = Regex.Match(this.Response, @"\b(?:Open|Closed|Half)\b");
+
+                if (match.Value != "")
+                {
+                    switch (match.Value)
+                    {
+                        case "Open":
+                            rollingShutter.State = RollingShutter.States.Open;
+                            break;
+                        case "Closed":
+                            rollingShutter.State = RollingShutter.States.Closed;
+                            break;
+                        case "Half":
+                            rollingShutter.State = RollingShutter.States.Half;
+                            break;
+                    }
+                }
             }
         }
 
         public void UpdateHeater()
         {
-            this.Request = String.Format("heater");
+            this.Request = String.Format("heater\r\n");
             this.SendRequest();
 
             Match match = Regex.Match(this.Response, @"[0-9]{2}(?:\,[0-9])?");
-            if(match.Value != "")
+
+            if (match.Value != "")
                 this.Heater.Degree = float.Parse(match.Value);
         }
     }

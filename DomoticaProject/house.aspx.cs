@@ -55,7 +55,7 @@ namespace DomoticaProject
                     window0.Checked = true;
                     break;
                 //Color green
-                case RollingShutter.States.Close:
+                case RollingShutter.States.Closed:
                     window0.Checked = true;
                     break;
             }
@@ -68,7 +68,7 @@ namespace DomoticaProject
                 case RollingShutter.States.Half:
                     window1.Checked = true;
                     break;
-                case RollingShutter.States.Close:
+                case RollingShutter.States.Closed:
                     window1.Checked = true;
                     break;
             }
