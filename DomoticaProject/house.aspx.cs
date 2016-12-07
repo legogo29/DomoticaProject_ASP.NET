@@ -69,6 +69,7 @@ namespace DomoticaProject
                     break;
                 case RollingShutter.States.Half:
                     window1.Checked = true;
+                    window1span.Attributes["Class"] = "slider round bgOrange";
                     break;
                 case RollingShutter.States.Closed:
                     window1.Checked = true;
