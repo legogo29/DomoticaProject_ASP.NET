@@ -88,7 +88,9 @@
     <Content Include="Style.min.css">
       <DependentUpon>Style.css</DependentUpon>
     </Content>
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DaHaus\DaHaus.cs" />
@@ -162,7 +164,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50529</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:50529/</IISUrl>
+          <IISUrl>http://localhost:5000/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

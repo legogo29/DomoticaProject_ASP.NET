@@ -13,13 +13,31 @@ namespace DomoticaProject {
     public partial class _default {
         
         /// <summary>
-        /// SlideBoxPanel2 control.
+        /// SlideBoxPanel2_1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox SlideBoxPanel2;
+        protected global::System.Web.UI.WebControls.CheckBox SlideBoxPanel2_1;
+        
+        /// <summary>
+        /// SlideBoxPanel2_2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox SlideBoxPanel2_2;
+        
+        /// <summary>
+        /// SlideBoxPanel2_3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox SlideBoxPanel2_3;
         
         /// <summary>
         /// Label_panel4 control.

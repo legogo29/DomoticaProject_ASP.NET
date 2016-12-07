@@ -9,11 +9,11 @@ namespace DomoticaProject.Api
 {
     public class ValuesController : ApiController
     {
-        public static bool valuestate = false;
+        public static int[] valuestate = { 0, 0, 0 };
         // GET api/<controller>
-        public IEnumerable<string> Get()
+        public IEnumerable<int> Get()
         {
-            return new string[] { "value1", "value2", valuestate.ToString() };
+            return valuestate;
         }
         // GET api/<controller>/5
         public string Get(int id)
