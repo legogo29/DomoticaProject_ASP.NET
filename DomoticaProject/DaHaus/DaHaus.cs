@@ -241,6 +241,19 @@ namespace DomoticaProject
                 this.SendRequest();
 
                 match = Regex.Match(this.Response, @"\b(?:On|Off)\b");
+
+                if (match.Value != "")
+                {
+                    switch (match.Value)
+                    {
+                        case "On":
+                            lamp.State = Lamp.States.On;
+                            break;
+                        case "Off":
+                            lamp.State = Lamp.States.Off;
+                            break;
+                    }
+                }
             }
         }
 
