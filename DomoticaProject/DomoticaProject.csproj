@@ -88,7 +88,9 @@
     <Content Include="Style.min.css">
       <DependentUpon>Style.css</DependentUpon>
     </Content>
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DaHaus\DaHaus.cs" />

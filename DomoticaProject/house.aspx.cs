@@ -53,6 +53,8 @@ namespace DomoticaProject
                 //Color orange?
                 case RollingShutter.States.Half:
                     window0.Checked = true;
+                    window0span.Attributes["Class"] = "slider round bgOrange";
+                    //window0span.Style.Add("background-color", "#f0ad4e");
                     break;
                 //Color green
                 case RollingShutter.States.Close:
@@ -72,6 +74,7 @@ namespace DomoticaProject
                     window1.Checked = true;
                     break;
             }
+            //window0span.Attributes["Class"] = "slider round bgOrange";
 
             heater.InnerText = this.daHaus.Heater.Degree.ToString(".0");
         }
