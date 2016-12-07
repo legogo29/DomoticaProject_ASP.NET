@@ -72,12 +72,21 @@ namespace DomoticaProject
             }
         }
 
-        private bool transmitFailed;
-        public bool TransmitFailed
+        private bool requestSend;
+        public bool RequestSend
         {
             get
             {
-                return transmitFailed;
+                return requestSend;
+            }
+        }
+
+        private bool responseReceived;
+        public bool ResponseReceived
+        {
+            get
+            {
+                return responseReceived;
             }
         }
 
@@ -150,12 +159,21 @@ namespace DomoticaProject
 
             if (Connected)
             {
+                requestSend = false;
+                responseReceived = false;
+
                 stream = client.GetStream();
-
                 sendBuffer = Encoding.ASCII.GetBytes(Request);
-                stream.Write(sendBuffer, 0, sendBuffer.Length);
 
-                transmitFailed = false;
+                try
+                {
+                    stream.Write(sendBuffer, 0, sendBuffer.Length);
+                    requestSend = true;
+                }
+                catch (Exception exception)
+                {
+                    exceptionMessage = exception.Message;
+                }
 
                 try
                 {
@@ -169,11 +187,12 @@ namespace DomoticaProject
                             response += Encoding.ASCII.GetString(receiveBuffer, 0, amountOfBytesRead);
                         } while (amountOfBytesRead == receiveBuffer.Length);
                     } while (stream.DataAvailable);
+
+                    responseReceived = true;
                 }
                 catch (Exception exception)
                 {
                     exceptionMessage = exception.Message;
-                    transmitFailed = true;
                 }
             }
         }
@@ -182,10 +201,10 @@ namespace DomoticaProject
         {
             Lamp.States state = Lamp.States.On;
 
-            Request = String.Format("lamp {0} {1}\r\n", index, state);
+            Request = String.Format("lamp {0} {1}\r\n", index, state.ToString().ToLower());
             SendRequest();
 
-            if (!TransmitFailed)
+            if (RequestSend)
                 Lamps[index].State = state;
         }
 
@@ -196,7 +215,7 @@ namespace DomoticaProject
             Request = String.Format("lamp {0} {1}\r\n", index, state);
             SendRequest();
 
-            if (!TransmitFailed)
+            if (RequestSend)
                 Lamps[index].State = state;
         }
 
@@ -207,7 +226,7 @@ namespace DomoticaProject
             Request = String.Format("window {0} {1}\r\n", index, state);
             SendRequest();
 
-            if (!TransmitFailed)
+            if (RequestSend)
                 RollingShutters[index].State = state;
         }
 
@@ -218,7 +237,7 @@ namespace DomoticaProject
             Request = String.Format("window {0} {1}\r\n", index, state);
             SendRequest();
 
-            if (!TransmitFailed)
+            if (RequestSend)
                 RollingShutters[index].State = state;
         }
 
@@ -227,7 +246,7 @@ namespace DomoticaProject
             Request = String.Format("heater {0:.0}\r\n", degree);
             SendRequest();
 
-            if (!TransmitFailed)
+            if (RequestSend)
                 Heater.Degree = degree;
         }
 
