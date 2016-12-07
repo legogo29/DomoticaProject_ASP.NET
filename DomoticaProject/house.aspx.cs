@@ -75,7 +75,6 @@ namespace DomoticaProject
                     window1.Checked = true;
                     break;
             }
-            //window0span.Attributes["Class"] = "slider round bgOrange";
 
             heater.InnerText = this.daHaus.Heater.Degree.ToString(".0");
         }
