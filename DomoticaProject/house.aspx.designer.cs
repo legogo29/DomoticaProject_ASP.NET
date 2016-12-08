@@ -94,12 +94,30 @@ namespace DomoticaProject {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl window1span;
         
         /// <summary>
-        /// heater control.
+        /// txt_heater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl heater;
+        protected global::System.Web.UI.WebControls.TextBox txt_heater;
+        
+        /// <summary>
+        /// btn_sendHeater control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_sendHeater;
+        
+        /// <summary>
+        /// degreeValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator degreeValidator;
     }
 }

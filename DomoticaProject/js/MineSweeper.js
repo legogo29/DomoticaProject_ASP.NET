@@ -1,5 +1,13 @@
-﻿// debugger;
-var width, scale, fieldSize, bombs, isFlagged, isNotClicked, clicks, minesLeft = 10, time = 0, minesTimerVar, playing = false;
+﻿
+var closedColor = "#999";
+var openColor = "#dddddd";
+var flagColor = "#555500";
+var mineColor = "#dd0000";
+var textColor = "#000000";
+var totalMines = 10;
+
+// debugger;
+var width, scale, fieldSize, bombs, isFlagged, isNotClicked, clicks, minesLeft = 0, time = 0, minesTimerVar, playing = false;
 var canvas = document.getElementById("minesweeper");
 var height = canvas.height;
 var ctx = canvas.getContext("2d");
@@ -20,13 +28,13 @@ window.onresize = function () {
         for (var y = 0; y < 8; y++) {
             //opened
             if (isNotClicked[x][y] == 0) {
-                ctx.fillStyle = "#ffff00";
+                ctx.fillStyle = openColor;
                 ctx.fillRect(fieldX[x], fieldY[y], fieldSize, fieldSize);
                 checkSurrounding(x, y);
             }
             //flagged
             if (isFlagged[x][y] == 1) {
-                ctx.fillStyle = "#555500";
+                ctx.fillStyle = flagColor;
                 ctx.fillRect(fieldX[x], fieldY[y], fieldSize, fieldSize);
             }
         }
@@ -61,7 +69,7 @@ drawEmpty();
 
 function drawEmpty() {
     // debugger;
-    ctx.fillStyle = "#aaaa99";
+    ctx.fillStyle = closedColor;
     for (var x = 0; x < 8; x++) {
         for (var y = 0; y < 8; y++) {
             ctx.fillRect(fieldX[x], fieldY[y], fieldSize, fieldSize);
@@ -98,7 +106,7 @@ function init() {
 
     clicks = 0;
 
-    minesLeft = 10;
+    minesLeft = 0;
 
     playing = true;
 
@@ -117,7 +125,7 @@ function generateBombs(x, y) {
       [0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0]
     ];
-    for (var i = 0; i < minesLeft; i++) {
+    for (var i = 0; i < totalMines - minesLeft; i++) {
         newBomb(x, y);
     }
     // console.log("boms placed");
@@ -158,6 +166,7 @@ canvas.addEventListener('click', function (event) {
     }
 });
 canvas.addEventListener('contextmenu', function (event) {
+    // debugger;
     event.preventDefault();
     var xm = event.offsetX,
         ym = event.offsetY;
@@ -167,12 +176,12 @@ canvas.addEventListener('contextmenu', function (event) {
                 if (isNotClicked[x][y] == 1) {
                     if (isFlagged[x][y] == 0) {
                         isFlagged[x][y] = 1;
-                        ctx.fillStyle = "#555500";
-                        minesLeft--;
+                        ctx.fillStyle = flagColor;
+                        minesLeft++;
                     } else {
                         isFlagged[x][y] = 0;
-                        ctx.fillStyle = "#aaaa99";
-                        minesLeft++;
+                        ctx.fillStyle = closedColor;
+                        minesLeft--;
                     }
                     ctx.fillRect(fieldX[x], fieldY[y], fieldSize, fieldSize);
                     showMinesLeft();
@@ -185,10 +194,10 @@ canvas.addEventListener('contextmenu', function (event) {
 function openField(x, y) {
     if (isFlagged[x][y] == 0 && isNotClicked[x][y] == 1) {
         isNotClicked[x][y] = 0;
-        ctx.fillStyle = "#ffff00";
+        ctx.fillStyle = openColor;
         if (bombs[x][y] == 1) {
             lost();
-            ctx.fillStyle = "#dd0000";
+            ctx.fillStyle = mineColor;
         }
         ctx.fillRect(fieldX[x], fieldY[y], fieldSize, fieldSize);
         // console.log(fieldX + " " + fieldY);
@@ -208,7 +217,7 @@ function checkSurrounding(x, y) {
             // console.log(i + " " + j + " " + surrounding);
         }
     }
-    ctx.fillStyle = "#000000";
+    ctx.fillStyle = textColor;
     if (surrounding == 0) openSurrounding(x, y);
     else ctx.fillText(surrounding, fieldX[x] + fieldSize * .2, fieldY[y] + fieldSize * .9);
     // console.log(surrounding);
@@ -228,7 +237,7 @@ function openSurrounding(x, y) {
 function showMinesLeft() {
     ctx.fillStyle = "#ffffff";
     ctx.fillRect(scale * 5, scale * 8, 50, fieldSize * 2)
-    ctx.fillStyle = "#000000";
+    ctx.fillStyle = textColor;
     ctx.fillText(minesLeft, scale * 5, scale * 9);
 }
 
@@ -237,7 +246,7 @@ function minesTimer() {
         ctx.fillStyle = "#ffffff";
         ctx.fillRect(scale, scale * 8, 100, fieldSize * 2)
         // var d = time++;
-        ctx.fillStyle = "#000000";
+        ctx.fillStyle = textColor;
         ctx.fillText(++time, scale, scale * 9);
         // document.getElementById("demo").innerHTML = d.toLocaleTimeString();
     }
@@ -248,7 +257,7 @@ function lost() {
     for (var x = 0; x < 8; x++) {
         for (var y = 0; y < 8; y++) {
             if (bombs[x][y] == 1) {
-                ctx.fillStyle = "#aa2222";
+                ctx.fillStyle = mineColor;
                 ctx.fillRect(fieldX[x], fieldY[y], fieldSize, fieldSize);
             }
         }
