@@ -14,9 +14,9 @@ namespace DomoticaProject
         protected void Page_Load(object sender, EventArgs e)
         {
             daHaus.Connect();
-            daHaus.UpdateLamps();
-            daHaus.UpdateRollingShutters();
-            daHaus.UpdateHeater();
+            daHaus.RetrieveLamps();
+            daHaus.RetrieveRollingShutters();
+            daHaus.RetrieveHeater();
             daHaus.Close();
 
             this.ShowStates();

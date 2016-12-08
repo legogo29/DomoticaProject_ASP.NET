@@ -199,46 +199,38 @@ namespace DomoticaProject
 
         public void TurnOnLamp(int index)
         {
-            Lamp.States state = Lamp.States.On;
-
-            Request = String.Format("lamp {0} {1}\r\n", index, state.ToString().ToLower());
+            Request = String.Format("lamp {0} on\r\n", index);
             SendRequest();
 
             if (RequestSend)
-                Lamps[index].State = state;
+                Lamps[index].State = Lamp.States.On;
         }
 
         public void TurnOffLamp(int index)
         {
-            Lamp.States state = Lamp.States.Off;
-
-            Request = String.Format("lamp {0} {1}\r\n", index, state);
+            Request = String.Format("lamp {0} off\r\n", index);
             SendRequest();
 
             if (RequestSend)
-                Lamps[index].State = state;
+                Lamps[index].State = Lamp.States.Off;
         }
 
         public void OpenRollingShutter(int index)
         {
-            RollingShutter.States state = RollingShutter.States.Open;
-
-            Request = String.Format("window {0} {1}\r\n", index, state);
+            Request = String.Format("window {0} open\r\n", index);
             SendRequest();
 
             if (RequestSend)
-                RollingShutters[index].State = state;
+                RollingShutters[index].State = RollingShutter.States.Open;
         }
 
         public void CloseRollingShutter(int index)
         {
-            RollingShutter.States state = RollingShutter.States.Closed;
-
-            Request = String.Format("window {0} {1}\r\n", index, state);
+            Request = String.Format("window {0} close\r\n", index);
             SendRequest();
 
             if (RequestSend)
-                RollingShutters[index].State = state;
+                RollingShutters[index].State = RollingShutter.States.Closed;
         }
 
         public void ChangeHeaterDegree(float degree)
@@ -250,7 +242,7 @@ namespace DomoticaProject
                 Heater.Degree = degree;
         }
 
-        public void UpdateLamps()
+        public void RetrieveLamps()
         {
             Match match;
 
@@ -276,7 +268,7 @@ namespace DomoticaProject
             }
         }
 
-        public void UpdateRollingShutters()
+        public void RetrieveRollingShutters()
         {
             Match match;
 
@@ -305,7 +297,7 @@ namespace DomoticaProject
             }
         }
 
-        public void UpdateHeater()
+        public void RetrieveHeater()
         {
             Request = String.Format("heater\r\n");
             SendRequest();
