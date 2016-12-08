@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -13,16 +14,17 @@ namespace DomoticaProject
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            daHaus.Connect();
-            daHaus.RetrieveLamps();
-            daHaus.RetrieveWindows();
-            daHaus.RetrieveHeater();
-            daHaus.Close();
+            if (!IsPostBack)
+            {
+                daHaus.Connect();
+                daHaus.UpdateHouse();
+                daHaus.Close();
 
-            this.ShowStates();
+                PrepareCheckboxes();
+            }
         }
 
-        protected void ShowStates()
+        protected void PrepareCheckboxes()
         {
             if (daHaus.Lamps[0].State == Lamp.States.On)
                 lamp0.Checked = true;
@@ -54,10 +56,9 @@ namespace DomoticaProject
                 case Window.States.Open:
                     window0.Checked = false;
                     break;
-                    
+
                 case Window.States.Half:
-                    window0.Checked = true;
-                    window0span.Attributes["Class"] = "slider round bgOrange";
+                    //Niks
                     break;
 
                 case Window.States.Closed:
@@ -72,8 +73,7 @@ namespace DomoticaProject
                     break;
 
                 case Window.States.Half:
-                    window1.Checked = true;
-                    window1span.Attributes["Class"] = "slider round bgOrange";
+                    //Niks
                     break;
 
                 case Window.States.Closed:
@@ -81,7 +81,60 @@ namespace DomoticaProject
                     break;
             }
 
-            heater.InnerText = daHaus.Heater.Degree.ToString(".0");
+            txt_heater.Text = daHaus.Heater.Degree.ToString(".0");
+        }
+
+        protected void LampCheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox checkBox = (CheckBox)sender;
+            Match match = Regex.Match(checkBox.ID, @"\d");
+            int index = int.Parse(match.Value);
+
+            daHaus.Connect();
+
+            if (checkBox.Checked)
+            {
+                daHaus.TurnOnLamp(index);
+            }
+            else
+            {
+                daHaus.TurnOffLamp(index);
+            }
+
+            daHaus.Close();
+        }
+
+        protected void WindowCheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox checkBox = (CheckBox)sender;
+            Match match = Regex.Match(checkBox.ID, @"\d");
+            int index = int.Parse(match.Value);
+
+            daHaus.Connect();
+
+            if (checkBox.Checked)
+            {
+                daHaus.CloseWindow(index);
+            }
+            else
+            {
+                daHaus.OpenWindow(index);
+            }
+
+            daHaus.Close();
+        }
+
+        protected void btn_sendHeater_Click(object sender, EventArgs e)
+        {
+            string input = txt_heater.Text.Replace('.', ',');
+            float degree = daHaus.Heater.Degree;
+
+            if (!String.IsNullOrWhiteSpace(input))
+                degree = float.Parse(input);
+
+            daHaus.Connect();
+            daHaus.ChangeHeaterDegree(degree);
+            daHaus.Close();
         }
     }
 }

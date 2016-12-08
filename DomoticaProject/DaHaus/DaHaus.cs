@@ -307,5 +307,12 @@ namespace DomoticaProject
             if (match.Value != "")
                 Heater.Degree = float.Parse(match.Value);
         }
+
+        public void UpdateHouse()
+        {
+            RetrieveLamps();
+            RetrieveWindows();
+            RetrieveHeater();
+        }
     }
 }
