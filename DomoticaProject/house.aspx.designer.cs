@@ -19,7 +19,7 @@ namespace DomoticaProject {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox lamp0;
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox lamp0;
         
         /// <summary>
         /// lamp1 control.

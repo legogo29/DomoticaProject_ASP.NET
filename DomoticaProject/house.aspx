@@ -9,7 +9,7 @@
             <li>
                 <label>Lamp 0</label>
                 <label class="switch">
-                    <asp:CheckBox ID="lamp0" runat="server" />
+                    <input id="lamp0" runat="server" type="checkbox" />
                     <span class="slider round"></span>
                 </label>
             </li>
