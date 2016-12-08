@@ -15,7 +15,7 @@ namespace DomoticaProject
         {
             daHaus.Connect();
             daHaus.RetrieveLamps();
-            daHaus.RetrieveRollingShutters();
+            daHaus.RetrieveWindows();
             daHaus.RetrieveHeater();
             daHaus.Close();
 
@@ -49,34 +49,34 @@ namespace DomoticaProject
             else
                 lamp4.Checked = false;
 
-            switch (daHaus.RollingShutters[0].State)
+            switch (daHaus.Windows[0].State)
             {
-                //Color grey
-                case RollingShutter.States.Open:
+                case Window.States.Open:
                     window0.Checked = false;
                     break;
-                //Color orange?
-                case RollingShutter.States.Half:
+                    
+                case Window.States.Half:
                     window0.Checked = true;
                     window0span.Attributes["Class"] = "slider round bgOrange";
-                    //window0span.Style.Add("background-color", "#f0ad4e");
                     break;
-                //Color green
-                case RollingShutter.States.Closed:
+
+                case Window.States.Closed:
                     window0.Checked = true;
                     break;
             }
 
-            switch (daHaus.RollingShutters[1].State)
+            switch (daHaus.Windows[1].State)
             {
-                case RollingShutter.States.Open:
+                case Window.States.Open:
                     window1.Checked = false;
                     break;
-                case RollingShutter.States.Half:
+
+                case Window.States.Half:
                     window1.Checked = true;
                     window1span.Attributes["Class"] = "slider round bgOrange";
                     break;
-                case RollingShutter.States.Closed:
+
+                case Window.States.Closed:
                     window1.Checked = true;
                     break;
             }

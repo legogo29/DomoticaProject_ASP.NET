@@ -14,7 +14,7 @@ namespace DomoticaProject
         private NetworkStream stream;
 
         public Lamp[] Lamps = new Lamp[5];
-        public RollingShutter[] RollingShutters = new RollingShutter[2];
+        public Window[] Windows = new Window[2];
         public Heater Heater;
 
         public DaHaus(string ip, int port)
@@ -28,8 +28,8 @@ namespace DomoticaProject
             Lamps[3] = new Lamp(3);
             Lamps[4] = new Lamp(4);
 
-            RollingShutters[0] = new RollingShutter(0);
-            RollingShutters[1] = new RollingShutter(1);
+            Windows[0] = new Window(0);
+            Windows[1] = new Window(1);
 
             Heater = new Heater(0);
         }
@@ -215,22 +215,22 @@ namespace DomoticaProject
                 Lamps[index].State = Lamp.States.Off;
         }
 
-        public void OpenRollingShutter(int index)
+        public void OpenWindow(int index)
         {
             Request = String.Format("window {0} open\r\n", index);
             SendRequest();
 
             if (RequestSend)
-                RollingShutters[index].State = RollingShutter.States.Open;
+                Windows[index].State = Window.States.Open;
         }
 
-        public void CloseRollingShutter(int index)
+        public void CloseWindow(int index)
         {
             Request = String.Format("window {0} close\r\n", index);
             SendRequest();
 
             if (RequestSend)
-                RollingShutters[index].State = RollingShutter.States.Closed;
+                Windows[index].State = Window.States.Closed;
         }
 
         public void ChangeHeaterDegree(float degree)
@@ -268,13 +268,13 @@ namespace DomoticaProject
             }
         }
 
-        public void RetrieveRollingShutters()
+        public void RetrieveWindows()
         {
             Match match;
 
-            foreach (RollingShutter rollingShutter in RollingShutters)
+            foreach (Window window in Windows)
             {
-                Request = String.Format("window {0}\r\n", rollingShutter.Index);
+                Request = String.Format("window {0}\r\n", window.Index);
                 SendRequest();
 
                 match = Regex.Match(Response, @"\b(?:Open|Closed|Half)\b");
@@ -284,13 +284,13 @@ namespace DomoticaProject
                     switch (match.Value)
                     {
                         case "Open":
-                            rollingShutter.State = RollingShutter.States.Open;
+                            window.State = Window.States.Open;
                             break;
                         case "Closed":
-                            rollingShutter.State = RollingShutter.States.Closed;
+                            window.State = Window.States.Closed;
                             break;
                         case "Half":
-                            rollingShutter.State = RollingShutter.States.Half;
+                            window.State = Window.States.Half;
                             break;
                     }
                 }

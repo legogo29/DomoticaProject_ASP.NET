@@ -1,6 +1,6 @@
 ﻿namespace DomoticaProject
 {
-    public class RollingShutter
+    public class Window
     {
         public enum States : int
         {
@@ -9,7 +9,7 @@
             Half = 2
         }
 
-        public RollingShutter(int index)
+        public Window(int index)
         {
             this.index = index;
         }
