@@ -1,14 +1,15 @@
 ﻿namespace DomoticaProject
 {
-    public class Lamp
+    public class Window
     {
         public enum States : int
         {
-            Off = 0,
-            On = 1
+            Open = 0,
+            Closed = 1,
+            Half = 2
         }
 
-        public Lamp(int index)
+        public Window(int index)
         {
             this.index = index;
         }

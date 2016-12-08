@@ -85,6 +85,15 @@ namespace DomoticaProject {
         protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox window1;
         
         /// <summary>
+        /// window1span control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl window1span;
+        
+        /// <summary>
         /// heater control.
         /// </summary>
         /// <remarks>

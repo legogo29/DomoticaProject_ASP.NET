@@ -60,7 +60,7 @@
                 <label>Window 1</label>
                 <label class="switch">
                     <input id="window1" runat="server" type="checkbox" />
-                    <span class="slider round"></span>
+                    <span  id="window1span" runat="server" class="slider round"></span>
                 </label>
             </li>
         </ul>
