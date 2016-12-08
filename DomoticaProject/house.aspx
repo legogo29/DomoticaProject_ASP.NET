@@ -16,28 +16,28 @@
             <li>
                 <label>Lamp 1</label>
                 <label class="switch">
-                    <asp:CheckBox ID="lamp1" runat="server" />
+                    <input id="lamp1" runat="server" type="checkbox" />
                     <span class="slider round"></span>
                 </label>
             </li>
             <li>
                 <label>Lamp 2</label>
                 <label class="switch">
-                    <asp:CheckBox ID="lamp2" runat="server" />
+                    <input id="lamp2" runat="server" type="checkbox" />
                     <span class="slider round"></span>
                 </label>
             </li>
             <li>
                 <label>Lamp 3</label>
                 <label class="switch">
-                    <asp:CheckBox ID="lamp3" runat="server" />
+                    <input id="lamp3" runat="server" type="checkbox" />
                     <span class="slider round"></span>
                 </label>
             </li>
             <li>
                 <label>Lamp 4</label>
                 <label class="switch">
-                    <asp:CheckBox ID="lamp4" runat="server" />
+                    <input id="lamp4" runat="server" type="checkbox" />
                     <span class="slider round"></span>
                 </label>
             </li>
@@ -52,14 +52,14 @@
             <li>
                 <label>Window 0</label>
                 <label class="switch">
-                    <asp:CheckBox ID="window0" runat="server" />
+                    <input id="window0" runat="server" type="checkbox" />
                     <span id="window0span" runat="server" class="slider round"></span>
                 </label>
             </li>
             <li>
                 <label>Window 1</label>
                 <label class="switch">
-                    <asp:CheckBox ID="window1" runat="server" />
+                    <input id="window1" runat="server" type="checkbox" />
                     <span  id="window1span" runat="server" class="slider round"></span>
                 </label>
             </li>
