@@ -79,8 +79,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="default.aspx" />
+    <Content Include="games.aspx" />
     <Content Include="house.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="js\MineSweeper.js" />
     <Content Include="login.aspx" />
     <Content Include="Style.css">
       <DependentUpon>Style.less</DependentUpon>
@@ -104,6 +106,13 @@
       <DependentUpon>default.aspx</DependentUpon>
     </Compile>
     <Compile Include="DaHaus\Heater.cs" />
+    <Compile Include="games.aspx.cs">
+      <DependentUpon>games.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="games.aspx.designer.cs">
+      <DependentUpon>games.aspx</DependentUpon>
+    </Compile>
     <Compile Include="house.aspx.cs">
       <DependentUpon>house.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
