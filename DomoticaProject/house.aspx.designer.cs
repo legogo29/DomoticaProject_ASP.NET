@@ -19,7 +19,7 @@ namespace DomoticaProject {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox lamp0;
+        protected global::System.Web.UI.WebControls.CheckBox lamp0;
         
         /// <summary>
         /// lamp1 control.
@@ -28,7 +28,7 @@ namespace DomoticaProject {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox lamp1;
+        protected global::System.Web.UI.WebControls.CheckBox lamp1;
         
         /// <summary>
         /// lamp2 control.
@@ -37,7 +37,7 @@ namespace DomoticaProject {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox lamp2;
+        protected global::System.Web.UI.WebControls.CheckBox lamp2;
         
         /// <summary>
         /// lamp3 control.
@@ -46,7 +46,7 @@ namespace DomoticaProject {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox lamp3;
+        protected global::System.Web.UI.WebControls.CheckBox lamp3;
         
         /// <summary>
         /// lamp4 control.
@@ -55,7 +55,7 @@ namespace DomoticaProject {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox lamp4;
+        protected global::System.Web.UI.WebControls.CheckBox lamp4;
         
         /// <summary>
         /// window0 control.
@@ -64,7 +64,7 @@ namespace DomoticaProject {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox window0;
+        protected global::System.Web.UI.WebControls.CheckBox window0;
         
         /// <summary>
         /// window0span control.
@@ -82,7 +82,16 @@ namespace DomoticaProject {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox window1;
+        protected global::System.Web.UI.WebControls.CheckBox window1;
+        
+        /// <summary>
+        /// window1span control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl window1span;
         
         /// <summary>
         /// heater control.

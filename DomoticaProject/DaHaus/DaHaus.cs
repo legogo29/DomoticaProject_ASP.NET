@@ -14,7 +14,7 @@ namespace DomoticaProject
         private NetworkStream stream;
 
         public Lamp[] Lamps = new Lamp[5];
-        public RollingShutter[] RollingShutters = new RollingShutter[2];
+        public Window[] Windows = new Window[2];
         public Heater Heater;
 
         public DaHaus(string ip, int port)
@@ -22,24 +22,26 @@ namespace DomoticaProject
             this.ip = ip;
             this.port = port;
 
-            this.Lamps[0] = new Lamp(0);
-            this.Lamps[1] = new Lamp(1);
-            this.Lamps[2] = new Lamp(2);
-            this.Lamps[3] = new Lamp(3);
-            this.Lamps[4] = new Lamp(4);
+            Lamps[0] = new Lamp(0);
+            Lamps[1] = new Lamp(1);
+            Lamps[2] = new Lamp(2);
+            Lamps[3] = new Lamp(3);
+            Lamps[4] = new Lamp(4);
 
-            this.RollingShutters[0] = new RollingShutter(0);
-            this.RollingShutters[1] = new RollingShutter(1);
+            Windows[0] = new Window(0);
+            Windows[1] = new Window(1);
 
-            this.Heater = new Heater(0);
+            Heater = new Heater(0);
         }
+
+        public string Request;
 
         private string ip;
         public string Ip
         {
             get
             {
-                return this.ip;
+                return ip;
             }
         }
 
@@ -48,7 +50,7 @@ namespace DomoticaProject
         {
             get
             {
-                return this.port;
+                return port;
             }
         }
 
@@ -57,7 +59,7 @@ namespace DomoticaProject
         {
             get
             {
-                return this.exceptionMessage;
+                return exceptionMessage;
             }
         }
 
@@ -66,31 +68,26 @@ namespace DomoticaProject
         {
             get
             {
-                return this.response;
+                return response;
             }
         }
 
-        private bool transmitFailed;
-        public bool TransmitFailed
+        private bool requestSend;
+        public bool RequestSend
         {
             get
             {
-                return this.transmitFailed;
+                return requestSend;
             }
         }
 
-        private string request;
-        public string Request
+        private bool responseReceived;
+        public bool ResponseReceived
         {
             get
             {
-                return this.request;
+                return responseReceived;
             }
-            set
-            {
-                this.request = value + "\r\n";
-            }
-
         }
 
         private bool connected;
@@ -98,18 +95,18 @@ namespace DomoticaProject
         {
             get
             {
-                this.connected = false;
+                connected = false;
 
                 try
                 {
-                    this.connected = this.client.Connected;
+                    connected = client.Connected;
                 }
                 catch (Exception exception)
                 {
-                    this.exceptionMessage = exception.Message;
+                    exceptionMessage = exception.Message;
                 }
 
-                return this.connected;
+                return connected;
             }
         }
 
@@ -117,40 +114,39 @@ namespace DomoticaProject
         {
             try
             {
-                if (!this.Connected)
-
-                    this.client = new TcpClient(this.ip, this.port);
+                if (!Connected)
+                    client = new TcpClient(ip, port);
             }
             catch (Exception exception)
             {
-                this.exceptionMessage = exception.Message;
+                exceptionMessage = exception.Message;
             }
         }
 
         public void Close()
         {
-            if (this.Connected)
+            if (Connected)
             {
-                this.Request = "exit";
-                this.SendRequest();
+                Request = "exit\r\n";
+                SendRequest();
             }
 
             try
             {
-                this.stream.Close();
+                stream.Close();
             }
             catch (Exception exception)
             {
-                this.exceptionMessage = exception.Message;
+                exceptionMessage = exception.Message;
             }
 
             try
             {
-                this.client.Close();
+                client.Close();
             }
             catch (Exception exception)
             {
-                this.exceptionMessage = exception.Message;
+                exceptionMessage = exception.Message;
             }
         }
 
@@ -159,16 +155,25 @@ namespace DomoticaProject
             byte[] sendBuffer;
             byte[] receiveBuffer = new byte[1024];
 
-            this.response = "";
+            response = "";
 
-            if (this.Connected)
+            if (Connected)
             {
-                this.stream = this.client.GetStream();
+                requestSend = false;
+                responseReceived = false;
 
-                sendBuffer = Encoding.ASCII.GetBytes(this.Request);
-                this.stream.Write(sendBuffer, 0, sendBuffer.Length);
+                stream = client.GetStream();
+                sendBuffer = Encoding.ASCII.GetBytes(Request);
 
-                this.transmitFailed = false;
+                try
+                {
+                    stream.Write(sendBuffer, 0, sendBuffer.Length);
+                    requestSend = true;
+                }
+                catch (Exception exception)
+                {
+                    exceptionMessage = exception.Message;
+                }
 
                 try
                 {
@@ -179,84 +184,128 @@ namespace DomoticaProject
                         do
                         {
                             amountOfBytesRead = stream.Read(receiveBuffer, 0, receiveBuffer.Length);
-                            this.response += Encoding.ASCII.GetString(receiveBuffer, 0, amountOfBytesRead);
+                            response += Encoding.ASCII.GetString(receiveBuffer, 0, amountOfBytesRead);
                         } while (amountOfBytesRead == receiveBuffer.Length);
-                    } while (this.stream.DataAvailable);
+                    } while (stream.DataAvailable);
+
+                    responseReceived = true;
                 }
                 catch (Exception exception)
                 {
-                    this.exceptionMessage = exception.Message;
-                    this.transmitFailed = true;
+                    exceptionMessage = exception.Message;
                 }
             }
         }
 
-        public void ChangeLampState(Lamp lamp, Lamp.States state)
+        public void TurnOnLamp(int index)
         {
-            this.request = String.Format("lamp {0} {1}", lamp.Index, state.ToString().ToLower());
+            Request = String.Format("lamp {0} on\r\n", index);
+            SendRequest();
 
-            this.SendRequest();
-
-            if (!this.transmitFailed)
-                lamp.State = state;
+            if (RequestSend)
+                Lamps[index].State = Lamp.States.On;
         }
 
-        public void ChangeRollingShutterState(RollingShutter rollingShutter, RollingShutter.States state)
+        public void TurnOffLamp(int index)
         {
-            this.request = String.Format("window {0} {1}", rollingShutter.Index, state.ToString().ToLower());
+            Request = String.Format("lamp {0} off\r\n", index);
+            SendRequest();
 
-            this.SendRequest();
+            if (RequestSend)
+                Lamps[index].State = Lamp.States.Off;
+        }
 
-            if (!this.transmitFailed)
-                rollingShutter.State = state;
+        public void OpenWindow(int index)
+        {
+            Request = String.Format("window {0} open\r\n", index);
+            SendRequest();
+
+            if (RequestSend)
+                Windows[index].State = Window.States.Open;
+        }
+
+        public void CloseWindow(int index)
+        {
+            Request = String.Format("window {0} close\r\n", index);
+            SendRequest();
+
+            if (RequestSend)
+                Windows[index].State = Window.States.Closed;
         }
 
         public void ChangeHeaterDegree(float degree)
         {
-            this.request = String.Format("heater {0:.0}", degree);
+            Request = String.Format("heater {0:.0}\r\n", degree);
+            SendRequest();
 
-            this.SendRequest();
-
-            if (!this.transmitFailed)
-                this.Heater.Degree = degree;
+            if (RequestSend)
+                Heater.Degree = degree;
         }
 
-        public void UpdateLamps()
+        public void RetrieveLamps()
         {
-            foreach (Lamp lamp in this.Lamps)
-            {
-                this.Request = String.Format("lamp {0}", lamp.Index);
-                this.SendRequest();
+            Match match;
 
-                if (this.Response.ToLower().Contains("on"))
-                    lamp.State = Lamp.States.On;
-                else
-                    lamp.State = Lamp.States.Off;
+            foreach (Lamp lamp in Lamps)
+            {
+                Request = String.Format("lamp {0}\r\n", lamp.Index);
+                SendRequest();
+
+                match = Regex.Match(Response, @"\b(?:On|Off)\b");
+
+                if (match.Value != "")
+                {
+                    switch (match.Value)
+                    {
+                        case "On":
+                            lamp.State = Lamp.States.On;
+                            break;
+                        case "Off":
+                            lamp.State = Lamp.States.Off;
+                            break;
+                    }
+                }
             }
         }
 
-        public void UpdateRollingShutters()
+        public void RetrieveWindows()
         {
-            foreach (RollingShutter rollingShutter in this.RollingShutters)
-            {
-                this.Request = String.Format("window {0}", rollingShutter.Index);
-                this.SendRequest();
+            Match match;
 
-                if (this.Response.ToLower().Contains("open"))
-                    rollingShutter.State = RollingShutter.States.Open;
-                else
-                    rollingShutter.State = RollingShutter.States.Close;
+            foreach (Window window in Windows)
+            {
+                Request = String.Format("window {0}\r\n", window.Index);
+                SendRequest();
+
+                match = Regex.Match(Response, @"\b(?:Open|Closed|Half)\b");
+
+                if (match.Value != "")
+                {
+                    switch (match.Value)
+                    {
+                        case "Open":
+                            window.State = Window.States.Open;
+                            break;
+                        case "Closed":
+                            window.State = Window.States.Closed;
+                            break;
+                        case "Half":
+                            window.State = Window.States.Half;
+                            break;
+                    }
+                }
             }
         }
 
-        public void UpdateHeater()
+        public void RetrieveHeater()
         {
-            this.Request = String.Format("heater");
-            this.SendRequest();
+            Request = String.Format("heater\r\n");
+            SendRequest();
 
-            Match match = Regex.Match(this.Response, @"[0-9]{2}(?:\,[0-9])?");
-            if(match.Value != "")
-                this.Heater.Degree = float.Parse(match.Value);
+            Match match = Regex.Match(Response, @"[0-9]{2}(?:\,[0-9])?");
+
+            if (match.Value != "")
+                Heater.Degree = float.Parse(match.Value);
         }
     }
 }

@@ -1,23 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace DomoticaProject
+﻿namespace DomoticaProject
 {
     public class Heater
     {
-
         public Heater(int index)
         {
             this.index = index;
         }
 
-        public Heater(int index, string location)
-        {
-            this.index = index;
-            this.location = location;
-        }
+        public string Location;
+        public float Degree;
 
         private int index;
         public int Index
@@ -25,33 +16,6 @@ namespace DomoticaProject
             get
             {
                 return this.index;
-            }
-        }
-
-        private string location;
-        public string Location
-        {
-            get
-            {
-                return this.location;
-            }
-            set
-            {
-                this.location = value;
-            }
-        }
-
-
-        private float degree;
-        public float Degree
-        {
-            get
-            {
-                return this.degree;
-            }
-            set
-            {
-                this.degree = value;
             }
         }
 
