@@ -11,7 +11,10 @@ namespace DomoticaProject
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (true)
+            {
+                sidebar.InnerHtml += "<a href=\"#\" class=\"list-group-item\">Logout</a>";
+            }
         }
     }
 }
