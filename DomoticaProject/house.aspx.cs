@@ -26,30 +26,15 @@ namespace DomoticaProject
 
         protected void PrepareCheckboxes()
         {
-            if (daHaus.Lamps[0].State == Lamp.States.On)
-                lamp0.Checked = true;
-            else
-                lamp0.Checked = false;
+            CheckBox[] lamps = { lamp0, lamp1, lamp2, lamp3, lamp4 };
 
-            if (daHaus.Lamps[1].State == Lamp.States.On)
-                lamp1.Checked = true;
-            else
-                lamp1.Checked = false;
-
-            if (daHaus.Lamps[2].State == Lamp.States.On)
-                lamp2.Checked = true;
-            else
-                lamp2.Checked = false;
-
-            if (daHaus.Lamps[3].State == Lamp.States.On)
-                lamp3.Checked = true;
-            else
-                lamp3.Checked = false;
-
-            if (daHaus.Lamps[4].State == Lamp.States.On)
-                lamp4.Checked = true;
-            else
-                lamp4.Checked = false;
+            for (int i = 0; i < 5; i++)
+            {
+                if (daHaus.Lamps[i].State == Lamp.States.On)
+                    lamps[i].Checked = true;
+                else
+                    lamps[i].Checked = false;
+            }
 
             switch (daHaus.Windows[0].State)
             {
