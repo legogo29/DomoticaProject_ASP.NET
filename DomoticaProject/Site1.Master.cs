@@ -11,8 +11,9 @@ namespace DomoticaProject
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (true)
+            if (Request.Cookies["userCookie"] != null)
             {
+                lbl_signedInAs.Text = "Signed in as: " + Request.Cookies["userCookie"].Value;
                 sidebar.InnerHtml += "<a href=\"#\" class=\"list-group-item\">Logout</a>";
             }
         }
