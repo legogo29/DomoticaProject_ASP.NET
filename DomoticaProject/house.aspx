@@ -10,30 +10,35 @@
                 <h2>Lamps</h2>
                 <ul>
                     <li>
+                        <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
                         <label class="switch">
                             <asp:CheckBox ID="lamp0" runat="server" AutoPostBack="true" OnCheckedChanged="LampCheckedChanged" />
                             <span class="slider round"></span>
                         </label>
                     </li>
                     <li>
+                        <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
                         <label class="switch">
                             <asp:CheckBox ID="lamp1" runat="server" AutoPostBack="true" OnCheckedChanged="LampCheckedChanged" />
                             <span class="slider round"></span>
                         </label>
                     </li>
                     <li>
+                        <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
                         <label class="switch">
                             <asp:CheckBox ID="lamp2" runat="server" AutoPostBack="true" OnCheckedChanged="LampCheckedChanged" />
                             <span class="slider round"></span>
                         </label>
                     </li>
                     <li>
+                        <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
                         <label class="switch">
                             <asp:CheckBox ID="lamp3" runat="server" AutoPostBack="true" OnCheckedChanged="LampCheckedChanged" />
                             <span class="slider round"></span>
                         </label>
                     </li>
                     <li>
+                        <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
                         <label class="switch">
                             <asp:CheckBox ID="lamp4" runat="server" AutoPostBack="true" OnCheckedChanged="LampCheckedChanged" />
                             <span class="slider round"></span>
