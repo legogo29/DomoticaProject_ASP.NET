@@ -19,7 +19,6 @@ namespace DomoticaProject
                 daHaus.Connect();
                 daHaus.UpdateHouse();
                 daHaus.Close();
-
                 PrepareCheckboxes();
             }
         }
@@ -27,8 +26,9 @@ namespace DomoticaProject
         protected void PrepareCheckboxes()
         {
             CheckBox[] lamps = { lamp0, lamp1, lamp2, lamp3, lamp4 };
+            CheckBox[] windows = { window0, window1 };
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < lamps.Length; i++)
             {
                 if (daHaus.Lamps[i].State == Lamp.States.On)
                     lamps[i].Checked = true;
@@ -36,34 +36,12 @@ namespace DomoticaProject
                     lamps[i].Checked = false;
             }
 
-            switch (daHaus.Windows[0].State)
+            for (int i = 0; i < windows.Length; i++)
             {
-                case Window.States.Open:
-                    window0.Checked = false;
-                    break;
-
-                case Window.States.Half:
-                    //Niks
-                    break;
-
-                case Window.States.Closed:
-                    window0.Checked = true;
-                    break;
-            }
-
-            switch (daHaus.Windows[1].State)
-            {
-                case Window.States.Open:
-                    window1.Checked = false;
-                    break;
-
-                case Window.States.Half:
-                    //Niks
-                    break;
-
-                case Window.States.Closed:
-                    window1.Checked = true;
-                    break;
+                if (daHaus.Windows[i].State == Window.States.Closed)
+                    windows[i].Checked = true;
+                else
+                    windows[i].Checked = false;
             }
 
             txt_heater.Text = daHaus.Heater.Degree.ToString(".0");
