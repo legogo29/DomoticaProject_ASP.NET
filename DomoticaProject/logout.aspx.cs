@@ -7,22 +7,22 @@ using System.Web.UI.WebControls;
 
 namespace DomoticaProject
 {
-    public partial class login : System.Web.UI.Page
+    public partial class logout : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
 
-        protected void LoginButton_Click(object sender, EventArgs e)
+        protected void logoutButton_Click(object sender, EventArgs e)
         {
             HttpCookie CookieCookie = new HttpCookie("userCookie");
 
-            CookieCookie.Value = UserName.Text;
-            CookieCookie.Expires = DateTime.Now.AddHours(1.0);
+            CookieCookie.Value = "SignedOut";
+            CookieCookie.Expires = DateTime.Now.AddHours(-1.0);
             Response.Cookies.Add(CookieCookie);
 
-            Response.Redirect("default.aspx");
+            Response.Redirect("login.aspx");
         }
     }
 }
