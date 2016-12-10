@@ -1,7 +1,7 @@
 ﻿[
   {
-    "outputFile": "Style.css",
-    "inputFile": "Style.less"
+    "outputFile": "style/Style.css",
+    "inputFile": "style/Style.less"
   },
   {
     "outputFile": "style/Max.css",

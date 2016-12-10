@@ -27,7 +27,7 @@ namespace DomoticaProject
 
             styleCookie.Value = DDL_basestyle.SelectedIndex.ToString();
 
-            styleCookie.Expires = DateTime.Now.AddHours(1.0);
+            styleCookie.Expires = DateTime.Now.AddYears(10);
             Response.Cookies.Add(styleCookie);
 
             Response.Redirect("settings.aspx");
