@@ -13,6 +13,15 @@ namespace DomoticaProject {
     public partial class Site1 {
         
         /// <summary>
+        /// customStyle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlLink customStyle;
+        
+        /// <summary>
         /// head control.
         /// </summary>
         /// <remarks>

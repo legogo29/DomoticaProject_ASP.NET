@@ -11,7 +11,26 @@ namespace DomoticaProject
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                HttpCookie styleCookie = Request.Cookies["styleCookie"];
+                if (styleCookie != null)
+                {
+                    DDL_basestyle.SelectedIndex = int.Parse(styleCookie.Value);
+                }
+            }
+        }
 
+        protected void DDL_basestyle_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            HttpCookie styleCookie = new HttpCookie("styleCookie");
+
+            styleCookie.Value = DDL_basestyle.SelectedIndex.ToString();
+
+            styleCookie.Expires = DateTime.Now.AddYears(10);
+            Response.Cookies.Add(styleCookie);
+
+            Response.Redirect("settings.aspx");
         }
     }
 }
