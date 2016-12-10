@@ -6,7 +6,7 @@
     Style: 
     <asp:DropDownList ID="DDL_basestyle" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DDL_basestyle_SelectedIndexChanged">
         <asp:ListItem Text="Bootstrap" Selected="True" />
-        <asp:ListItem Text="Max"/>
-        <asp:ListItem Text="Tim"/>
+        <asp:ListItem Text="Max" />
+        <asp:ListItem Text="Tim" />
     </asp:DropDownList>
 </asp:Content>
