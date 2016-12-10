@@ -6,5 +6,9 @@
   {
     "outputFile": "style/Max.css",
     "inputFile": "style/Max.less"
+  },
+  {
+    "outputFile": "style/Tim.css",
+    "inputFile": "style/Tim.less"
   }
 ]

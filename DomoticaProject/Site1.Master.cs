@@ -25,6 +25,9 @@ namespace DomoticaProject
                     case 1:
                         customStyle.Attributes["href"] = "style/Max.css";
                         break;
+                    case 2:
+                        customStyle.Attributes["href"] = "style/Tim.css";
+                        break;
                     default:
                         customStyle.Attributes["href"] = "";
                         break;

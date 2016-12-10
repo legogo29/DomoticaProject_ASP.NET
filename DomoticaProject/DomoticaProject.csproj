@@ -98,6 +98,13 @@
     <Content Include="style\Style.min.css">
       <DependentUpon>Style.css</DependentUpon>
     </Content>
+    <Content Include="style\Tim.css">
+      <DependentUpon>Tim.less</DependentUpon>
+    </Content>
+    <Content Include="style\Tim.min.css">
+      <DependentUpon>Tim.css</DependentUpon>
+    </Content>
+    <Content Include="images\thumbsup.png" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -173,6 +180,7 @@
     <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\project domotica.pubxml" />
     <Content Include="style\Max.less" />
+    <Content Include="style\Tim.less" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
