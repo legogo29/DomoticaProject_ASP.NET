@@ -1,6 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="house.aspx.cs" Inherits="DomoticaProject.house" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        body {
+            background-color: cornsilk;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="DaHausScriptManager" runat="server"></asp:ScriptManager>
@@ -74,6 +79,9 @@
                     </li>
                     <li>
                         <asp:RangeValidator runat="server" ErrorMessage="Geef een waarde tussen 12 en 35." ID="degreeValidator" ControlToValidate="txt_heater" MaximumValue="35" MinimumValue="12" Display="Dynamic"></asp:RangeValidator>
+                    </li>
+                    <li>
+                        <asp:RegularExpressionValidator ID="degreeRegexValidator" runat="server" ErrorMessage="Het getal is niet in het juiste formaat." ControlToValidate="txt_heater" ValidationExpression="^[0-9]+((\,)[0-9]*|(\.)[0-9]*)?$"></asp:RegularExpressionValidator>
                     </li>
                 </ul>
             </div>

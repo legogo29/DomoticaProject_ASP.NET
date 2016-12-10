@@ -44,7 +44,8 @@ namespace DomoticaProject
                     windows[i].Checked = false;
             }
 
-            txt_heater.Text = daHaus.Heater.Degree.ToString(".0");
+            if (daHaus.Heater.Degree != 0)
+                txt_heater.Text = daHaus.Heater.Degree.ToString(".0");
         }
 
         protected void LampCheckedChanged(object sender, EventArgs e)
@@ -90,14 +91,15 @@ namespace DomoticaProject
         protected void btn_sendHeater_Click(object sender, EventArgs e)
         {
             string input = txt_heater.Text.Replace('.', ',');
-            float degree = daHaus.Heater.Degree;
 
-            if (!String.IsNullOrWhiteSpace(input))
-                degree = float.Parse(input);
+            float degree;
 
-            daHaus.Connect();
-            daHaus.ChangeHeaterDegree(degree);
-            daHaus.Close();
+            if (float.TryParse(input, out degree))
+            {
+                daHaus.Connect();
+                daHaus.ChangeHeaterDegree(degree);
+                daHaus.Close();
+            }
         }
     }
 }
