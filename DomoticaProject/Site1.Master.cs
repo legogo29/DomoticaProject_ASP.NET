@@ -17,6 +17,23 @@ namespace DomoticaProject
                 sidebar.InnerHtml += "<a href=\"logout.aspx\" class=\"list-group-item\">Logout</a>";
 
             }
+            HttpCookie styleCookie = Request.Cookies["styleCookie"];
+            if (styleCookie != null)
+            {
+                switch (int.Parse(styleCookie.Value))
+                {
+                    case 1:
+                        customStyle.Attributes["href"] = "Max.css";
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        protected void Btn_Settings_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

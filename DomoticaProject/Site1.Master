@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" id="customStyle" runat="server" />
     <script src="https://use.fontawesome.com/03e759f745.js"></script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -49,7 +50,7 @@
           <a href="login.aspx" class="list-group-item">Account</a>
           <a href="house.aspx" class="list-group-item">House</a>
           <a href="games.aspx" class="list-group-item">Games</a>
-          <a href="#" class="list-group-item">Settings</a>
+          <a href="settings.aspx" class="list-group-item">Settings</a>
           
         </div>
       </div><!--/.sidebar-offcanvas-->
