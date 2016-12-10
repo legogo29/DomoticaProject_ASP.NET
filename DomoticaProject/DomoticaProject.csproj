@@ -104,6 +104,7 @@
     <Content Include="style\Tim.min.css">
       <DependentUpon>Tim.css</DependentUpon>
     </Content>
+    <Content Include="images\thumbsup.png" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
