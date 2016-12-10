@@ -8,7 +8,7 @@
         <ContentTemplate>
         <div class="row">
             <div class="col-xs-6 col-lg-3" id="field1" ondrop="drop(event)" ondragover="allowDrop(event)">
-            <div id="panel1" class="panel panel-default dingen" draggable="true" ondragstart="drag(event)">
+            <div id="panel1" class="panel panel-default dingen" draggable="false" ondragstart="drag(event)">
                 <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
                 <h2>Lamps</h2>
                 <ul>
@@ -47,7 +47,7 @@
             </div>
 
             <div class="col-xs-6 col-lg-3" id="field2" ondrop="drop(event)" ondragover="allowDrop(event)">
-            <div id="panel2" class="panel panel-default dingen" draggable="true" ondragstart="drag(event)">
+            <div id="panel2" class="panel panel-default dingen" draggable="false" ondragstart="drag(event)">
                 <i class="fa fa-window-maximize" aria-hidden="true"></i>
                 <h2>Windows</h2>
                 <ul>
@@ -68,7 +68,7 @@
             </div>
 
             <div class="col-xs-6 col-lg-3" id="field3" ondrop="drop(event)" ondragover="allowDrop(event)">
-            <div id="panel3" class="panel panel-default dingen" draggable="true" ondragstart="drag(event)">
+            <div id="panel3" class="panel panel-default dingen" draggable="false" ondragstart="drag(event)">
                 <i class="fa fa-fire" aria-hidden="true"></i>
                 <h2>Heater</h2>
                 <ul>

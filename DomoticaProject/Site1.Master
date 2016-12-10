@@ -96,6 +96,7 @@
           for (i = 0; i < panels.length; i++) {
               if (panels[i].getAttribute("draggable") == "false")
                   panels[i].setAttribute("draggable", true);
+          }
       }
   }
 
