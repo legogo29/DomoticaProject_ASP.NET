@@ -23,9 +23,10 @@ namespace DomoticaProject
                 switch (int.Parse(styleCookie.Value))
                 {
                     case 1:
-                        customStyle.Attributes["href"] = "Max.css";
+                        customStyle.Attributes["href"] = "style/Max.css";
                         break;
                     default:
+                        customStyle.Attributes["href"] = "";
                         break;
                 }
             }
