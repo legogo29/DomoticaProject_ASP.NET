@@ -80,13 +80,22 @@
   //drag & drop
   var edit = false;
   function toggleEdit() {
-      editLinkVar = document.getElementById("editLink");
+      var editLinkVar = document.getElementById("editLink");
+      var panels = document.getElementsByClassName("panel");
+      console.log(panels);
       if (edit) {
           edit = false;
           editLinkVar.parentNode.className = "";
+          for (i = 0; i < panels.length; i++) {
+              if (panels[i].getAttribute("draggable") == "true")
+                  panels[i].setAttribute("draggable", false);
+          }
       } else {
           edit = true;
           editLinkVar.parentNode.className = "active";
+          for (i = 0; i < panels.length; i++) {
+              if (panels[i].getAttribute("draggable") == "false")
+                  panels[i].setAttribute("draggable", true);
       }
   }
 
