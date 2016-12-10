@@ -85,6 +85,8 @@
                     </li>
                 </ul>
             </div>
+
+            <asp:Label ID="connectionStatus" runat="server"></asp:Label>
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>
