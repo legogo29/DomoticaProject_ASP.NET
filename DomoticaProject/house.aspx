@@ -76,7 +76,7 @@
                         <asp:Button ID="btn_sendHeater" runat="server" Text="Change" OnClick="btn_sendHeater_Click" />
                     </li>
                     <li>
-                        <asp:RangeValidator runat="server" ErrorMessage="Geef een waarde tussen 12 en 35." ID="degreeValidator" ControlToValidate="txt_heater" MaximumValue="35" MinimumValue="12" Display="Dynamic"></asp:RangeValidator>
+                        <asp:RangeValidator runat="server" ErrorMessage="Geef een waarde tussen 12 en 35." ID="degreeValidator" ControlToValidate="txt_heater" MaximumValue="35" MinimumValue="12" Display="Dynamic" Type="Integer"></asp:RangeValidator>
                     </li>
                     <li>
                         <asp:RegularExpressionValidator ID="degreeRegexValidator" runat="server" ErrorMessage="Het getal is niet in het juiste formaat." ControlToValidate="txt_heater" ValidationExpression="^[0-9]+((\,)[0-9]*|(\.)[0-9]*)?$"></asp:RegularExpressionValidator>
