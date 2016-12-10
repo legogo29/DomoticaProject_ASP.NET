@@ -12,38 +12,34 @@
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="dingen">
+                <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
                 <h2>Lamps</h2>
                 <ul>
                     <li>
-                        <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
                         <label class="switch">
                             <asp:CheckBox ID="lamp0" runat="server" AutoPostBack="true" OnCheckedChanged="LampCheckedChanged" />
                             <span class="slider round"></span>
                         </label>
                     </li>
                     <li>
-                        <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
                         <label class="switch">
                             <asp:CheckBox ID="lamp1" runat="server" AutoPostBack="true" OnCheckedChanged="LampCheckedChanged" />
                             <span class="slider round"></span>
                         </label>
                     </li>
                     <li>
-                        <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
                         <label class="switch">
                             <asp:CheckBox ID="lamp2" runat="server" AutoPostBack="true" OnCheckedChanged="LampCheckedChanged" />
                             <span class="slider round"></span>
                         </label>
                     </li>
                     <li>
-                        <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
                         <label class="switch">
                             <asp:CheckBox ID="lamp3" runat="server" AutoPostBack="true" OnCheckedChanged="LampCheckedChanged" />
                             <span class="slider round"></span>
                         </label>
                     </li>
                     <li>
-                        <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
                         <label class="switch">
                             <asp:CheckBox ID="lamp4" runat="server" AutoPostBack="true" OnCheckedChanged="LampCheckedChanged" />
                             <span class="slider round"></span>
@@ -53,6 +49,7 @@
             </div>
 
             <div class="dingen">
+                <i class="fa fa-window-maximize" aria-hidden="true"></i>
                 <h2>Windows</h2>
                 <ul>
                     <li>
@@ -71,6 +68,7 @@
             </div>
 
             <div class="dingen">
+                <i class="fa fa-fire" aria-hidden="true"></i>
                 <h2>Heater</h2>
                 <ul>
                     <li>
