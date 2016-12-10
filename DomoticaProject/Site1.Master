@@ -35,7 +35,7 @@
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
           <li><asp:Label ID="lbl_signedInAs" runat="server" Text="" CssClass="navbar-text"></asp:Label></li>
-          <li><a href="#edit"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></li>
+          <li><a id="editLink" onclick="toggleEdit()"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></li>
           <li><a href="#settings"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a></li>
         </ul>
       </div><!-- /.nav-collapse -->
@@ -78,30 +78,46 @@
   });
 
   //drag & drop
+  var edit = false;
+  function toggleEdit() {
+      editLinkVar = document.getElementById("editLink");
+      if (edit) {
+          edit = false;
+          editLinkVar.parentNode.className = "";
+      } else {
+          edit = true;
+          editLinkVar.parentNode.className = "active";
+      }
+  }
+
   function allowDrop(ev) {
-      ev.preventDefault();
+      if (edit)
+        ev.preventDefault();
   }
 
   function drag(ev) {
-      ev.dataTransfer.setData("text", ev.target.id);
+      if (edit)
+        ev.dataTransfer.setData("text", ev.target.id);
   }
 
   function drop(ev) {
-      ev.preventDefault();
-      var data = ev.dataTransfer.getData("text");
-      dataElement = document.getElementById(data);
-      // console.log(ev.target.parentElement);
-      target = ev.target
-      while (!target.hasAttribute("ondrop")){  // find first parent with ondrop attribute, that is the one calling this function
-        // console.log(target + "  " + target.hasAttribute("ondrop"));
-        target = target.parentElement;
+      if (edit) {
+          ev.preventDefault();
+          var data = ev.dataTransfer.getData("text");
+          dataElement = document.getElementById(data);
+          // console.log(ev.target.parentElement);
+          target = ev.target
+          while (!target.hasAttribute("ondrop")) {  // find first parent with ondrop attribute, that is the one calling this function
+              // console.log(target + "  " + target.hasAttribute("ondrop"));
+              target = target.parentElement;
+          }
+          prevtag = dataElement.parentElement;
+          // console.log(dataElement.parentElement);
+          targetHTML = target.innerHTML;
+          target.innerHTML = "";
+          target.appendChild(dataElement);
+          prevtag.innerHTML = targetHTML;
       }
-      prevtag = dataElement.parentElement;
-      // console.log(dataElement.parentElement);
-      targetHTML = target.innerHTML;
-      target.innerHTML = "";
-      target.appendChild(dataElement);
-      prevtag.innerHTML = targetHTML;
   }
   </script>
 </body>
