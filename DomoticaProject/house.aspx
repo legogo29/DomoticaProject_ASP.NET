@@ -1,17 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="house.aspx.cs" Inherits="DomoticaProject.house" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style>
-        body {
-            background-color: cornsilk;
-        }
-    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="DaHausScriptManager" runat="server"></asp:ScriptManager>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-            <div class="dingen">
+        <div class="row">
+            <div class="col-xs-6 col-lg-3" id="field1" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div id="panel1" class="panel panel-default dingen" draggable="true" ondragstart="drag(event)">
                 <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
                 <h2>Lamps</h2>
                 <ul>
@@ -47,8 +44,10 @@
                     </li>
                 </ul>
             </div>
+            </div>
 
-            <div class="dingen">
+            <div class="col-xs-6 col-lg-3" id="field2" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div id="panel2" class="panel panel-default dingen" draggable="true" ondragstart="drag(event)">
                 <i class="fa fa-window-maximize" aria-hidden="true"></i>
                 <h2>Windows</h2>
                 <ul>
@@ -66,8 +65,10 @@
                     </li>
                 </ul>
             </div>
+            </div>
 
-            <div class="dingen">
+            <div class="col-xs-6 col-lg-3" id="field3" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div id="panel3" class="panel panel-default dingen" draggable="true" ondragstart="drag(event)">
                 <i class="fa fa-fire" aria-hidden="true"></i>
                 <h2>Heater</h2>
                 <ul>
@@ -83,8 +84,10 @@
                     </li>
                 </ul>
             </div>
+            </div>
 
             <asp:Label ID="connectionStatus" runat="server"></asp:Label>
+        </div>
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>
