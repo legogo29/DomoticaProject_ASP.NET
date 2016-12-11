@@ -10,17 +10,28 @@ namespace DomoticaProject
 {
     public partial class house : System.Web.UI.Page
     {
-        private DaHaus daHaus = new DaHaus("127.0.0.1", 11000);
+        protected DaHaus daHaus = new DaHaus("127.0.0.1", 11000);
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 daHaus.Connect();
-                daHaus.UpdateHouse();
-                ConnectionStatus();
-                daHaus.Close();
-                PrepareInputs();
+
+                if (daHaus.Connected)
+                {
+                    connectionStatus.Text = "Connection";
+                    connectionStatus.CssClass = "connected";
+
+                    daHaus.UpdateHouse();
+                    daHaus.Close();
+                    PrepareInputs();
+                }
+                else
+                {
+                    connectionStatus.Text = "No Connection";
+                    connectionStatus.CssClass = "disconnected";
+                }
             }
         }
 
@@ -69,8 +80,6 @@ namespace DomoticaProject
                 }
             }
 
-            ConnectionStatus();
-
             daHaus.Close();
         }
 
@@ -94,23 +103,7 @@ namespace DomoticaProject
                 }
             }
 
-            ConnectionStatus();
-
             daHaus.Close();
-        }
-
-        protected void ConnectionStatus()
-        {
-            if (daHaus.Connected)
-            {
-                connectionStatus.Text = "Connected";
-                connectionStatus.CssClass = "connected";
-            }
-            else
-            {
-                connectionStatus.Text = "Disconnected";
-                connectionStatus.CssClass = "disconnected";
-            }
         }
 
         protected void btn_sendHeater_Click(object sender, EventArgs e)
