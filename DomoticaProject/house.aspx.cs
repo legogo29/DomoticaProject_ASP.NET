@@ -70,6 +70,9 @@ namespace DomoticaProject
 
             if(daHaus.Connected)
             {
+                connectionStatus.Text = "Connection";
+                connectionStatus.CssClass = "connected";
+
                 if (checkBox.Checked)
                 {
                     daHaus.TurnOnLamp(index);
@@ -78,6 +81,11 @@ namespace DomoticaProject
                 {
                     daHaus.TurnOffLamp(index);
                 }
+            }
+            else
+            {
+                connectionStatus.Text = "No Connection";
+                connectionStatus.CssClass = "disconnected";
             }
 
             daHaus.Close();
@@ -93,6 +101,9 @@ namespace DomoticaProject
 
             if (daHaus.Connected)
             {
+                connectionStatus.Text = "Connection";
+                connectionStatus.CssClass = "connected";
+
                 if (checkBox.Checked)
                 {
                     daHaus.CloseWindow(index);
@@ -101,9 +112,14 @@ namespace DomoticaProject
                 {
                     daHaus.OpenWindow(index);
                 }
-            }
 
-            daHaus.Close();
+                daHaus.Close();
+            }
+            else
+            {
+                connectionStatus.Text = "No Connection";
+                connectionStatus.CssClass = "disconnected";
+            }
         }
 
         protected void btn_sendHeater_Click(object sender, EventArgs e)
@@ -115,11 +131,20 @@ namespace DomoticaProject
             if (float.TryParse(input, out degree))
             {
                 daHaus.Connect();
+
                 if (daHaus.Connected)
                 {
+                    connectionStatus.Text = "Connection";
+                    connectionStatus.CssClass = "connected";
+
                     daHaus.ChangeHeaterDegree(degree);
+                    daHaus.Close();
                 }
-                daHaus.Close();
+                else
+                {
+                    connectionStatus.Text = "No Connection";
+                    connectionStatus.CssClass = "disconnected";
+                }
             }
         }
     }
