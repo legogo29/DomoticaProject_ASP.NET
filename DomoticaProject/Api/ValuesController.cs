@@ -4,12 +4,15 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web;
 
 namespace DomoticaProject.Api
 {
     public class ValuesController : ApiController
     {
         public static int[] valuestate = { 0, 0, 0 };
+        public static float temprature = 0;
+        public static float humidity = 0;
         // GET api/<controller>
         public IEnumerable<int> Get()
         {
@@ -19,6 +22,13 @@ namespace DomoticaProject.Api
         public string Get(int id)
         {
             return "value" + id.ToString();
+        }
+
+        public string Get(int id, string temp, string humi)
+        {
+            temprature = float.Parse(temp);
+            humidity = float.Parse(humi);
+            return temp + " " + humi;
         }
 
         // POST api/<controller>

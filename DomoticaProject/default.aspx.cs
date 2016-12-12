@@ -13,6 +13,7 @@ namespace DomoticaProject
         ValuesController ValuesController = new ValuesController();
         protected void Page_Load(object sender, EventArgs e)
         {
+            Label_panel4.Text = ValuesController.temprature.ToString();
         }
 
         protected void SlideBoxPanel2_CheckedChanged(object sender, EventArgs e)

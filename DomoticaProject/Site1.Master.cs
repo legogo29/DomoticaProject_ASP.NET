@@ -11,7 +11,7 @@ namespace DomoticaProject
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            switch(this.Parent.Page.AppRelativeVirtualPath)
+            switch(Parent.Page.AppRelativeVirtualPath)
             {
                 case "~/default.aspx":
                     HL_home.CssClass += " active";
