@@ -21,6 +21,14 @@ namespace DomoticaProject.Api
         // GET api/<controller>/5
         public string Get(int id)
         {
+            if (id == 1)
+            {
+                return temprature.ToString();
+            }
+            else if (id == 2)
+            {
+                return humidity.ToString();
+            }
             return "value" + id.ToString();
         }
 

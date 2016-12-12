@@ -8,8 +8,35 @@
     <div id="panel1" class="panel panel-default" draggable="false" ondragstart="drag(event)">
         <div class="panel-body">
         <h2>Heading 1</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+        <p>
+            Temprature: <span id="temprature"></span><br />
+            Humidity: <span id="hum"></span><br />
+        </p>
         </div>
+        <script>
+            function loadTemp() {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("temprature").innerHTML = this.responseText;
+                    }
+                }
+                xhttp.open("GET", "api/values/1", true);
+                xhttp.send();
+            }
+            setInterval(loadTemp, 1000);
+            function loadHum() {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("hum").innerHTML = this.responseText;
+                    }
+                }
+                xhttp.open("GET", "api/values/2", true);
+                xhttp.send();
+            }
+            setInterval(loadHum, 1000);
+        </script>
     </div>
     </div><!--/.col-xs-6.col-lg-4-->
     <div class="col-xs-6 col-lg-4" id="field2" ondrop="drop(event)" ondragover="allowDrop(event)">
