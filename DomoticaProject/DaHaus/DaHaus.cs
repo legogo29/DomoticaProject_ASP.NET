@@ -263,6 +263,8 @@ namespace DomoticaProject
                         case "Off":
                             lamp.State = Lamp.States.Off;
                             break;
+                        default:
+                            break;
                     }
                 }
             }
@@ -291,6 +293,8 @@ namespace DomoticaProject
                             break;
                         case "Half":
                             window.State = Window.States.Half;
+                            break;
+                        default:
                             break;
                     }
                 }
