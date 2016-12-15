@@ -32,13 +32,12 @@
             }
             function setTemp(xhttp) {
                 var items = xhttp.responseText.replace(/"/g, '').split("+"); //regex to remove the " on the front and end of the string
-                console.log(items);
                 document.getElementById("temp").innerHTML = items[0];//.replace('"', '');//.replace('"', '');
                 document.getElementById("hum").innerHTML = items[1];//.replace('"', '').replace('"', '');
                 var value = [false, false, false];
-                if (items[2] == 1) value[0] = true;
-                if (items[3] == 1) value[1] = true;
-                if (items[4] == 1) value[2] = true;
+                if (items[2] >> 2 == 1) value[0] = true;
+                if (items[2] >> 1 & 1 == 1) value[1] = true;
+                if (items[2] & 1 == 1) value[2] = true;
                 document.getElementById("ContentPlaceHolder1_SlideBoxPanel2_1").checked = value[0];
                 document.getElementById("ContentPlaceHolder1_SlideBoxPanel2_2").checked = value[1];
                 document.getElementById("ContentPlaceHolder1_SlideBoxPanel2_3").checked = value[2];
