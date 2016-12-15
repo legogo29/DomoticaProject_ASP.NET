@@ -32,20 +32,9 @@ namespace DomoticaProject.Api
         {
             if (id == 1)
             {
-                return temprature.ToString() + "+" + humidity.ToString();
-            }
-            else if (id == 2)
-            {
-                return humidity.ToString();
+                return temprature.ToString() + "+" + humidity.ToString() + "+" + valuestate[0].ToString() + "+" + valuestate[1].ToString() + "+" + valuestate[2].ToString() + "+";
             }
             return "value" + id.ToString();
-        }
-
-        public string Get(int id, string temp, string humi)
-        {
-            temprature = float.Parse(temp);
-            humidity = float.Parse(humi);
-            return temp + " " + humi;
         }
 
         // POST api/<controller>

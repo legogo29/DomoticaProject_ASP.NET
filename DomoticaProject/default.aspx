@@ -17,6 +17,7 @@
             loadTH();
             function loadTH() {
                 loadDoc("1", setTemp);
+                //loadDoc("0", setSlider);
             }
             function loadDoc(url, cFunction) {
                 var xhttp = new XMLHttpRequest();
@@ -26,14 +27,20 @@
                     }
                 }
                 xhttp.open("GET", "api/values/" + url, true);
+                //xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
                 xhttp.send();
             }
             function setTemp(xhttp) {
-                document.getElementById("temp").innerHTML = xhttp.responseText.split("+")[0].replace('"', '').replace('"', '');
-                document.getElementById("hum").innerHTML = xhttp.responseText.split("+")[1].replace('"', '').replace('"', '');
-            }
-            function setHum(xhttp) {
-                document.getElementById("hum").innerHTML = xhttp.responseText.replace('"', '').replace('"', '');
+                var items = xhttp.responseText.split("+");
+                document.getElementById("temp").innerHTML = items[0].replace('"', '');//.replace('"', '');
+                document.getElementById("hum").innerHTML = items[1];//.replace('"', '').replace('"', '');
+                var value = [false, false, false];
+                if (items[2] == 1) value[0] = true;
+                if (items[3] == 1) value[1] = true;
+                if (items[4] == 1) value[2] = true;
+                document.getElementById("ContentPlaceHolder1_SlideBoxPanel2_1").checked = value[0];
+                document.getElementById("ContentPlaceHolder1_SlideBoxPanel2_2").checked = value[1];
+                document.getElementById("ContentPlaceHolder1_SlideBoxPanel2_3").checked = value[2];
             }
             setInterval(loadTH, 1000);
         </script>
