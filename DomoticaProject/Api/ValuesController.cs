@@ -26,13 +26,13 @@ namespace DomoticaProject.Api
 
             return valuestate;
         }
-
         // GET api/<controller>/5
         public string Get(int id)
         {
             if (id == 1)
             {
-                return temprature.ToString() + "+" + humidity.ToString() + "+" + valuestate[0].ToString() + "+" + valuestate[1].ToString() + "+" + valuestate[2].ToString();
+                byte lampNr = Convert.ToByte( (valuestate[0] * 4) + (valuestate[1] * 2) + valuestate[2]); //compress the states to one byte
+                return temprature.ToString() + "+" + humidity.ToString() + "+" + lampNr.ToString();
             }
             return "value" + id.ToString();
         }
