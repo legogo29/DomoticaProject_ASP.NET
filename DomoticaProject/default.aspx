@@ -9,33 +9,33 @@
         <div class="panel-body">
         <h2>Heading 1</h2>
         <p>
-            Temprature: <span id="temprature"></span><br />
-            Humidity: <span id="hum"></span><br />
+            Temprature: <span id="temp"></span>&#176;C<br />
+            Humidity: <span id="hum"></span>%<br />
         </p>
         </div>
         <script>
-            function loadTemp() {
+            loadTH();
+            function loadTH() {
+                loadDoc("1", setTemp);
+            }
+            function loadDoc(url, cFunction) {
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {
-                        document.getElementById("temprature").innerHTML = this.responseText;
+                        cFunction(this);
                     }
                 }
-                xhttp.open("GET", "api/values/1", true);
+                xhttp.open("GET", "api/values/" + url, true);
                 xhttp.send();
             }
-            setInterval(loadTemp, 1000);
-            function loadHum() {
-                var xhttp = new XMLHttpRequest();
-                xhttp.onreadystatechange = function () {
-                    if (this.readyState == 4 && this.status == 200) {
-                        document.getElementById("hum").innerHTML = this.responseText;
-                    }
-                }
-                xhttp.open("GET", "api/values/2", true);
-                xhttp.send();
+            function setTemp(xhttp) {
+                document.getElementById("temp").innerHTML = xhttp.responseText.split("+")[0].replace('"', '').replace('"', '');
+                document.getElementById("hum").innerHTML = xhttp.responseText.split("+")[1].replace('"', '').replace('"', '');
             }
-            setInterval(loadHum, 1000);
+            function setHum(xhttp) {
+                document.getElementById("hum").innerHTML = xhttp.responseText.replace('"', '').replace('"', '');
+            }
+            setInterval(loadTH, 1000);
         </script>
     </div>
     </div><!--/.col-xs-6.col-lg-4-->

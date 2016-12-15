@@ -14,6 +14,12 @@ namespace DomoticaProject
         protected void Page_Load(object sender, EventArgs e)
         {
             //Label_panel4.Text = ValuesController.temprature.ToString();
+            if (!IsPostBack)
+            {
+                SlideBoxPanel2_1.Checked = Convert.ToBoolean(ValuesController.valuestate[0]);
+                SlideBoxPanel2_2.Checked = Convert.ToBoolean(ValuesController.valuestate[1]);
+                SlideBoxPanel2_3.Checked = Convert.ToBoolean(ValuesController.valuestate[2]);
+            }
         }
 
         protected void SlideBoxPanel2_CheckedChanged(object sender, EventArgs e)
