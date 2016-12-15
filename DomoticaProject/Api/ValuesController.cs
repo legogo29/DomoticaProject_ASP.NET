@@ -10,33 +10,38 @@ namespace DomoticaProject.Api
 {
     public class ValuesController : ApiController
     {
-        public static bool[] valuestate = { false, false, false };
+        public static byte lampByte = 0; // last 3 bits are the states of the 3 lamps
         public static float temprature = 0;
         public static float humidity = 0;
         // GET api/<controller>
-        public IEnumerable<bool> Get()
+        public IEnumerable<byte> Get()
         {
-            return valuestate;
+            yield return lampByte;
         }
 
-        public IEnumerable<bool> Get(string temp, string humi)
+        public IEnumerable<byte> Get(string temp, string humi)
         {
             temprature = float.Parse(temp);
             humidity = float.Parse(humi);
 
-            return valuestate;
+            yield return lampByte;
         }
         // GET api/<controller>/5
         public string Get(int id)
         {
             if (id == 1)
             {
-                //compress the states to one byte
-                //byte lampNr = (byte)(valuestate[0] << 2) + valuestate[1] << 1 + valuestate[2]); 
-                byte lampByte = 0;
-                if (valuestate[0]) lampByte |= 1 << 2;
-                if (valuestate[1]) lampByte |= 1 << 1;
-                if (valuestate[2]) lampByte |= 1 << 0;
+                return temprature.ToString() + "+" + humidity.ToString() + "+" + lampByte.ToString();
+            }
+            return "value" + id.ToString();
+        }
+
+        public string Get(int id, byte lamp)
+        {
+            lampByte = lamp;
+
+            if (id == 1)
+            {
                 return temprature.ToString() + "+" + humidity.ToString() + "+" + lampByte.ToString();
             }
             return "value" + id.ToString();

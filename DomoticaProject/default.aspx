@@ -17,7 +17,6 @@
             loadTH();
             function loadTH() {
                 loadDoc("1", setTemp);
-                //loadDoc("0", setSlider);
             }
             function loadDoc(url, cFunction) {
                 var xhttp = new XMLHttpRequest();
@@ -31,18 +30,27 @@
                 xhttp.send();
             }
             function setTemp(xhttp) {
+                checkbox = [document.getElementById("SlideBoxPanel2_1"), document.getElementById("SlideBoxPanel2_2"), document.getElementById("SlideBoxPanel2_3")]; //this is a global variable
+
                 var items = xhttp.responseText.replace(/"/g, '').split("+"); //regex to remove the " on the front and end of the string
-                document.getElementById("temp").innerHTML = items[0];//.replace('"', '');//.replace('"', '');
-                document.getElementById("hum").innerHTML = items[1];//.replace('"', '').replace('"', '');
-                var value = [false, false, false];
-                if (items[2] >> 2 == 1) value[0] = true;
-                if (items[2] >> 1 & 1 == 1) value[1] = true;
-                if (items[2] & 1 == 1) value[2] = true;
-                document.getElementById("ContentPlaceHolder1_SlideBoxPanel2_1").checked = value[0];
-                document.getElementById("ContentPlaceHolder1_SlideBoxPanel2_2").checked = value[1];
-                document.getElementById("ContentPlaceHolder1_SlideBoxPanel2_3").checked = value[2];
+                document.getElementById("temp").innerHTML = items[0];
+                document.getElementById("hum").innerHTML = items[1];
+                if (items[2] >> 2 == 1) checkbox[0].checked;
+                if (items[2] >> 1 & 1 == 1) checkbox[1].checked;
+                if (items[2] & 1 == 1) checkbox[2].checked;
             }
             setInterval(loadTH, 1000);
+
+            function sendSwitches() {
+                //var checkbox = [document.getElementById("SlideBoxPanel2_1"), document.getElementById("SlideBoxPanel2_2"), document.getElementById("SlideBoxPanel2_3")];
+                var lampByte = 0; // 00000000
+                if (checkbox[0].checked) lampByte |= 1 << 2; // 00000100
+                if (checkbox[1].checked) lampByte |= 1 << 1; // 00000010
+                if (checkbox[2].checked) lampByte |= 1 << 0; // 00000001
+                loadDoc("1?lamp=" + lampByte, nullFunc);
+
+            }
+            function nullFunc() { }
         </script>
     </div>
     </div><!--/.col-xs-6.col-lg-4-->
@@ -51,15 +59,15 @@
         <div class="panel-body">
         <h2>Heading 2</h2>
         <label class="switch">
-            <asp:CheckBox ID="SlideBoxPanel2_1" runat="server" OnCheckedChanged="SlideBoxPanel2_CheckedChanged" AutoPostBack="True" />
+            <input id="SlideBoxPanel2_1" type="checkbox" onclick="sendSwitches()" />
             <span class="slider"></span>
         </label>
         <label class="switch">
-            <asp:CheckBox ID="SlideBoxPanel2_2" runat="server" OnCheckedChanged="SlideBoxPanel2_CheckedChanged" AutoPostBack="True" />
+            <input id="SlideBoxPanel2_2" type="checkbox" onclick="sendSwitches()" />
             <span class="slider"></span>
         </label>
         <label class="switch">
-            <asp:CheckBox ID="SlideBoxPanel2_3" runat="server" OnCheckedChanged="SlideBoxPanel2_CheckedChanged" AutoPostBack="True" />
+            <input id="SlideBoxPanel2_3" type="checkbox" onclick="sendSwitches()" />
             <span class="slider"></span>
         </label>
         </div>
