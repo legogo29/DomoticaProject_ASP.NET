@@ -18,12 +18,21 @@ namespace DomoticaProject.Api
         {
             return valuestate;
         }
+
+        public IEnumerable<int> Get(string temp, string humi)
+        {
+            temprature = float.Parse(temp);
+            humidity = float.Parse(humi);
+
+            return valuestate;
+        }
+
         // GET api/<controller>/5
         public string Get(int id)
         {
             if (id == 1)
             {
-                return temprature.ToString();
+                return temprature.ToString() + "+" + humidity.ToString();
             }
             else if (id == 2)
             {

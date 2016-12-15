@@ -3,7 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="row">
-      <div class="col-sm-4">
+      <div class="col-sm-3">
         <canvas id="minesweeper" height="500px" style="border:1px solid #d3d3d3;">
           Your browser does not support the HTML5 canvas tag.</canvas>
       </div>
