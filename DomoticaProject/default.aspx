@@ -27,12 +27,13 @@
                     }
                 }
                 xhttp.open("GET", "api/values/" + url, true);
-                //xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+                xhttp.setRequestHeader('Accept', 'application/json; charset=utf-8');
                 xhttp.send();
             }
             function setTemp(xhttp) {
-                var items = xhttp.responseText.split("+");
-                document.getElementById("temp").innerHTML = items[0].replace('"', '');//.replace('"', '');
+                var items = xhttp.responseText.replace(/"/g, '').split("+"); //regex to remove the " on the front and end of the string
+                console.log(items);
+                document.getElementById("temp").innerHTML = items[0];//.replace('"', '');//.replace('"', '');
                 document.getElementById("hum").innerHTML = items[1];//.replace('"', '').replace('"', '');
                 var value = [false, false, false];
                 if (items[2] == 1) value[0] = true;

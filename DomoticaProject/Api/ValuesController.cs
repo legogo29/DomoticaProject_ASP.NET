@@ -32,7 +32,7 @@ namespace DomoticaProject.Api
         {
             if (id == 1)
             {
-                return temprature.ToString() + "+" + humidity.ToString() + "+" + valuestate[0].ToString() + "+" + valuestate[1].ToString() + "+" + valuestate[2].ToString() + "+";
+                return temprature.ToString() + "+" + humidity.ToString() + "+" + valuestate[0].ToString() + "+" + valuestate[1].ToString() + "+" + valuestate[2].ToString();
             }
             return "value" + id.ToString();
         }
