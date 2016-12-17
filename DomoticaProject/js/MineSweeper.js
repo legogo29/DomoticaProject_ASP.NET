@@ -12,6 +12,9 @@ var canvas = document.getElementById("minesweeper");
 var height = canvas.height;
 var ctx = canvas.getContext("2d");
 
+var font = 'px Arial';
+var FontAwesome = 'px FontAwesome';
+
 fieldX = [0, 0, 0, 0, 0, 0, 0, 0];
 fieldY = [0, 0, 0, 0, 0, 0, 0, 0];
 
@@ -55,7 +58,7 @@ function setWidth() {
     }
 
     fieldSize = .75 * scale;
-    ctx.font = fieldSize + "px Arial";
+    ctx.font = fieldSize + font;
 
     for (var x = 0; x < 8; x++) {
         fieldX[x] = scale * x;
@@ -176,14 +179,17 @@ canvas.addEventListener('contextmenu', function (event) {
                 if (isNotClicked[x][y] == 1) {
                     if (isFlagged[x][y] == 0) {
                         isFlagged[x][y] = 1;
-                        ctx.fillStyle = flagColor;
+                        //ctx.fillStyle = flagColor;
+                        ctx.font = fieldSize * .85 + FontAwesome;
+                        ctx.fillText("\uf024", fieldX[x] + fieldSize * .05, fieldY[y] + fieldSize * .85);
+                        ctx.font = fieldSize + font;
                         minesLeft++;
                     } else {
                         isFlagged[x][y] = 0;
                         ctx.fillStyle = closedColor;
                         minesLeft--;
+                        ctx.fillRect(fieldX[x], fieldY[y], fieldSize, fieldSize);
                     }
-                    ctx.fillRect(fieldX[x], fieldY[y], fieldSize, fieldSize);
                     showMinesLeft();
                 }
             }
@@ -195,11 +201,14 @@ function openField(x, y) {
     if (isFlagged[x][y] == 0 && isNotClicked[x][y] == 1) {
         isNotClicked[x][y] = 0;
         ctx.fillStyle = openColor;
+        ctx.fillRect(fieldX[x], fieldY[y], fieldSize, fieldSize);
         if (bombs[x][y] == 1) {
             lost();
             ctx.fillStyle = mineColor;
+            ctx.font = fieldSize * .75 + FontAwesome;
+            ctx.fillText("\uf1e2", fieldX[x] + fieldSize * .15, fieldY[y] + fieldSize * .75);
+            ctx.font = fieldSize + font;
         }
-        ctx.fillRect(fieldX[x], fieldY[y], fieldSize, fieldSize);
         // console.log(fieldX + " " + fieldY);
         checkSurrounding(x, y);
         if (isNotClicked.equals(bombs)) won();
@@ -219,7 +228,7 @@ function checkSurrounding(x, y) {
     }
     ctx.fillStyle = textColor;
     if (surrounding == 0) openSurrounding(x, y);
-    else ctx.fillText(surrounding, fieldX[x] + fieldSize * .2, fieldY[y] + fieldSize * .9);
+    else if (bombs[x][y] == 0) ctx.fillText(surrounding, fieldX[x] + fieldSize * .2, fieldY[y] + fieldSize * .9);
     // console.log(surrounding);
 }
 
@@ -254,14 +263,17 @@ function minesTimer() {
 
 function lost() {
     alert("you lost :(");
+    ctx.fillStyle = textColor;
+    //ctx.fillRect(fieldX[x], fieldY[y], fieldSize, fieldSize);
+    ctx.font = fieldSize * .75 + FontAwesome;
     for (var x = 0; x < 8; x++) {
         for (var y = 0; y < 8; y++) {
-            if (bombs[x][y] == 1) {
-                ctx.fillStyle = mineColor;
-                ctx.fillRect(fieldX[x], fieldY[y], fieldSize, fieldSize);
+            if (bombs[x][y] == 1 && isFlagged[x][y] == 0) {
+                ctx.fillText("\uf1e2", fieldX[x] + fieldSize * .15, fieldY[y] + fieldSize * .75);
             }
         }
     }
+    ctx.font = fieldSize + font;
     playing = false;
 }
 
