@@ -18,6 +18,28 @@ var FontAwesome = 'px FontAwesome';
 fieldX = [0, 0, 0, 0, 0, 0, 0, 0];
 fieldY = [0, 0, 0, 0, 0, 0, 0, 0];
 
+isNotClicked = [
+  [1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1]
+];
+
+isFlagged = [
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0]
+];
+
 var minesTimerVar = setInterval(minesTimer, 1000);
 
 setWidth()
@@ -37,8 +59,9 @@ window.onresize = function () {
             }
             //flagged
             if (isFlagged[x][y] == 1) {
-                ctx.fillStyle = flagColor;
-                ctx.fillRect(fieldX[x], fieldY[y], fieldSize, fieldSize);
+                ctx.font = fieldSize * .85 + FontAwesome;
+                ctx.fillText("\uf024", fieldX[x] + fieldSize * .05, fieldY[y] + fieldSize * .85);
+                ctx.font = fieldSize + font;
             }
         }
     }
@@ -46,10 +69,8 @@ window.onresize = function () {
 
 function setWidth() {
     // debugger;
-    width = canvas.width = screen.width - 30;
-    if (screen.width > 768) {
-        width = canvas.width = screen.width / 12 * 4 - 30;
-    }
+    width = canvas.parentElement.clientWidth;
+    canvas.width = width;
 
     if (canvas.width < canvas.height) {
         scale = canvas.width / 8;
@@ -115,7 +136,6 @@ function init() {
 
     time = 0;
 }
-
 
 function generateBombs(x, y) {
     bombs = [
@@ -270,6 +290,14 @@ function lost() {
         for (var y = 0; y < 8; y++) {
             if (bombs[x][y] == 1 && isFlagged[x][y] == 0) {
                 ctx.fillText("\uf1e2", fieldX[x] + fieldSize * .15, fieldY[y] + fieldSize * .75);
+            }
+
+            if (bombs[x][y] == 0 && isFlagged[x][y] == 1) {
+                ctx.fillStyle = mineColor;
+                ctx.font = fieldSize * .85 + FontAwesome;
+                ctx.fillText("\uf024", fieldX[x] + fieldSize * .05, fieldY[y] + fieldSize * .85);
+                ctx.fillStyle = textColor;
+                ctx.font = fieldSize * .75 + FontAwesome;
             }
         }
     }
