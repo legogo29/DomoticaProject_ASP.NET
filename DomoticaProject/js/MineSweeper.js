@@ -130,11 +130,13 @@ function init() {
 
     clicks = 0;
 
-    minesLeft = 0;
+    minesLeft = totalMines;
 
     playing = true;
 
     time = 0;
+
+    showMinesLeft();
 }
 
 function generateBombs(x, y) {
@@ -148,7 +150,7 @@ function generateBombs(x, y) {
       [0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0]
     ];
-    for (var i = 0; i < totalMines - minesLeft; i++) {
+    for (var i = 0; i < minesLeft; i++) {
         newBomb(x, y);
     }
     // console.log("boms placed");
@@ -203,12 +205,13 @@ canvas.addEventListener('contextmenu', function (event) {
                         ctx.font = fieldSize * .85 + FontAwesome;
                         ctx.fillText("\uf024", fieldX[x] + fieldSize * .05, fieldY[y] + fieldSize * .85);
                         ctx.font = fieldSize + font;
-                        minesLeft++;
+                        minesLeft--;
                     } else {
                         isFlagged[x][y] = 0;
                         ctx.fillStyle = closedColor;
-                        minesLeft--;
+                        minesLeft++;
                         ctx.fillRect(fieldX[x], fieldY[y], fieldSize, fieldSize);
+                        ctx.fillStyle = textColor;
                     }
                     showMinesLeft();
                 }
@@ -264,19 +267,14 @@ function openSurrounding(x, y) {
 }
 
 function showMinesLeft() {
-    ctx.fillStyle = "#ffffff";
-    ctx.fillRect(scale * 5, scale * 8, 50, fieldSize * 2)
-    ctx.fillStyle = textColor;
-    ctx.fillText(minesLeft, scale * 5, scale * 9);
+    ctx.clearRect(scale * 5, scale * 7.9, 110, fieldSize);
+    ctx.fillText(minesLeft + "/" + totalMines, scale * 5, scale * 8.5);
 }
 
 function minesTimer() {
     if (playing) {
-        ctx.fillStyle = "#ffffff";
-        ctx.fillRect(scale, scale * 8, 100, fieldSize * 2)
-        // var d = time++;
-        ctx.fillStyle = textColor;
-        ctx.fillText(++time, scale, scale * 9);
+        ctx.clearRect(scale, scale * 7.9, 100, fieldSize);
+        ctx.fillText(++time, scale, scale * 8.5);
         // document.getElementById("demo").innerHTML = d.toLocaleTimeString();
     }
 }
