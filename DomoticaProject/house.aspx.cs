@@ -14,26 +14,28 @@ namespace DomoticaProject
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            daHaus.Connect();
+
+            if (daHaus.Connected)
             {
-                daHaus.Connect();
-
-                if (daHaus.Connected)
-                {
-                    connectionStatus.Text = "Connection";
-                    connectionStatus.CssClass = "connected";
-
-                    daHaus.UpdateHouse();
-                    daHaus.Close();
-                    PrepareInputs();
-                }
-                else
-                {
-                    connectionStatus.Text = "No Connection";
-                    connectionStatus.CssClass = "disconnected";
-                }
+                connectionStatus.Text = "Connection";
+                connectionStatus.CssClass = "connected";
+            }
+            else
+            {
+                connectionStatus.Text = "No Connection";
+                connectionStatus.CssClass = "disconnected";
             }
         }
+
+
+        protected void Page_LoadComplete(object sender, EventArgs e)
+        {
+            daHaus.UpdateHouse();
+            daHaus.Close();
+            PrepareInputs();
+        }
+
 
         protected void PrepareInputs()
         {
@@ -66,9 +68,7 @@ namespace DomoticaProject
             Match match = Regex.Match(checkBox.ID, @"\d");
             int index = int.Parse(match.Value);
 
-            daHaus.Connect();
-
-            if(daHaus.Connected)
+            if (daHaus.Connected)
             {
                 connectionStatus.Text = "Connection";
                 connectionStatus.CssClass = "connected";
@@ -87,8 +87,6 @@ namespace DomoticaProject
                 connectionStatus.Text = "No Connection";
                 connectionStatus.CssClass = "disconnected";
             }
-
-            daHaus.Close();
         }
 
         protected void WindowCheckedChanged(object sender, EventArgs e)
@@ -96,8 +94,6 @@ namespace DomoticaProject
             CheckBox checkBox = (CheckBox)sender;
             Match match = Regex.Match(checkBox.ID, @"\d");
             int index = int.Parse(match.Value);
-
-            daHaus.Connect();
 
             if (daHaus.Connected)
             {
@@ -112,8 +108,6 @@ namespace DomoticaProject
                 {
                     daHaus.OpenWindow(index);
                 }
-
-                daHaus.Close();
             }
             else
             {
@@ -130,15 +124,12 @@ namespace DomoticaProject
 
             if (float.TryParse(input, out degree))
             {
-                daHaus.Connect();
-
                 if (daHaus.Connected)
                 {
                     connectionStatus.Text = "Connection";
                     connectionStatus.CssClass = "connected";
 
                     daHaus.ChangeHeaterDegree(degree);
-                    daHaus.Close();
                 }
                 else
                 {
