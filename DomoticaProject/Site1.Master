@@ -46,12 +46,11 @@
     <div class="row row-offcanvas row-offcanvas-left">
       <div class="col-xs-6 col-sm-3 sidebar-offcanvas">
         <div id="sidebar" runat="server" class="list-group">
-          <a href="default.aspx" class="list-group-item">Home</a>
-          <a href="login.aspx" class="list-group-item">Account</a>
-          <a href="house.aspx" class="list-group-item">House</a>
-          <a href="games.aspx" class="list-group-item">Games</a>
-          <a href="settings.aspx" class="list-group-item">Settings</a>
-          
+          <asp:HyperLink ID="HL_home" runat="server" NavigateUrl="~/default.aspx" CssClass="list-group-item">Home</asp:HyperLink>
+          <asp:HyperLink ID="HL_account" runat="server" NavigateUrl="~/login.aspx" CssClass="list-group-item">Login</asp:HyperLink>
+          <asp:HyperLink ID="HL_house" runat="server" NavigateUrl="~/house.aspx" CssClass="list-group-item">House</asp:HyperLink>
+          <asp:HyperLink ID="HL_games" runat="server" NavigateUrl="~/games.aspx" CssClass="list-group-item">Games</asp:HyperLink>
+          <asp:HyperLink ID="HL_settings" runat="server" NavigateUrl="~/settings.aspx" CssClass="list-group-item">Settings</asp:HyperLink>
         </div>
       </div><!--/.sidebar-offcanvas-->
       <div class="col-xs-12">
@@ -80,13 +79,23 @@
   //drag & drop
   var edit = false;
   function toggleEdit() {
-      editLinkVar = document.getElementById("editLink");
+      var editLinkVar = document.getElementById("editLink");
+      var panels = document.getElementsByClassName("panel");
+      console.log(panels);
       if (edit) {
           edit = false;
           editLinkVar.parentNode.className = "";
+          for (i = 0; i < panels.length; i++) {
+              if (panels[i].getAttribute("draggable") == "true")
+                  panels[i].setAttribute("draggable", false);
+          }
       } else {
           edit = true;
           editLinkVar.parentNode.className = "active";
+          for (i = 0; i < panels.length; i++) {
+              if (panels[i].getAttribute("draggable") == "false")
+                  panels[i].setAttribute("draggable", true);
+          }
       }
   }
 

@@ -12,8 +12,33 @@ var canvas = document.getElementById("minesweeper");
 var height = canvas.height;
 var ctx = canvas.getContext("2d");
 
+var font = 'px Arial';
+var FontAwesome = 'px FontAwesome';
+
 fieldX = [0, 0, 0, 0, 0, 0, 0, 0];
 fieldY = [0, 0, 0, 0, 0, 0, 0, 0];
+
+isNotClicked = [
+  [1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1]
+];
+
+isFlagged = [
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0]
+];
 
 var minesTimerVar = setInterval(minesTimer, 1000);
 
@@ -34,8 +59,9 @@ window.onresize = function () {
             }
             //flagged
             if (isFlagged[x][y] == 1) {
-                ctx.fillStyle = flagColor;
-                ctx.fillRect(fieldX[x], fieldY[y], fieldSize, fieldSize);
+                ctx.font = fieldSize * .85 + FontAwesome;
+                ctx.fillText("\uf024", fieldX[x] + fieldSize * .05, fieldY[y] + fieldSize * .85);
+                ctx.font = fieldSize + font;
             }
         }
     }
@@ -43,10 +69,8 @@ window.onresize = function () {
 
 function setWidth() {
     // debugger;
-    width = canvas.width = screen.width - 30;
-    if (screen.width > 768) {
-        width = canvas.width = screen.width / 12 * 4 - 30;
-    }
+    width = canvas.parentElement.clientWidth;
+    canvas.width = width;
 
     if (canvas.width < canvas.height) {
         scale = canvas.width / 8;
@@ -55,7 +79,7 @@ function setWidth() {
     }
 
     fieldSize = .75 * scale;
-    ctx.font = fieldSize + "px Arial";
+    ctx.font = fieldSize + font;
 
     for (var x = 0; x < 8; x++) {
         fieldX[x] = scale * x;
@@ -106,13 +130,14 @@ function init() {
 
     clicks = 0;
 
-    minesLeft = 0;
+    minesLeft = totalMines;
 
     playing = true;
 
     time = 0;
-}
 
+    showMinesLeft();
+}
 
 function generateBombs(x, y) {
     bombs = [
@@ -125,7 +150,7 @@ function generateBombs(x, y) {
       [0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0]
     ];
-    for (var i = 0; i < totalMines - minesLeft; i++) {
+    for (var i = 0; i < minesLeft; i++) {
         newBomb(x, y);
     }
     // console.log("boms placed");
@@ -176,14 +201,18 @@ canvas.addEventListener('contextmenu', function (event) {
                 if (isNotClicked[x][y] == 1) {
                     if (isFlagged[x][y] == 0) {
                         isFlagged[x][y] = 1;
-                        ctx.fillStyle = flagColor;
-                        minesLeft++;
+                        //ctx.fillStyle = flagColor;
+                        ctx.font = fieldSize * .85 + FontAwesome;
+                        ctx.fillText("\uf024", fieldX[x] + fieldSize * .05, fieldY[y] + fieldSize * .85);
+                        ctx.font = fieldSize + font;
+                        minesLeft--;
                     } else {
                         isFlagged[x][y] = 0;
                         ctx.fillStyle = closedColor;
-                        minesLeft--;
+                        minesLeft++;
+                        ctx.fillRect(fieldX[x], fieldY[y], fieldSize, fieldSize);
+                        ctx.fillStyle = textColor;
                     }
-                    ctx.fillRect(fieldX[x], fieldY[y], fieldSize, fieldSize);
                     showMinesLeft();
                 }
             }
@@ -195,11 +224,14 @@ function openField(x, y) {
     if (isFlagged[x][y] == 0 && isNotClicked[x][y] == 1) {
         isNotClicked[x][y] = 0;
         ctx.fillStyle = openColor;
+        ctx.fillRect(fieldX[x], fieldY[y], fieldSize, fieldSize);
         if (bombs[x][y] == 1) {
             lost();
             ctx.fillStyle = mineColor;
+            ctx.font = fieldSize * .75 + FontAwesome;
+            ctx.fillText("\uf1e2", fieldX[x] + fieldSize * .15, fieldY[y] + fieldSize * .75);
+            ctx.font = fieldSize + font;
         }
-        ctx.fillRect(fieldX[x], fieldY[y], fieldSize, fieldSize);
         // console.log(fieldX + " " + fieldY);
         checkSurrounding(x, y);
         if (isNotClicked.equals(bombs)) won();
@@ -219,7 +251,7 @@ function checkSurrounding(x, y) {
     }
     ctx.fillStyle = textColor;
     if (surrounding == 0) openSurrounding(x, y);
-    else ctx.fillText(surrounding, fieldX[x] + fieldSize * .2, fieldY[y] + fieldSize * .9);
+    else if (bombs[x][y] == 0) ctx.fillText(surrounding, fieldX[x] + fieldSize * .2, fieldY[y] + fieldSize * .9);
     // console.log(surrounding);
 }
 
@@ -235,33 +267,39 @@ function openSurrounding(x, y) {
 }
 
 function showMinesLeft() {
-    ctx.fillStyle = "#ffffff";
-    ctx.fillRect(scale * 5, scale * 8, 50, fieldSize * 2)
-    ctx.fillStyle = textColor;
-    ctx.fillText(minesLeft, scale * 5, scale * 9);
+    ctx.clearRect(scale * 5, scale * 7.9, 110, fieldSize);
+    ctx.fillText(minesLeft + "/" + totalMines, scale * 5, scale * 8.5);
 }
 
 function minesTimer() {
     if (playing) {
-        ctx.fillStyle = "#ffffff";
-        ctx.fillRect(scale, scale * 8, 100, fieldSize * 2)
-        // var d = time++;
-        ctx.fillStyle = textColor;
-        ctx.fillText(++time, scale, scale * 9);
+        ctx.clearRect(scale, scale * 7.9, 100, fieldSize);
+        ctx.fillText(++time, scale, scale * 8.5);
         // document.getElementById("demo").innerHTML = d.toLocaleTimeString();
     }
 }
 
 function lost() {
     alert("you lost :(");
+    ctx.fillStyle = textColor;
+    //ctx.fillRect(fieldX[x], fieldY[y], fieldSize, fieldSize);
+    ctx.font = fieldSize * .75 + FontAwesome;
     for (var x = 0; x < 8; x++) {
         for (var y = 0; y < 8; y++) {
-            if (bombs[x][y] == 1) {
+            if (bombs[x][y] == 1 && isFlagged[x][y] == 0) {
+                ctx.fillText("\uf1e2", fieldX[x] + fieldSize * .15, fieldY[y] + fieldSize * .75);
+            }
+
+            if (bombs[x][y] == 0 && isFlagged[x][y] == 1) {
                 ctx.fillStyle = mineColor;
-                ctx.fillRect(fieldX[x], fieldY[y], fieldSize, fieldSize);
+                ctx.font = fieldSize * .85 + FontAwesome;
+                ctx.fillText("\uf024", fieldX[x] + fieldSize * .05, fieldY[y] + fieldSize * .85);
+                ctx.fillStyle = textColor;
+                ctx.font = fieldSize * .75 + FontAwesome;
             }
         }
     }
+    ctx.font = fieldSize + font;
     playing = false;
 }
 
