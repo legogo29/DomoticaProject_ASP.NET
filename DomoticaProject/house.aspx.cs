@@ -52,10 +52,20 @@ namespace DomoticaProject
 
             for (int i = 0; i < windows.Length; i++)
             {
-                if (daHaus.Windows[i].State == Window.States.Closed)
-                    windows[i].Checked = true;
-                else
-                    windows[i].Checked = false;
+                switch (daHaus.Windows[i].State)
+                {
+                    case Window.States.Open:
+                        windows[i].Checked = false;
+                        break;
+
+                    case Window.States.Half:
+                        //Doe niks.
+                        break;
+
+                    case Window.States.Closed:
+                        windows[i].Checked = true;
+                        break;
+                }
             }
 
             if (daHaus.Heater.Degree != 0)
