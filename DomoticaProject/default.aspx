@@ -14,6 +14,7 @@
         </p>
         </div>
         <script>
+            setInterval(loadTH, 1000);
             loadTH();
             function loadTH() {
                 loadDoc("1", setTemp);
