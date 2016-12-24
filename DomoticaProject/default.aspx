@@ -18,17 +18,6 @@
             function loadTH() {
                 loadDoc("1", setTemp);
             }
-            function loadDoc(url, cFunction) {
-                var xhttp = new XMLHttpRequest();
-                xhttp.onreadystatechange = function () {
-                    if (this.readyState == 4 && this.status == 200) {
-                        cFunction(this);
-                    }
-                }
-                xhttp.open("GET", "api/values/" + url, true);
-                xhttp.setRequestHeader('Accept', 'application/json; charset=utf-8');
-                xhttp.send();
-            }
             function setTemp(xhttp) {
                 checkbox = [document.getElementById("SlideBoxPanel2_1"), document.getElementById("SlideBoxPanel2_2"), document.getElementById("SlideBoxPanel2_3")]; //this is a global variable
 
@@ -39,7 +28,10 @@
                 if (items[2] >> 1 & 1 == 1) checkbox[1].checked;
                 if (items[2] & 1 == 1) checkbox[2].checked;
             }
-            setInterval(loadTH, 1000);
+
+            checkbox[0].addEventListener("change", sendSwitches);
+            checkbox[1].addEventListener("change", sendSwitches);
+            checkbox[2].addEventListener("change", sendSwitches);
 
             function sendSwitches() {
                 //var checkbox = [document.getElementById("SlideBoxPanel2_1"), document.getElementById("SlideBoxPanel2_2"), document.getElementById("SlideBoxPanel2_3")];
@@ -47,10 +39,8 @@
                 if (checkbox[0].checked) lampByte |= 1 << 2; // 00000100
                 if (checkbox[1].checked) lampByte |= 1 << 1; // 00000010
                 if (checkbox[2].checked) lampByte |= 1 << 0; // 00000001
-                loadDoc("1?lamp=" + lampByte, nullFunc);
-
+                loadDoc("1?lamp=" + lampByte); // JS doesnt care about amount of arguments given, not given == null
             }
-            function nullFunc() { }
         </script>
     </div>
     </div><!--/.col-xs-6.col-lg-4-->
