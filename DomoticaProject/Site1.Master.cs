@@ -50,6 +50,12 @@ namespace DomoticaProject
                     case 2:
                         customStyle.Attributes["href"] = "style/Tim.css";
                         break;
+                    case 3:
+                        customStyle.Attributes["href"] = "https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/paper/bootstrap.min.css";
+                        break;
+                    case 4:
+                        customStyle.Attributes["href"] = "https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css";
+                        break;
                     default:
                         customStyle.Attributes["href"] = "";
                         break;

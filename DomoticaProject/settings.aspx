@@ -8,5 +8,7 @@
         <asp:ListItem Text="Bootstrap" Selected="True" />
         <asp:ListItem Text="Max" />
         <asp:ListItem Text="Tim" />
+        <asp:ListItem Text="Paper" />
+        <asp:ListItem Text="Superhero" />
     </asp:DropDownList>
 </asp:Content>
