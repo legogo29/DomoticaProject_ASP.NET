@@ -30,10 +30,6 @@
                 if (items[2] & 1 == 1) checkbox[2].checked;
             }
 
-            checkbox[0].addEventListener("change", sendSwitches);
-            checkbox[1].addEventListener("change", sendSwitches);
-            checkbox[2].addEventListener("change", sendSwitches);
-
             function sendSwitches() {
                 //var checkbox = [document.getElementById("SlideBoxPanel2_1"), document.getElementById("SlideBoxPanel2_2"), document.getElementById("SlideBoxPanel2_3")];
                 var lampByte = 0; // 00000000

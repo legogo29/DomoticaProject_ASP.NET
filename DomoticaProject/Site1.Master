@@ -8,11 +8,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
     <link rel="stylesheet" href="style/Style.css">
     <link rel="stylesheet" id="customStyle" runat="server" />
     <%--<script src="https://use.fontawesome.com/03e759f745.js"></script>--%>
     <link href="https://use.fontawesome.com/03e759f745.css" media="all" rel="stylesheet">
-    <script>   
+    <script>
         // AJAX requests
         function loadDoc(url, cFunction) {
             var xhttp = new XMLHttpRequest();
@@ -32,119 +33,108 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-  <nav class="navbar navbar-fixed-top navbar-inverse">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <!-- <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button> -->
-        <button type="button" class="navbar-toggle sidebar-toggle" data-toggle="offcanvas">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">Project name</a>
-      </div>
-      <div id="navbar" class="collapse navbar-collapse">
-        <ul class="nav navbar-nav navbar-right">
-          <li><asp:Label ID="lbl_signedInAs" runat="server" Text="" CssClass="navbar-text"></asp:Label></li>
-          <li><a id="editLink" onclick="toggleEdit()"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></li>
-          <li><a href="#settings"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a></li>
-        </ul>
-      </div><!-- /.nav-collapse -->
-    </div><!-- /.container -->
-  </nav><!-- /.navbar -->
-
-  <div class="container-fluid">
-    <div class="row row-offcanvas row-offcanvas-left">
-      <div class="col-xs-6 col-sm-3 sidebar-offcanvas">
-        <div id="sidebar" runat="server" class="list-group">
-          <asp:HyperLink ID="HL_home" runat="server" NavigateUrl="~/default.aspx" CssClass="list-group-item">Home</asp:HyperLink>
-          <asp:HyperLink ID="HL_account" runat="server" NavigateUrl="~/login.aspx" CssClass="list-group-item">Login</asp:HyperLink>
-          <asp:HyperLink ID="HL_house" runat="server" NavigateUrl="~/house.aspx" CssClass="list-group-item">House</asp:HyperLink>
-          <asp:HyperLink ID="HL_games" runat="server" NavigateUrl="~/games.aspx" CssClass="list-group-item">Games</asp:HyperLink>
-          <asp:HyperLink ID="HL_settings" runat="server" NavigateUrl="~/settings.aspx" CssClass="list-group-item">Settings</asp:HyperLink>
-        </div>
-      </div><!--/.sidebar-offcanvas-->
-      <div class="col-xs-12">
-    <form id="form1" runat="server">
-    <div>
-        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-        
-        </asp:ContentPlaceHolder>
+<nav id="myNavmenu" class="navmenu navmenu-inverse navmenu-fixed-left offcanvas" role="navigation">
+  <a class="navmenu-brand"></a>
+  <ul class="nav navmenu-nav">
+    <li><asp:HyperLink ID="HL_home" runat="server" NavigateUrl="~/default.aspx">Home</asp:HyperLink></li>
+    <li><asp:HyperLink ID="HL_account" runat="server" NavigateUrl="~/login.aspx">Login</asp:HyperLink></li>
+    <li><asp:HyperLink ID="HL_house" runat="server" NavigateUrl="~/house.aspx">House</asp:HyperLink></li>
+    <li><asp:HyperLink ID="HL_games" runat="server" NavigateUrl="~/games.aspx">Games</asp:HyperLink></li>
+    <li><asp:HyperLink ID="HL_settings" runat="server" NavigateUrl="~/settings.aspx">Settings</asp:HyperLink></li>
+  </ul>
+</nav>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target="#myNavmenu" data-canvas="body">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#">Project Domotica</a>
     </div>
+    <div id="navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+            <li><a><asp:Label ID="lbl_signedInAs" runat="server" Text=""></asp:Label></a></li>
+            <li><a id="editLink" onclick="toggleEdit()"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></li>
+            <li><a href="#settings"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <form id="form1" runat="server">
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
     </form>
-      </div><!--/.col-xs-12.col-sm-9-->
-    </div><!--/row-->
-  </div>
+</div>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
-  <script>
-  //menu toggle
-  $(document).ready(function () {
-    $('[data-toggle="offcanvas"]').click(function () {
-      $('.row-offcanvas').toggleClass('active')
-    });
-  });
+<script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
 
-  //drag & drop
-  var edit = false;
-  function toggleEdit() {
-      var editLinkVar = document.getElementById("editLink");
-      var panels = document.getElementsByClassName("panel");
-      console.log(panels);
-      if (edit) {
-          edit = false;
-          editLinkVar.parentNode.className = "";
-          for (i = 0; i < panels.length; i++) {
-              if (panels[i].getAttribute("draggable") == "true")
-                  panels[i].setAttribute("draggable", false);
-          }
-      } else {
-          edit = true;
-          editLinkVar.parentNode.className = "active";
-          for (i = 0; i < panels.length; i++) {
-              if (panels[i].getAttribute("draggable") == "false")
-                  panels[i].setAttribute("draggable", true);
-          }
-      }
-  }
+<script>
+    //menu toggle
+    //$(document).ready(function () {
+    //  $('[data-toggle="offcanvas"]').click(function () {
+    //    $('.row-offcanvas').toggleClass('active')
+    //  });
+    //});
 
-  function allowDrop(ev) {
-      if (edit)
-        ev.preventDefault();
-  }
+    //drag & drop
+    var edit = false;
+    function toggleEdit() {
+        var editLinkVar = document.getElementById("editLink");
+        var panels = document.getElementsByClassName("panel");
+        console.log(panels);
+        if (edit) {
+            edit = false;
+            editLinkVar.parentNode.className = "";
+            for (i = 0; i < panels.length; i++) {
+                if (panels[i].getAttribute("draggable") == "true")
+                    panels[i].setAttribute("draggable", false);
+            }
+        } else {
+            edit = true;
+            editLinkVar.parentNode.className = "active";
+            for (i = 0; i < panels.length; i++) {
+                if (panels[i].getAttribute("draggable") == "false")
+                    panels[i].setAttribute("draggable", true);
+            }
+        }
+    }
 
-  function drag(ev) {
-      if (edit)
-        ev.dataTransfer.setData("text", ev.target.id);
-  }
+    function allowDrop(ev) {
+        if (edit)
+            ev.preventDefault();
+    }
 
-  function drop(ev) {
-      if (edit) {
-          ev.preventDefault();
-          var data = ev.dataTransfer.getData("text");
-          dataElement = document.getElementById(data);
-          // console.log(ev.target.parentElement);
-          target = ev.target
-          while (!target.hasAttribute("ondrop")) {  // find first parent with ondrop attribute, that is the one calling this function
-              // console.log(target + "  " + target.hasAttribute("ondrop"));
-              target = target.parentElement;
-          }
-          prevtag = dataElement.parentElement;
-          // console.log(dataElement.parentElement);
-          targetHTML = target.innerHTML;
-          target.innerHTML = "";
-          target.appendChild(dataElement);
-          prevtag.innerHTML = targetHTML;
-      }
-  }
-  </script>
+    function drag(ev) {
+        if (edit)
+            ev.dataTransfer.setData("text", ev.target.id);
+    }
+
+    function drop(ev) {
+        if (edit) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            dataElement = document.getElementById(data);
+            // console.log(ev.target.parentElement);
+            target = ev.target
+            while (!target.hasAttribute("ondrop")) {  // find first parent with ondrop attribute, that is the one calling this function
+                // console.log(target + "  " + target.hasAttribute("ondrop"));
+                target = target.parentElement;
+            }
+            prevtag = dataElement.parentElement;
+            // console.log(dataElement.parentElement);
+            targetHTML = target.innerHTML;
+            target.innerHTML = "";
+            target.appendChild(dataElement);
+            prevtag.innerHTML = targetHTML;
+        }
+    }
+</script>
 </body>
 </html>
