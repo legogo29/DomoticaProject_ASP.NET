@@ -10,5 +10,13 @@
   {
     "outputFile": "style/Tim.css",
     "inputFile": "style/Tim.less"
+  },
+  {
+    "outputFile": "style/bootswatch/paper.css",
+    "inputFile": "style/bootswatch/paper.less"
+  },
+  {
+    "outputFile": "style/bootswatch/superhero.css",
+    "inputFile": "style/bootswatch/superhero.less"
   }
 ]
