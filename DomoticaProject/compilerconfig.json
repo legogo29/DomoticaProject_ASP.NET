@@ -18,5 +18,13 @@
   {
     "outputFile": "style/bootswatch/superhero.css",
     "inputFile": "style/bootswatch/superhero.less"
+  },
+  {
+    "outputFile": "style/bootswatch/darkly.css",
+    "inputFile": "style/bootswatch/darkly.less"
+  },
+  {
+    "outputFile": "style/bootswatch/flatly.css",
+    "inputFile": "style/bootswatch/flatly.less"
   }
 ]

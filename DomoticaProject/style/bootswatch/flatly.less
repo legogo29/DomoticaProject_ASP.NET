@@ -1,0 +1,291 @@
+﻿//== Colors
+//
+//## Gray and brand colors for use across Bootstrap.
+
+@gray-base:              #000;
+@gray-darker:            lighten(@gray-base, 13.5%); // #222
+@gray-dark:              #7b8a8b;   // #333
+@gray:                   #95a5a6; // #555
+@gray-light:             #b4bcc2;   // #999
+@gray-lighter:           #ecf0f1; // #eee
+
+@brand-primary:         #2C3E50;
+@brand-success:         #18BC9C;
+@brand-info:            #3498DB;
+@brand-warning:         #F39C12;
+@brand-danger:          #E74C3C;
+
+@font-size-base:          15px;
+@font-size-large:         ceil((@font-size-base * 1.25)); // ~18px
+@font-size-small:         ceil((@font-size-base * 0.85)); // ~12px
+
+//** Unit-less `line-height` for use in components like buttons.
+@line-height-base:        1.428571429; // 20/14
+//** Computed "line-height" (`font-size` * `line-height`) for use with `margin`, `padding`, etc.
+@line-height-computed:    floor((@font-size-base * @line-height-base)); // ~20px
+
+@border-radius-base:        4px;
+@border-radius-large:       6px;
+@border-radius-small:       3px;
+
+@grid-gutter-width:         30px;
+
+
+//== Navbar
+//
+//##
+
+// Basics of a navbar
+@navmenu-height:                    60px;
+@navmenu-margin-bottom:             @line-height-computed;
+@navmenu-border-radius:             @border-radius-base;
+@navmenu-padding-horizontal:        floor((@grid-gutter-width / 2));
+@navmenu-padding-vertical:          ((@navmenu-height - @line-height-computed) / 2);
+@navmenu-collapse-max-height:       340px;
+
+@navmenu-default-color:             #fff;
+@navmenu-default-bg:                @brand-primary;
+@navmenu-default-border:            transparent;
+
+// Navbar links
+@navmenu-default-link-color:                #fff;
+@navmenu-default-link-hover-color:          @brand-success;
+@navmenu-default-link-hover-bg:             transparent;
+@navmenu-default-link-active-color:         #fff;
+@navmenu-default-link-active-bg:            darken(@navmenu-default-bg, 10%);
+@navmenu-default-link-disabled-color:       #ccc;
+@navmenu-default-link-disabled-bg:          transparent;
+
+// Navbar brand label
+@navmenu-default-brand-color:               @navmenu-default-link-color;
+@navmenu-default-brand-hover-color:         @navmenu-default-link-hover-color;
+@navmenu-default-brand-hover-bg:            transparent;
+
+// Navbar toggle
+@navmenu-default-toggle-hover-bg:           darken(@navmenu-default-bg, 10%);
+@navmenu-default-toggle-icon-bar-bg:        #fff;
+@navmenu-default-toggle-border-color:       darken(@navmenu-default-bg, 10%);
+
+
+//=== Inverted navbar
+// Reset inverted navbar basics
+@navmenu-inverse-color:                      #fff;
+@navmenu-inverse-bg:                         @brand-success;
+@navmenu-inverse-border:                     transparent;
+
+// Inverted navbar links
+@navmenu-inverse-link-color:                 #fff;
+@navmenu-inverse-link-hover-color:           @brand-primary;
+@navmenu-inverse-link-hover-bg:              transparent;
+@navmenu-inverse-link-active-color:          #fff;
+@navmenu-inverse-link-active-bg:             darken(@navmenu-inverse-bg, 5%);
+@navmenu-inverse-link-disabled-color:        #ccc;
+@navmenu-inverse-link-disabled-bg:           transparent;
+
+// Inverted navbar brand label
+@navmenu-inverse-brand-color:                @navmenu-inverse-link-color;
+@navmenu-inverse-brand-hover-color:          @navmenu-inverse-link-hover-color;
+@navmenu-inverse-brand-hover-bg:             transparent;
+
+// Inverted navbar toggle
+@navmenu-inverse-toggle-hover-bg:            darken(@navmenu-inverse-bg, 10%);
+@navmenu-inverse-toggle-icon-bar-bg:         #fff;
+@navmenu-inverse-toggle-border-color:        darken(@navmenu-inverse-bg, 10%);
+
+
+//== Navs
+//
+//##
+
+//=== Shared nav styles
+@nav-link-padding:                          10px 15px;
+@nav-link-hover-bg:                         @gray-lighter;
+
+@nav-disabled-link-color:                   @gray-light;
+@nav-disabled-link-hover-color:             @gray-light;
+
+
+// Brand/project name
+
+.navmenu-brand {
+  font-size: @font-size-large;
+  line-height: @line-height-computed;
+  padding: @nav-link-padding;
+}
+
+// Alternate navmenus
+// --------------------------------------------------
+
+// Default navmenu
+.navmenu-default,
+.navbar-default .navbar-offcanvas {
+  background-color: @navmenu-default-bg;
+  border-color: @navmenu-default-border;
+
+  .navmenu-brand {
+    color: @navmenu-default-brand-color;
+    &:hover,
+    &:focus {
+      color: @navmenu-default-brand-hover-color;
+      background-color: @navmenu-default-brand-hover-bg;
+    }
+  }
+
+  .navmenu-text {
+    color: @navmenu-default-color;
+  }
+
+  .navmenu-nav {
+    // Caret should match text color on hover
+    > .dropdown > a:hover .caret,
+    > .dropdown > a:focus .caret {
+      border-top-color: @navmenu-default-link-hover-color;
+      border-bottom-color: @navmenu-default-link-hover-color;
+    }
+
+    // Remove background color from open dropdown
+    > .open > a {
+      &,
+      &:hover,
+      &:focus {
+        background-color: @navmenu-default-link-active-bg;
+        color: @navmenu-default-link-active-color;
+        .caret {
+          border-top-color: @navmenu-default-link-active-color;
+          border-bottom-color: @navmenu-default-link-active-color;
+        }
+      }
+    }
+    > .dropdown > a .caret {
+      border-top-color: @navmenu-default-link-color;
+      border-bottom-color: @navmenu-default-link-color;
+    }
+    &.dropdown-menu {
+      background-color: @navmenu-default-link-active-bg;
+      & > .divider {
+        background-color: @navmenu-default-bg;
+      }
+      > .active > a {
+        &,
+        &:hover,
+        &:focus {
+          background-color: darken(@navmenu-default-link-active-bg, 6.5%);
+        }
+      }
+    }
+
+    > li > a {
+      color: @navmenu-default-link-color;
+      &:hover,
+      &:focus {
+        color: @navmenu-default-link-hover-color;
+        background-color: @navmenu-default-link-hover-bg;
+      }
+    }
+    > .active > a {
+      &,
+      &:hover,
+      &:focus {
+        color: @navmenu-default-link-active-color;
+        background-color: @navmenu-default-link-active-bg;
+      }
+    }
+    > .disabled > a {
+      &,
+      &:hover,
+      &:focus {
+        color: @navmenu-default-link-disabled-color;
+        background-color: @navmenu-default-link-disabled-bg;
+      }
+    }
+  }
+}
+
+// Inverse navmenu
+.navmenu-inverse,
+.navbar-inverse .navbar-offcanvas {
+  background-color: @navmenu-inverse-bg;
+  border-color: @navmenu-inverse-border;
+
+  .navmenu-brand {
+    color: @navmenu-inverse-brand-color;
+    &:hover,
+    &:focus {
+      color: @navmenu-inverse-brand-hover-color;
+      background-color: @navmenu-inverse-brand-hover-bg;
+    }
+  }
+
+  .navmenu-text {
+    color: @navmenu-inverse-color;
+  }
+
+  .navmenu-nav {
+    // Caret should match text color on hover
+    > .dropdown > a:hover .caret,
+    > .dropdown > a:focus .caret {
+      border-top-color: @navmenu-inverse-link-hover-color;
+      border-bottom-color: @navmenu-inverse-link-hover-color;
+    }
+
+    // Remove background color from open dropdown
+    > .open > a {
+      &,
+      &:hover,
+      &:focus {
+        background-color: @navmenu-inverse-link-active-bg;
+        color: @navmenu-inverse-link-active-color;
+        .caret {
+          border-top-color: @navmenu-inverse-link-active-color;
+          border-bottom-color: @navmenu-inverse-link-active-color;
+        }
+      }
+    }
+    > .dropdown > a .caret {
+      border-top-color: @navmenu-inverse-link-color;
+      border-bottom-color: @navmenu-inverse-link-color;
+    }
+    &.dropdown-menu {
+      background-color: @navmenu-inverse-link-active-bg;
+      & > .divider {
+        background-color: @navmenu-inverse-bg;
+      }
+      > .active > a {
+        &,
+        &:hover,
+        &:focus {
+          background-color: darken(@navmenu-inverse-link-active-bg, 6.5%);
+        }
+      }
+    }
+
+    > li > a {
+      color: @navmenu-inverse-link-color;
+      &:hover,
+      &:focus {
+        color: @navmenu-inverse-link-hover-color;
+        background-color: @navmenu-inverse-link-hover-bg;
+      }
+    }
+    > .active > a {
+      &,
+      &:hover,
+      &:focus {
+        color: @navmenu-inverse-link-active-color;
+        background-color: @navmenu-inverse-link-active-bg;
+      }
+    }
+    > .disabled > a {
+      &,
+      &:hover,
+      &:focus {
+        color: @navmenu-inverse-link-disabled-color;
+        background-color: @navmenu-inverse-link-disabled-bg;
+      }
+    }
+  }
+}
+
+body {
+    padding-top: (@navmenu-height + 20px);
+}
