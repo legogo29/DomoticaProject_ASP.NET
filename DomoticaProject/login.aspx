@@ -2,6 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:Label ID = "debug"  runat = "server"> </asp:Label>
     <div class="row">
     <div class="col-xs-12 col-lg-4 col-lg-offset-4" id="field1" ondrop="drop(event)" ondragover="allowDrop(event)">
     <div id="panellogin" class="panel panel-default" draggable="false" ondragstart="drag(event)">

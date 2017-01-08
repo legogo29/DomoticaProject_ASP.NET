@@ -9,68 +9,58 @@ using System.Web.UI.WebControls;
 
 namespace DomoticaProject
 {
-    public partial class login : System.Web.UI.Page
+    public partial class register : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
 
-        protected void LoginButton_Click(object sender, EventArgs e)
+        protected void button_Click(object sender, EventArgs e)
         {
-            //HttpCookie CookieCookie = new HttpCookie("userCookie");
-            //
-            //CookieCookie.Value = UserName.Text;
-            //CookieCookie.Expires = DateTime.Now.AddHours(1.0);
-            //Response.Cookies.Add(CookieCookie);
-            //
-            //Response.Redirect("default.aspx");
-
-            string email = UserName.Text;
-            string password = Password.Text;
-
             OleDbConnection conn = new OleDbConnection();
-            conn.ConnectionString = ConfigurationManager.ConnectionStrings["database"].ToString();
-            OleDbCommand cmd = new OleDbCommand();
 
             try
             {
-                if(isEmailAvailable(email) == false)
+                if (isEmailAvailable(input_email.Text) == true && isDisplaynameAvailable(input_displayname.Text) == true)
                 {
+                    conn.ConnectionString = ConfigurationManager.ConnectionStrings["database"].ToString();
+
+                    OleDbCommand cmd = new OleDbCommand();
+                    cmd.CommandText = "INSERT INTO account(email, voornaam, achternaam, wachtwoord, display_name) " +
+                                        "VALUES " +
+                                        "(" +
+                                        "@email, @voornaam, @achternaam, @wachtwoord, @display_name" +
+                                        ");";
 
                     cmd.Connection = conn;
                     conn.Open();
 
-                    cmd.CommandText = "SELECT id, email, voornaam, achternaam, wachtwoord, display_name " +
-                                  "FROM account " +
-                                  "WHERE email LIKE @_email AND wachtwoord LIKE @_password;";
+                    cmd.Parameters.AddWithValue("@email", input_email.Text);
+                    cmd.Parameters.AddWithValue("@voornaam", input_voornaam.Text);
+                    cmd.Parameters.AddWithValue("@achternaam", input_achternaam.Text);
+                    cmd.Parameters.AddWithValue("@wachtwoord", input_password.Value);
+                    cmd.Parameters.AddWithValue("@display_name", input_displayname.Text);
 
-                    cmd.Parameters.AddWithValue("@_email", email);
-                    cmd.Parameters.AddWithValue("@_wachtwoord", password);
-
-
-                    OleDbDataReader reader = cmd.ExecuteReader();
-
-                    while (reader.Read())
-                    {
-                        string temp_email = reader[1].ToString();
-                        string temp_password = reader[4].ToString();
-
-                        if(temp_email == email && temp_password == password)
-                        {
-                            debug.Text = "true";
-                        }
-                    }
-
-                    reader.Close();
+                    cmd.ExecuteNonQuery();
                 }
-            } catch(Exception ex)
+                else
+                {
+                    label_email.Text = "Email bestaat al, knul.";
+                }
+
+
+            }
+            catch (Exception ex)
             {
-                UserName.Text = ex.Message;
-            } finally
+                label_voornaam.Text = ex.Message;
+                label_achternaam.Text = ex.StackTrace;
+            }
+            finally
             {
                 conn.Close();
             }
+
         }
 
         protected static bool isEmailAvailable(string email)
