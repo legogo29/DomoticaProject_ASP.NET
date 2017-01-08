@@ -10,19 +10,32 @@ namespace DomoticaProject
 {
     public partial class house : System.Web.UI.Page
     {
-        private DaHaus daHaus = new DaHaus("127.0.0.1", 11000);
+        protected DaHaus daHaus = new DaHaus("127.0.0.1", 11000);
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            daHaus.Connect();
+
+            if (daHaus.Connected)
             {
-                daHaus.Connect();
-                daHaus.UpdateHouse();
-                ConnectionStatus();
-                daHaus.Close();
-                PrepareInputs();
+                connectionStatus.Text = "Connection";
+                connectionStatus.CssClass = "connected";
+            }
+            else
+            {
+                connectionStatus.Text = "No Connection";
+                connectionStatus.CssClass = "disconnected";
             }
         }
+
+
+        protected void Page_LoadComplete(object sender, EventArgs e)
+        {
+            daHaus.UpdateHouse();
+            daHaus.Close();
+            PrepareInputs();
+        }
+
 
         protected void PrepareInputs()
         {
@@ -39,10 +52,20 @@ namespace DomoticaProject
 
             for (int i = 0; i < windows.Length; i++)
             {
-                if (daHaus.Windows[i].State == Window.States.Closed)
-                    windows[i].Checked = true;
-                else
-                    windows[i].Checked = false;
+                switch (daHaus.Windows[i].State)
+                {
+                    case Window.States.Open:
+                        windows[i].Checked = false;
+                        break;
+
+                    case Window.States.Half:
+                        //Doe niks.
+                        break;
+
+                    case Window.States.Closed:
+                        windows[i].Checked = true;
+                        break;
+                }
             }
 
             if (daHaus.Heater.Degree != 0)
@@ -55,23 +78,14 @@ namespace DomoticaProject
             Match match = Regex.Match(checkBox.ID, @"\d");
             int index = int.Parse(match.Value);
 
-            daHaus.Connect();
-
-            if(daHaus.Connected)
+            if (checkBox.Checked)
             {
-                if (checkBox.Checked)
-                {
-                    daHaus.TurnOnLamp(index);
-                }
-                else
-                {
-                    daHaus.TurnOffLamp(index);
-                }
+                daHaus.TurnOnLamp(index);
             }
-
-            ConnectionStatus();
-
-            daHaus.Close();
+            else
+            {
+                daHaus.TurnOffLamp(index);
+            }
         }
 
         protected void WindowCheckedChanged(object sender, EventArgs e)
@@ -80,36 +94,13 @@ namespace DomoticaProject
             Match match = Regex.Match(checkBox.ID, @"\d");
             int index = int.Parse(match.Value);
 
-            daHaus.Connect();
-
-            if (daHaus.Connected)
+            if (checkBox.Checked)
             {
-                if (checkBox.Checked)
-                {
-                    daHaus.CloseWindow(index);
-                }
-                else
-                {
-                    daHaus.OpenWindow(index);
-                }
-            }
-
-            ConnectionStatus();
-
-            daHaus.Close();
-        }
-
-        protected void ConnectionStatus()
-        {
-            if (daHaus.Connected)
-            {
-                connectionStatus.Text = "Connected";
-                connectionStatus.CssClass = "connected";
+                daHaus.CloseWindow(index);
             }
             else
             {
-                connectionStatus.Text = "Disconnected";
-                connectionStatus.CssClass = "disconnected";
+                daHaus.OpenWindow(index);
             }
         }
 
@@ -121,12 +112,7 @@ namespace DomoticaProject
 
             if (float.TryParse(input, out degree))
             {
-                daHaus.Connect();
-                if (daHaus.Connected)
-                {
-                    daHaus.ChangeHeaterDegree(degree);
-                }
-                daHaus.Close();
+                daHaus.ChangeHeaterDegree(degree);
             }
         }
     }

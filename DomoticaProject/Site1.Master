@@ -10,7 +10,24 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="style/Style.css">
     <link rel="stylesheet" id="customStyle" runat="server" />
-    <script src="https://use.fontawesome.com/03e759f745.js"></script>
+    <%--<script src="https://use.fontawesome.com/03e759f745.js"></script>--%>
+    <link href="https://use.fontawesome.com/03e759f745.css" media="all" rel="stylesheet">
+    <script>   
+        // AJAX requests
+        function loadDoc(url, cFunction) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    if (cFunction != null) {
+                        cFunction(this);
+                    }
+                }
+            }
+            xhttp.open("GET", "api/values/" + url, true);
+            xhttp.setRequestHeader('Accept', 'application/json; charset=utf-8');
+            xhttp.send();
+        }
+    </script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>

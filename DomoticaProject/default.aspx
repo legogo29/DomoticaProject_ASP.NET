@@ -9,33 +9,39 @@
         <div class="panel-body">
         <h2>Heading 1</h2>
         <p>
-            Temprature: <span id="temprature"></span><br />
-            Humidity: <span id="hum"></span><br />
+            Temprature: <span id="temp"></span>&#176;C<br />
+            Humidity: <span id="hum"></span>%<br />
         </p>
         </div>
         <script>
-            function loadTemp() {
-                var xhttp = new XMLHttpRequest();
-                xhttp.onreadystatechange = function () {
-                    if (this.readyState == 4 && this.status == 200) {
-                        document.getElementById("temprature").innerHTML = this.responseText;
-                    }
-                }
-                xhttp.open("GET", "api/values/1", true);
-                xhttp.send();
+            setInterval(loadTH, 1000);
+            loadTH();
+            function loadTH() {
+                loadDoc("1", setTemp);
             }
-            setInterval(loadTemp, 1000);
-            function loadHum() {
-                var xhttp = new XMLHttpRequest();
-                xhttp.onreadystatechange = function () {
-                    if (this.readyState == 4 && this.status == 200) {
-                        document.getElementById("hum").innerHTML = this.responseText;
-                    }
-                }
-                xhttp.open("GET", "api/values/2", true);
-                xhttp.send();
+            function setTemp(xhttp) {
+                checkbox = [document.getElementById("SlideBoxPanel2_1"), document.getElementById("SlideBoxPanel2_2"), document.getElementById("SlideBoxPanel2_3")]; //this is a global variable
+
+                var items = xhttp.responseText.replace(/"/g, '').split("+"); //regex to remove the " on the front and end of the string
+                document.getElementById("temp").innerHTML = items[0];
+                document.getElementById("hum").innerHTML = items[1];
+                if (items[2] >> 2 == 1) checkbox[0].checked;
+                if (items[2] >> 1 & 1 == 1) checkbox[1].checked;
+                if (items[2] & 1 == 1) checkbox[2].checked;
             }
-            setInterval(loadHum, 1000);
+
+            checkbox[0].addEventListener("change", sendSwitches);
+            checkbox[1].addEventListener("change", sendSwitches);
+            checkbox[2].addEventListener("change", sendSwitches);
+
+            function sendSwitches() {
+                //var checkbox = [document.getElementById("SlideBoxPanel2_1"), document.getElementById("SlideBoxPanel2_2"), document.getElementById("SlideBoxPanel2_3")];
+                var lampByte = 0; // 00000000
+                if (checkbox[0].checked) lampByte |= 1 << 2; // 00000100
+                if (checkbox[1].checked) lampByte |= 1 << 1; // 00000010
+                if (checkbox[2].checked) lampByte |= 1 << 0; // 00000001
+                loadDoc("1?lamp=" + lampByte); // JS doesnt care about amount of arguments given, not given == null
+            }
         </script>
     </div>
     </div><!--/.col-xs-6.col-lg-4-->
@@ -44,15 +50,15 @@
         <div class="panel-body">
         <h2>Heading 2</h2>
         <label class="switch">
-            <asp:CheckBox ID="SlideBoxPanel2_1" runat="server" OnCheckedChanged="SlideBoxPanel2_CheckedChanged" AutoPostBack="True" />
+            <input id="SlideBoxPanel2_1" type="checkbox" onclick="sendSwitches()" />
             <span class="slider"></span>
         </label>
         <label class="switch">
-            <asp:CheckBox ID="SlideBoxPanel2_2" runat="server" OnCheckedChanged="SlideBoxPanel2_CheckedChanged" AutoPostBack="True" />
+            <input id="SlideBoxPanel2_2" type="checkbox" onclick="sendSwitches()" />
             <span class="slider"></span>
         </label>
         <label class="switch">
-            <asp:CheckBox ID="SlideBoxPanel2_3" runat="server" OnCheckedChanged="SlideBoxPanel2_CheckedChanged" AutoPostBack="True" />
+            <input id="SlideBoxPanel2_3" type="checkbox" onclick="sendSwitches()" />
             <span class="slider"></span>
         </label>
         </div>
