@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -77,7 +77,7 @@
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
-  <ItemGroup>
+<ItemGroup>
     <Content Include="App_Data\pd_database.accdb" />
     <Content Include="default.aspx" />
     <Content Include="games.aspx" />
@@ -89,6 +89,18 @@
     <Content Include="logout.aspx" />
     <Content Include="register.aspx" />
     <Content Include="settings.aspx" />
+    <Content Include="style\bootswatch\paper.css">
+      <DependentUpon>paper.less</DependentUpon>
+    </Content>
+    <Content Include="style\bootswatch\paper.min.css">
+      <DependentUpon>paper.css</DependentUpon>
+    </Content>
+    <Content Include="style\bootswatch\superhero.css">
+      <DependentUpon>superhero.less</DependentUpon>
+    </Content>
+    <Content Include="style\bootswatch\superhero.min.css">
+      <DependentUpon>superhero.css</DependentUpon>
+    </Content>
     <Content Include="style\Max.css">
       <DependentUpon>Max.less</DependentUpon>
     </Content>
@@ -108,12 +120,11 @@
       <DependentUpon>Tim.css</DependentUpon>
     </Content>
     <Content Include="images\thumbsup.png" />
-    <Content Include="swaggybird.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
-  <ItemGroup>
+<ItemGroup>
     <Compile Include="DaHaus\DaHaus.cs" />
     <Compile Include="Api\ValuesController.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -206,6 +217,9 @@
     <None Include="Properties\PublishProfiles\project domotica.pubxml" />
     <Content Include="style\Max.less" />
     <Content Include="style\Tim.less" />
+    <Content Include="style\bootswatch\navmenu.less" />
+    <Content Include="style\bootswatch\paper.less" />
+    <Content Include="style\bootswatch\superhero.less" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
