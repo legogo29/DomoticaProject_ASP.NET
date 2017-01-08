@@ -13,6 +13,15 @@ namespace DomoticaProject {
     public partial class Site1 {
         
         /// <summary>
+        /// bootstrapStyle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlLink bootstrapStyle;
+        
+        /// <summary>
         /// customStyle control.
         /// </summary>
         /// <remarks>
@@ -20,15 +29,6 @@ namespace DomoticaProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlLink customStyle;
-        
-        /// <summary>
-        /// customStyle2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlLink customStyle2;
         
         /// <summary>
         /// head control.

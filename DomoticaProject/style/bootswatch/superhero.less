@@ -236,17 +236,12 @@
 
 @nav-disabled-link-color:                   @gray-light;
 @nav-disabled-link-hover-color:             @gray-light;
-
+// Brand/project name
 
 .navmenu-brand {
-  display: block;
   font-size: @font-size-large;
   line-height: @line-height-computed;
   padding: @nav-link-padding;
-  &:hover,
-  &:focus {
-    text-decoration: none;
-  }
 }
 
 // Alternate navmenus
@@ -420,4 +415,8 @@
       }
     }
   }
+}
+
+body {
+    padding-top: (@navmenu-height + 20px);
 }
