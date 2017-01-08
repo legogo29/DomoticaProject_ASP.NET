@@ -89,6 +89,18 @@
     <Content Include="logout.aspx" />
     <Content Include="register.aspx" />
     <Content Include="settings.aspx" />
+    <Content Include="style\bootswatch\paper.css">
+      <DependentUpon>paper.less</DependentUpon>
+    </Content>
+    <Content Include="style\bootswatch\paper.min.css">
+      <DependentUpon>paper.css</DependentUpon>
+    </Content>
+    <Content Include="style\bootswatch\superhero.css">
+      <DependentUpon>superhero.less</DependentUpon>
+    </Content>
+    <Content Include="style\bootswatch\superhero.min.css">
+      <DependentUpon>superhero.css</DependentUpon>
+    </Content>
     <Content Include="style\Max.css">
       <DependentUpon>Max.less</DependentUpon>
     </Content>
@@ -206,6 +218,11 @@
     <None Include="Properties\PublishProfiles\project domotica.pubxml" />
     <Content Include="style\Max.less" />
     <Content Include="style\Tim.less" />
+    <Content Include="style\bootswatch\navmenu.less" />
+    <Content Include="style\bootswatch\paper.less" />
+    <Content Include="style\bootswatch\superhero.less" />
+    <Content Include="style\bootswatch\flatly.less" />
+    <Content Include="style\bootswatch\darkly.less" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
