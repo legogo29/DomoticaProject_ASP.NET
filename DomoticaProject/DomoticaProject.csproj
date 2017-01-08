@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -77,7 +77,7 @@
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
-<ItemGroup>
+  <ItemGroup>
     <Content Include="App_Data\pd_database.accdb" />
     <Content Include="default.aspx" />
     <Content Include="games.aspx" />
@@ -120,11 +120,12 @@
       <DependentUpon>Tim.css</DependentUpon>
     </Content>
     <Content Include="images\thumbsup.png" />
+    <Content Include="swaggybird.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
-<ItemGroup>
+  <ItemGroup>
     <Compile Include="DaHaus\DaHaus.cs" />
     <Compile Include="Api\ValuesController.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -220,6 +221,8 @@
     <Content Include="style\bootswatch\navmenu.less" />
     <Content Include="style\bootswatch\paper.less" />
     <Content Include="style\bootswatch\superhero.less" />
+    <Content Include="style\bootswatch\flatly.less" />
+    <Content Include="style\bootswatch\darkly.less" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
