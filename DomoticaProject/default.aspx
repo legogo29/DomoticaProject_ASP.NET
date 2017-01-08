@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="default.aspx.cs" Inherits="DomoticaProject._default" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="default.aspx.cs" Inherits="DomoticaProject._default" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Home</title>
 </asp:Content>
@@ -33,7 +33,6 @@
             checkbox[0].addEventListener("change", sendSwitches);
             checkbox[1].addEventListener("change", sendSwitches);
             checkbox[2].addEventListener("change", sendSwitches);
-
             function sendSwitches() {
                 //var checkbox = [document.getElementById("SlideBoxPanel2_1"), document.getElementById("SlideBoxPanel2_2"), document.getElementById("SlideBoxPanel2_3")];
                 var lampByte = 0; // 00000000
