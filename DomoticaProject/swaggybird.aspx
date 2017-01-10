@@ -1,13 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="swaggybird.aspx.cs" Inherits="DomoticaProject.swaggybird" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<style>
-canvas {
-    border:1px solid #d3d3d3;
-    background-color: #f1f1f1;
-}
-</style>
 <script>
     window.onload = function () { startGame(); };
 
@@ -43,7 +35,9 @@ var gameArea =
         })
         window.addEventListener('keyup', function(e)
         {
-          gameArea.key = false;
+            gameArea.key = false;
+            gamePlayer.speedX = 0;
+            gamePlayer.speedY = 0;
         })
 
     },
@@ -179,8 +173,8 @@ background.update();
     gameObstacles[i].update();
   }
 
-    gamePlayer.speedX = 0;
-    gamePlayer.speedY = 0;
+    //gamePlayer.speedX = 0;
+    //gamePlayer.speedY = 0;
 
     if(gameArea.key && gameArea.key == 37)
     {
@@ -239,9 +233,9 @@ function clearmove()
 
 </script>
 
-  <button onmousedown = "moveup()" onmouseup = "clearmove()"> UP</button>
-  <button onmousedown = "moveleft()" onmouseup = "clearmove()"> LEFT</button>
-  <button onmousedown = "moveright()" onmouseup = "clearmove()"> RIGHT </button>
-  <button onmousedown = "movedown()" onmouseup = "clearmove()"> DOWN </button>
+  <button type="button" onmousedown="moveup()" onmouseup="clearmove()"> UP</button>
+  <button type="button" onmousedown="moveleft()" onmouseup="clearmove()"> LEFT</button>
+  <button type="button" onmousedown="moveright()" onmouseup="clearmove()"> RIGHT </button>
+  <button type="button" onmousedown="movedown()" onmouseup="clearmove()"> DOWN </button>
 
 </asp:Content>
