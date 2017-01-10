@@ -1,5 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="swaggybird.aspx.cs" Inherits="DomoticaProject.swaggybird" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<style>
+canvas {
+    border:1px solid #d3d3d3;
+    background-color: #f1f1f1;
+}
+</style>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <script>
     window.onload = function () { startGame(); };
 

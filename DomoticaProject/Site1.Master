@@ -154,13 +154,16 @@
             if (fibreCookie == 1) {
                 $('#navbar').removeClass('navbar-default').addClass('navbar-inverse');
                 $('#navmenu').removeClass('navmenu-default').addClass('navmenu-inverse');
+                if (document.getElementById('navRadios2') != null) {
+                    document.getElementById('navRadios2').checked = true;
+                }
             } else {
                 $('#navbar').removeClass('navbar-inverse').addClass('navbar-default');
                 $('#navmenu').removeClass('navmenu-inverse').addClass('navmenu-default');
+                if (document.getElementById('navRadios1') != null) {
+                    document.getElementById('navRadios1').checked = true;
+                }
             }
-        }
-        else {
-           // document.getElementById('lblJSCVal').innerText = "No MonsterCookie set locally...";
         }
     }
 </script>

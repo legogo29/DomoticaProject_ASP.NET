@@ -18,7 +18,7 @@
         <label>Bar Color</label>
         <div class="radio">
           <label>
-            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" onclick="setCookie('navCookie', '0'); readcookie();" checked />
+            <input type="radio" name="optionsRadios" id="navRadios1" value="option1" onclick="setCookie('navCookie', '0'); readcookie();" />
             <nav class="navbar navbar-default" style="margin-bottom:0px;">
                 <div class="container-fluid">
                     <div class="navbar-header">
@@ -30,7 +30,7 @@
         </div>
         <div class="radio">
           <label>
-            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" onclick="setCookie('navCookie', '1'); readcookie();">
+            <input type="radio" name="optionsRadios" id="navRadios2" value="option2" onclick="setCookie('navCookie', '1'); readcookie();">
             <nav class="navbar navbar-inverse" style="margin-bottom:0px;">
                 <div class="container-fluid">
                     <div class="navbar-header">
