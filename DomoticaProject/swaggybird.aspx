@@ -2,18 +2,14 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<!DOCTYPE html>
-<html>
-<head>
 <style>
 canvas {
     border:1px solid #d3d3d3;
     background-color: #f1f1f1;
 }
 </style>
-</head>
-<body onload="startGame()">
 <script>
+    window.onload = function () { startGame(); };
 
 var gamePlayer;
 var gameObstacles = [];
@@ -248,6 +244,4 @@ function clearmove()
   <button onmousedown = "moveright()" onmouseup = "clearmove()"> RIGHT </button>
   <button onmousedown = "movedown()" onmouseup = "clearmove()"> DOWN </button>
 
-</body>
-</html>
 </asp:Content>
