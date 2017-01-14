@@ -1,0 +1,30 @@
+﻿[
+  {
+    "outputFile": "style/Style.css",
+    "inputFile": "style/Style.less"
+  },
+  {
+    "outputFile": "style/Max.css",
+    "inputFile": "style/Max.less"
+  },
+  {
+    "outputFile": "style/Tim.css",
+    "inputFile": "style/Tim.less"
+  },
+  {
+    "outputFile": "style/bootswatch/paper.css",
+    "inputFile": "style/bootswatch/paper.less"
+  },
+  {
+    "outputFile": "style/bootswatch/superhero.css",
+    "inputFile": "style/bootswatch/superhero.less"
+  },
+  {
+    "outputFile": "style/bootswatch/darkly.css",
+    "inputFile": "style/bootswatch/darkly.less"
+  },
+  {
+    "outputFile": "style/bootswatch/flatly.css",
+    "inputFile": "style/bootswatch/flatly.less"
+  }
+]
