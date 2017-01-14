@@ -19,7 +19,7 @@ namespace DomoticaProject
         protected void button_Click(object sender, EventArgs e)
         {
             OleDbConnection conn = new OleDbConnection();
-
+            
             try
             {
                 if (isEmailAvailable(input_email.Text) == true && isDisplaynameAvailable(input_displayname.Text) == true)
@@ -39,22 +39,21 @@ namespace DomoticaProject
                     cmd.Parameters.AddWithValue("@email", input_email.Text);
                     cmd.Parameters.AddWithValue("@voornaam", input_voornaam.Text);
                     cmd.Parameters.AddWithValue("@achternaam", input_achternaam.Text);
-                    cmd.Parameters.AddWithValue("@wachtwoord", input_password.Value);
+                    cmd.Parameters.AddWithValue("@wachtwoord", input_passwordA.Value);
                     cmd.Parameters.AddWithValue("@display_name", input_displayname.Text);
 
                     cmd.ExecuteNonQuery();
                 }
                 else
                 {
-                    label_email.Text = "Email bestaat al, knul.";
+                    //Email bestaat al
                 }
 
 
             }
             catch (Exception ex)
             {
-                label_voornaam.Text = ex.Message;
-                label_achternaam.Text = ex.StackTrace;
+                //Vang error af.
             }
             finally
             {

@@ -41,7 +41,7 @@ namespace DomoticaProject
                     cmd.Connection = conn;
                     conn.Open();
 
-                    cmd.CommandText = "SELECT id, email, voornaam, achternaam, wachtwoord, display_name " +
+                    cmd.CommandText = "SELECT email, wachtwoord " +
                                   "FROM account " +
                                   "WHERE email LIKE @_email AND wachtwoord LIKE @_password;";
 
@@ -53,12 +53,15 @@ namespace DomoticaProject
 
                     while (reader.Read())
                     {
-                        string temp_email = reader[1].ToString();
-                        string temp_password = reader[4].ToString();
+                        string temp_email = reader[0].ToString();
+                        string temp_password = reader[1].ToString();
 
                         if(temp_email == email && temp_password == password)
                         {
-                            debug.Text = "true";
+                            debug.Text = "[DEBUG] true";
+                        } else
+                        {
+                            debug.Text = "[DEBUG] false";
                         }
                     }
 
@@ -67,9 +70,11 @@ namespace DomoticaProject
             } catch(Exception ex)
             {
                 UserName.Text = ex.Message;
+                debug.Text = "[DEBUG] error";
             } finally
             {
                 conn.Close();
+                
             }
         }
 

@@ -42,7 +42,7 @@ isFlagged = [
 
 var minesTimerVar = setInterval(minesTimer, 1000);
 
-setWidth()
+setWidth();
 
 window.onresize = function () {
     // debugger;

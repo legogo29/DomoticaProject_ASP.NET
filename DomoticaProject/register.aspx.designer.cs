@@ -13,15 +13,6 @@ namespace DomoticaProject {
     public partial class register {
         
         /// <summary>
-        /// label_voornaam control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label label_voornaam;
-        
-        /// <summary>
         /// input_voornaam control.
         /// </summary>
         /// <remarks>
@@ -29,15 +20,6 @@ namespace DomoticaProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox input_voornaam;
-        
-        /// <summary>
-        /// label_achternaam control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label label_achternaam;
         
         /// <summary>
         /// input_achternaam control.
@@ -49,15 +31,6 @@ namespace DomoticaProject {
         protected global::System.Web.UI.WebControls.TextBox input_achternaam;
         
         /// <summary>
-        /// label_email control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label label_email;
-        
-        /// <summary>
         /// input_email control.
         /// </summary>
         /// <remarks>
@@ -67,42 +40,6 @@ namespace DomoticaProject {
         protected global::System.Web.UI.WebControls.TextBox input_email;
         
         /// <summary>
-        /// RegularExpressionValidator1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
-        
-        /// <summary>
-        /// label_wachtwoord control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label label_wachtwoord;
-        
-        /// <summary>
-        /// input_password control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputPassword input_password;
-        
-        /// <summary>
-        /// label_displayname control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label label_displayname;
-        
-        /// <summary>
         /// input_displayname control.
         /// </summary>
         /// <remarks>
@@ -110,6 +47,24 @@ namespace DomoticaProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox input_displayname;
+        
+        /// <summary>
+        /// input_passwordA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputPassword input_passwordA;
+        
+        /// <summary>
+        /// input_passwordB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputPassword input_passwordB;
         
         /// <summary>
         /// button control.

@@ -67,7 +67,7 @@
     <div id="panel3" class="panel panel-default" draggable="false" ondragstart="drag(event)">
         <div class="panel-body">
         <h2>Heading 3</h2>
-        <h3><img src="resources/OS_Logo.png"/> Open source web platform</h3>
+        <h3><img src="images/OS_Logo.png"/> Open source web platform</h3>
         </div>
     </div>
     </div><!--/.col-xs-6.col-lg-4-->

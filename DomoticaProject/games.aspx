@@ -12,16 +12,19 @@
 
 		         <div>
         
-                    <asp:GridView ID="GridView1" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="email" DataSourceID="AccessDataSource1">
+                    <asp:GridView ID="GridView1" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="email" DataSourceID="AccessDataSource1" CssClass="table" GridLines ="Both" BorderStyle="Solid">
                  <Columns>
                      <asp:BoundField DataField="email" HeaderText="email" InsertVisible="False" ReadOnly="True" SortExpression="email" />
                      <asp:BoundField DataField="score" HeaderText="score" SortExpression="score" />
                  </Columns>
+                        <HeaderStyle BorderStyle="Solid" CssClass="table" />
+                        <RowStyle BorderStyle="Solid" CssClass="table" />
                    </asp:GridView>
                 <br />
                     <asp:AccessDataSource ID="AccessDataSource1" runat="server" DataFile="~/App_Data/pd_database.accdb" SelectCommand="SELECT TOP 10 [score], [email] FROM [speelt] WHERE [spel_id ]= 1 ORDER BY [score] DESC; "></asp:AccessDataSource>
         
                 </div>    
+
 
             </div>
 
@@ -36,11 +39,13 @@
 
 		         <div>
         
-                    <asp:GridView ID="GridView2" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="email" DataSourceID="AccessDataSource2">
+                    <asp:GridView ID="GridView2" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="email" DataSourceID="AccessDataSource2" CssClass ="table" GridLines ="Both" BorderStyle= "Solid">
                  <Columns>
                      <asp:BoundField DataField="email" HeaderText="email" InsertVisible="False" ReadOnly="True" SortExpression="email" />
                      <asp:BoundField DataField="score" HeaderText="score" SortExpression="score" />
                  </Columns>
+                        <HeaderStyle BorderStyle="Solid" CssClass="table" />
+                        <RowStyle BorderStyle="Solid" CssClass="table" />
                    </asp:GridView>
                 <br />
                     <asp:AccessDataSource ID="AccessDataSource2" runat="server" DataFile="~/App_Data/pd_database.accdb" SelectCommand="SELECT TOP 10 [score], [email] FROM [speelt] WHERE [spel_id ]= 2 ORDER BY [score] DESC; "></asp:AccessDataSource>
