@@ -31,13 +31,15 @@ namespace DomoticaProject
 
         protected void Page_LoadComplete(object sender, EventArgs e)
         {
-            daHaus.UpdateHouse();
+            daHaus.RetrieveLamps();
+            daHaus.RetrieveWindows();
+            daHaus.RetrieveHeater();
             daHaus.Close();
-            PrepareInputs();
+            PrepareHtmlInputs();
         }
 
 
-        protected void PrepareInputs()
+        protected void PrepareHtmlInputs()
         {
             CheckBox[] lamps = { lamp0, lamp1, lamp2, lamp3, lamp4 };
             CheckBox[] windows = { window0, window1 };
