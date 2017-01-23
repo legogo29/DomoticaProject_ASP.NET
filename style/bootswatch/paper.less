@@ -1,0 +1,333 @@
+﻿// Paper 3.3.7
+// Variables
+// --------------------------------------------------
+
+
+//== Colors
+//
+//## Gray and brand colors for use across Bootstrap.
+
+@gray-base:              #000;
+@gray-darker:            lighten(@gray-base, 13.5%); // #222
+@gray-dark:              #212121;
+@gray:                   #666;
+@gray-light:             #bbb;
+@gray-lighter:           lighten(@gray-base, 93.5%); // #eee
+
+@brand-primary:         #2196F3;
+@brand-success:         #4CAF50;
+@brand-info:            #9C27B0;
+@brand-warning:         #ff9800;
+@brand-danger:          #e51c23;
+
+
+//== Scaffolding
+//
+//## Settings for some of the most global styles.
+
+//** Background color for `<body>`.
+@body-bg:               #fff;
+//** Global text color on `<body>`.
+@text-color:            @gray;
+
+//** Global textual link color.
+@link-color:            @brand-primary;
+//** Link hover color set via `darken()` function.
+@link-hover-color:      darken(@link-color, 15%);
+//** Link hover decoration.
+@link-hover-decoration: underline;
+
+
+//== Typography
+//
+//## Font, line-height, and color for body text, headings, and more.
+
+@font-family-sans-serif:  "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+@font-family-serif:       Georgia, "Times New Roman", Times, serif;
+//** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
+@font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace;
+@font-family-base:        @font-family-sans-serif;
+
+@font-size-base:          13px;
+@font-size-large:         ceil((@font-size-base * 1.25)); // ~18px
+@font-size-small:         ceil((@font-size-base * 0.85)); // ~12px
+
+//** Unit-less `line-height` for use in components like buttons.
+@line-height-base:        1.846; // 20/14
+//** Computed "line-height" (`font-size` * `line-height`) for use with `margin`, `padding`, etc.
+@line-height-computed:    floor((@font-size-base * @line-height-base)); // ~20px
+
+
+@border-radius-base:        3px;
+@border-radius-large:       3px;
+@border-radius-small:       3px;
+
+
+
+
+
+//== Grid system
+//
+//## Define your custom responsive grid.
+
+//** Number of columns in the grid.
+@grid-columns:              12;
+//** Padding between columns. Gets divided in half for the left and right.
+@grid-gutter-width:         30px;
+
+//== Navbar
+//
+//##
+
+// Basics of a navbar
+@navmenu-height:                    64px;
+@navmenu-margin-bottom:             @line-height-computed;
+@navmenu-border-radius:             @border-radius-base;
+@navmenu-padding-horizontal:        floor((@grid-gutter-width / 2));
+@navmenu-padding-vertical:          ((@navmenu-height - @line-height-computed) / 2);
+@navmenu-collapse-max-height:       340px;
+
+@navmenu-default-color:             @gray-light;
+@navmenu-default-bg:                #fff;
+@navmenu-default-border:            transparent;
+
+// Navbar links
+@navmenu-default-link-color:                @gray;
+@navmenu-default-link-hover-color:          @gray-dark;
+@navmenu-default-link-hover-bg:             transparent;
+@navmenu-default-link-active-color:         @gray-dark;
+@navmenu-default-link-active-bg:            darken(@navmenu-default-bg, 6.5%);
+@navmenu-default-link-disabled-color:       #ccc;
+@navmenu-default-link-disabled-bg:          transparent;
+
+// Navbar brand label
+@navmenu-default-brand-color:               @navmenu-default-link-color;
+@navmenu-default-brand-hover-color:         @navmenu-default-link-hover-color;
+@navmenu-default-brand-hover-bg:            transparent;
+
+// Navbar toggle
+@navmenu-default-toggle-hover-bg:           transparent;
+@navmenu-default-toggle-icon-bar-bg:        rgba(0,0,0,0.5);
+@navmenu-default-toggle-border-color:       transparent;
+
+
+//=== Inverted navbar
+// Reset inverted navbar basics
+@navmenu-inverse-color:                      @gray-light;
+@navmenu-inverse-bg:                         @brand-primary;
+@navmenu-inverse-border:                     transparent;
+
+// Inverted navbar links
+@navmenu-inverse-link-color:                 lighten(@brand-primary, 30%);
+@navmenu-inverse-link-hover-color:           #fff;
+@navmenu-inverse-link-hover-bg:              transparent;
+@navmenu-inverse-link-active-color:          @navmenu-inverse-link-hover-color;
+@navmenu-inverse-link-active-bg:             darken(@navmenu-inverse-bg, 10%);
+@navmenu-inverse-link-disabled-color:        #444;
+@navmenu-inverse-link-disabled-bg:           transparent;
+
+// Inverted navbar brand label
+@navmenu-inverse-brand-color:                @navmenu-inverse-link-color;
+@navmenu-inverse-brand-hover-color:          #fff;
+@navmenu-inverse-brand-hover-bg:             transparent;
+
+// Inverted navbar toggle\
+@navmenu-inverse-toggle-hover-bg:            transparent;
+@navmenu-inverse-toggle-icon-bar-bg:         rgba(0,0,0,0.5);
+@navmenu-inverse-toggle-border-color:        transparent;
+
+
+//== Navs
+//
+//##
+
+//=== Shared nav styles
+@nav-link-padding:                          10px 15px;
+@nav-link-hover-bg:                         @gray-lighter;
+
+@nav-disabled-link-color:                   @gray-light;
+@nav-disabled-link-hover-color:             @gray-light;
+// Brand/project name
+
+.navmenu-brand {
+  font-size: @font-size-large;
+  line-height: @line-height-computed;
+  padding: @nav-link-padding;
+}
+
+// Alternate navmenus
+// --------------------------------------------------
+
+// Default navmenu
+.navmenu-default,
+.navbar-default .navbar-offcanvas {
+  background-color: @navmenu-default-bg;
+  border-color: @navmenu-default-border;
+
+  .navmenu-brand {
+    color: @navmenu-default-brand-color;
+    &:hover,
+    &:focus {
+      color: @navmenu-default-brand-hover-color;
+      background-color: @navmenu-default-brand-hover-bg;
+    }
+  }
+
+  .navmenu-text {
+    color: @navmenu-default-color;
+  }
+
+  .navmenu-nav {
+    // Caret should match text color on hover
+    > .dropdown > a:hover .caret,
+    > .dropdown > a:focus .caret {
+      border-top-color: @navmenu-default-link-hover-color;
+      border-bottom-color: @navmenu-default-link-hover-color;
+    }
+
+    // Remove background color from open dropdown
+    > .open > a {
+      &,
+      &:hover,
+      &:focus {
+        background-color: @navmenu-default-link-active-bg;
+        color: @navmenu-default-link-active-color;
+        .caret {
+          border-top-color: @navmenu-default-link-active-color;
+          border-bottom-color: @navmenu-default-link-active-color;
+        }
+      }
+    }
+    > .dropdown > a .caret {
+      border-top-color: @navmenu-default-link-color;
+      border-bottom-color: @navmenu-default-link-color;
+    }
+    &.dropdown-menu {
+      background-color: @navmenu-default-link-active-bg;
+      & > .divider {
+        background-color: @navmenu-default-bg;
+      }
+      > .active > a {
+        &,
+        &:hover,
+        &:focus {
+          background-color: darken(@navmenu-default-link-active-bg, 6.5%);
+        }
+      }
+    }
+
+    > li > a {
+      color: @navmenu-default-link-color;
+      &:hover,
+      &:focus {
+        color: @navmenu-default-link-hover-color;
+        background-color: @navmenu-default-link-hover-bg;
+      }
+    }
+    > .active > a {
+      &,
+      &:hover,
+      &:focus {
+        color: @navmenu-default-link-active-color;
+        background-color: @navmenu-default-link-active-bg;
+      }
+    }
+    > .disabled > a {
+      &,
+      &:hover,
+      &:focus {
+        color: @navmenu-default-link-disabled-color;
+        background-color: @navmenu-default-link-disabled-bg;
+      }
+    }
+  }
+}
+
+// Inverse navmenu
+.navmenu-inverse,
+.navbar-inverse .navbar-offcanvas {
+  background-color: @navmenu-inverse-bg;
+  border-color: @navmenu-inverse-border;
+
+  .navmenu-brand {
+    color: @navmenu-inverse-brand-color;
+    &:hover,
+    &:focus {
+      color: @navmenu-inverse-brand-hover-color;
+      background-color: @navmenu-inverse-brand-hover-bg;
+    }
+  }
+
+  .navmenu-text {
+    color: @navmenu-inverse-color;
+  }
+
+  .navmenu-nav {
+    // Caret should match text color on hover
+    > .dropdown > a:hover .caret,
+    > .dropdown > a:focus .caret {
+      border-top-color: @navmenu-inverse-link-hover-color;
+      border-bottom-color: @navmenu-inverse-link-hover-color;
+    }
+
+    // Remove background color from open dropdown
+    > .open > a {
+      &,
+      &:hover,
+      &:focus {
+        background-color: @navmenu-inverse-link-active-bg;
+        color: @navmenu-inverse-link-active-color;
+        .caret {
+          border-top-color: @navmenu-inverse-link-active-color;
+          border-bottom-color: @navmenu-inverse-link-active-color;
+        }
+      }
+    }
+    > .dropdown > a .caret {
+      border-top-color: @navmenu-inverse-link-color;
+      border-bottom-color: @navmenu-inverse-link-color;
+    }
+    &.dropdown-menu {
+      background-color: @navmenu-inverse-link-active-bg;
+      & > .divider {
+        background-color: @navmenu-inverse-bg;
+      }
+      > .active > a {
+        &,
+        &:hover,
+        &:focus {
+          background-color: darken(@navmenu-inverse-link-active-bg, 6.5%);
+        }
+      }
+    }
+
+    > li > a {
+      color: @navmenu-inverse-link-color;
+      &:hover,
+      &:focus {
+        color: @navmenu-inverse-link-hover-color;
+        background-color: @navmenu-inverse-link-hover-bg;
+      }
+    }
+    > .active > a {
+      &,
+      &:hover,
+      &:focus {
+        color: @navmenu-inverse-link-active-color;
+        background-color: @navmenu-inverse-link-active-bg;
+      }
+    }
+    > .disabled > a {
+      &,
+      &:hover,
+      &:focus {
+        color: @navmenu-inverse-link-disabled-color;
+        background-color: @navmenu-inverse-link-disabled-bg;
+      }
+    }
+  }
+}
+
+body {
+    padding-top: (@navmenu-height + 20px);
+}

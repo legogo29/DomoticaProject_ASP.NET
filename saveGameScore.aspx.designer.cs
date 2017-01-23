@@ -10,15 +10,6 @@
 namespace DomoticaProject {
     
     
-    public partial class swaggybird {
-        
-        /// <summary>
-        /// iButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton iButton;
+    public partial class saveGameScore {
     }
 }

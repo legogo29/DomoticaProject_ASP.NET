@@ -1,0 +1,14 @@
+C:\Users\youri\Downloads\DomoticaProject_ASP.NET-master\DomoticaProject\bin\DomoticaProject.dll.config
+C:\Users\youri\Downloads\DomoticaProject_ASP.NET-master\DomoticaProject\bin\DomoticaProject.dll
+C:\Users\youri\Downloads\DomoticaProject_ASP.NET-master\DomoticaProject\bin\DomoticaProject.pdb
+C:\Users\youri\Downloads\DomoticaProject_ASP.NET-master\DomoticaProject\bin\Newtonsoft.Json.dll
+C:\Users\youri\Downloads\DomoticaProject_ASP.NET-master\DomoticaProject\bin\System.Net.Http.Formatting.dll
+C:\Users\youri\Downloads\DomoticaProject_ASP.NET-master\DomoticaProject\bin\System.Web.Http.dll
+C:\Users\youri\Downloads\DomoticaProject_ASP.NET-master\DomoticaProject\bin\System.Web.Http.WebHost.dll
+C:\Users\youri\Downloads\DomoticaProject_ASP.NET-master\DomoticaProject\bin\Newtonsoft.Json.xml
+C:\Users\youri\Downloads\DomoticaProject_ASP.NET-master\DomoticaProject\bin\System.Net.Http.Formatting.xml
+C:\Users\youri\Downloads\DomoticaProject_ASP.NET-master\DomoticaProject\bin\System.Web.Http.xml
+C:\Users\youri\Downloads\DomoticaProject_ASP.NET-master\DomoticaProject\bin\System.Web.Http.WebHost.xml
+C:\Users\youri\Downloads\DomoticaProject_ASP.NET-master\DomoticaProject\obj\Debug\DomoticaProject.csprojResolveAssemblyReference.cache
+C:\Users\youri\Downloads\DomoticaProject_ASP.NET-master\DomoticaProject\obj\Debug\DomoticaProject.dll
+C:\Users\youri\Downloads\DomoticaProject_ASP.NET-master\DomoticaProject\obj\Debug\DomoticaProject.pdb

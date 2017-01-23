@@ -15,7 +15,8 @@
 	               	</div>
 	            </div> 
 				<div class="main-login main-center">
-					<form class="form-horizontal" method="post" action="#">
+                    
+					<!--<form class="form-horizontal"> -->
 						
 						<div class="form-group">
 							<label for="name" class="cols-sm-2 control-label">Uw voornaam</label>
@@ -63,7 +64,8 @@
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
 									<input type="password" class="form-control" name="password" id="input_passwordA"  placeholder="Enter your Password" runat ="server"/>
-								</div>
+                                </div>
+                                    <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare= "input_passwordB" ControlToValidate="input_passwordA" ErrorMessage="Wachtwoord komt niet overeen"></asp:CompareValidator>
 							</div>
 						</div>
 
@@ -74,6 +76,7 @@
 									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
 									<input type="password" class="form-control" name="confirm" id="input_passwordB"  placeholder="Confirm your Password" runat ="server"/>
 								</div>
+                                    <asp:CompareValidator ID="CompareValidator2" runat="server" ControlToCompare= "input_passwordA" ControlToValidate="input_passwordB" ErrorMessage="Wachtwoord komt niet overeen"></asp:CompareValidator>
 							</div>
 						</div>
 
@@ -81,14 +84,10 @@
                             <asp:Button ID="button" runat="server" Text="Registeer" OnClick="button_Click" CssClass="btn btn-primary btn-lg btn-block login-button"  />
 						</div>
 						
-					</form>
+					<!--</form> -->
 				</div>
 			</div>
 		</div>
-
-
-
-
 
     
     </div>

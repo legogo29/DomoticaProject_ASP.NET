@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.OleDb;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -13,8 +14,13 @@ namespace DomoticaProject
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if(Request.Cookies["login_cookie"] != null)
+            {
+                Response.Redirect("default.aspx");
+            }
         }
+
+        CustomMembership.MembershipProvider provider_instance = new CustomMembership.MembershipProvider();
 
         protected void LoginButton_Click(object sender, EventArgs e)
         {
@@ -33,6 +39,10 @@ namespace DomoticaProject
             conn.ConnectionString = ConfigurationManager.ConnectionStrings["database"].ToString();
             OleDbCommand cmd = new OleDbCommand();
 
+            StreamWriter writer = new System.IO.StreamWriter("C:\\Users\\youri\\Desktop\\logfile.txt");
+            writer.WriteLine("Method saveData called");
+            writer.Close();
+
             try
             {
                 if(isEmailAvailable(email) == false)
@@ -41,27 +51,45 @@ namespace DomoticaProject
                     cmd.Connection = conn;
                     conn.Open();
 
-                    cmd.CommandText = "SELECT email, wachtwoord " +
+                    
+                    cmd.CommandText = "SELECT email, display_name, wachtwoord " +
                                   "FROM account " +
-                                  "WHERE email LIKE @_email AND wachtwoord LIKE @_password;";
+                                  "WHERE email LIKE @_email;";
 
                     cmd.Parameters.AddWithValue("@_email", email);
-                    cmd.Parameters.AddWithValue("@_wachtwoord", password);
 
 
                     OleDbDataReader reader = cmd.ExecuteReader();
 
+                    
                     while (reader.Read())
                     {
                         string temp_email = reader[0].ToString();
-                        string temp_password = reader[1].ToString();
+                        string temp_display_name = reader[1].ToString();
+                        string temp_password = reader[2].ToString();
 
-                        if(temp_email == email && temp_password == password)
+                        string salt = temp_password.Substring(0, 64);
+                        string hash = temp_password.Substring(64, 64);
+
+                        string i_password = provider_instance.Sha256Hex(salt + password);
+                        
+                        string _password = temp_password.Substring(64);
+                        
+                        if(i_password == _password)
                         {
-                            debug.Text = "[DEBUG] true";
+                            DateTime now = DateTime.Now;
+
+                            HttpCookie cookie = new HttpCookie("login_cookie");
+                            cookie.Values.Add("email", temp_email);
+                            cookie.Values.Add("display_name", temp_display_name);
+                            cookie.Values.Add("password", password);
+                            cookie.Expires = now.AddYears(1);
+
+                            Response.Cookies.Add(cookie);
+                            Response.Redirect("default.aspx");
                         } else
                         {
-                            debug.Text = "[DEBUG] false";
+                            debug.Text = "Password is wrong.";
                         }
                     }
 

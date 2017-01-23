@@ -1,0 +1,197 @@
+﻿
+//colorvalues from Bootstrap
+@blue: darken(#428bca, 6.5%);
+@green: #5cb85c;
+@orange: #f0ad4e;
+@light-blue: #5bc0de;
+@red: #d9534f;
+
+@primary-color: @green;
+
+/*
+ * Style tweaks
+ * --------------------------------------------------
+ */
+html,
+body {
+    overflow-x: hidden; /* Prevent scroll on narrow devices */
+    height: 100%;
+}
+
+footer {
+    padding: 30px 0;
+}
+
+.panel {
+    height: 250px;
+}
+
+#panellogin {
+    height: auto !important;
+}
+
+.navbar-toggle {
+  float: left;
+  margin-left: 15px;
+}
+
+@media (min-width: 0) {
+  .navbar-toggle {
+    display: block; /* force showing the toggle */
+  }
+}
+
+/*stop navbar collapse  https://stackoverflow.com/questions/23535289/bootstrap-3-disable-navbar-collapse#23536146 */
+.navbar-collapse.collapse {
+    display: block !important;
+}
+
+.navbar-nav > li, .navbar-nav {
+    float: left !important;
+}
+
+.navbar-nav{
+    margin: 0px;
+    margin-left: 15px;
+}
+
+.navbar-right, .navbar-collapse {
+    float: right !important;
+    border-top-style: none;
+    box-shadow: none;
+}
+
+.navbar-header {
+    float: left;
+}
+
+#navul {
+    margin: 0px;
+    display:flex;
+    align-items:center;
+}
+
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+    display: none;
+}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+
+    &:before {
+        position: absolute;
+        //content: "off";
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+        font-family: sans-serif;
+        //padding-top: 4px;
+        line-height: 26px;
+        padding-left: 2px;
+    }
+}
+
+input:checked + .slider {
+    background-color: @primary-color; // #2196F3;
+    &.bgOrange {
+        background-color: @orange;
+    }
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+    //content: "on";
+    content: "";
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+
+    &:before {
+        border-radius: 50%;
+    }
+}
+
+.dingen {
+    padding: 10px;
+    height: auto;
+    
+    h2{
+        display: inline;
+        margin: 0px;
+    }
+
+    .fa {
+        font-size: 34px;
+        margin-right: 5px;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0px;
+        margin-top: 20px;
+
+        li {
+            display: flex;
+            margin-bottom: 10px;
+
+            input[type=text] {
+                width: 150px;
+                margin-right: 10px;
+                text-align: center;
+            }
+        }
+    }
+}
+
+.connected {
+    float: right;
+    padding: 10px;
+    margin-right: 10px;
+    background-color: rgba(0, 255, 0, 0.3);
+    border-radius: 5px;
+    border: 2px solid rgba(0, 140, 0, 0.5);
+}
+
+.disconnected {
+    float: right;
+    margin-right: 10px;
+    padding: 10px;
+    background-color: rgba(255, 0, 0, 0.3);
+    border-radius: 5px;
+    border: 2px solid rgba(140, 0, 0, 0.5);
+}
+
+.bgOrange {
+    background-color: @orange;
+}
