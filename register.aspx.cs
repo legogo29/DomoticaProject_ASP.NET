@@ -13,7 +13,10 @@ namespace DomoticaProject
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(Request.Cookies["login_cookie"] != null)
+            Api.Logger log = new Api.Logger();
+            log.log("Visited register.aspx");
+
+            if (Request.Cookies["login_cookie"] != null)
             {
                 Response.Redirect("default.aspx");
             }

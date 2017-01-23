@@ -14,7 +14,8 @@ namespace DomoticaProject
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Api.Logger log = new Api.Logger();
+            log.log("Visited saveGameScore.aspx");
         }
 
         CustomMembership.MembershipProvider provider_instance = new CustomMembership.MembershipProvider();

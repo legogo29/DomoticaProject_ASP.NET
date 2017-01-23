@@ -127,6 +127,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\Logger.cs" />
     <Compile Include="Api\MembershipProvider.cs" />
     <Compile Include="DaHaus\DaHaus.cs" />
     <Compile Include="Api\ValuesController.cs" />

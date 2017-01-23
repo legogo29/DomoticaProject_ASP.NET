@@ -14,7 +14,10 @@ namespace DomoticaProject
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(Request.Cookies["login_cookie"] != null)
+            Api.Logger log = new Api.Logger();
+            log.log("Visited login.aspx");
+
+            if (Request.Cookies["login_cookie"] != null)
             {
                 Response.Redirect("default.aspx");
             }
@@ -39,9 +42,6 @@ namespace DomoticaProject
             conn.ConnectionString = ConfigurationManager.ConnectionStrings["database"].ToString();
             OleDbCommand cmd = new OleDbCommand();
 
-            StreamWriter writer = new System.IO.StreamWriter("C:\\Users\\youri\\Desktop\\logfile.txt");
-            writer.WriteLine("Method saveData called");
-            writer.Close();
 
             try
             {
