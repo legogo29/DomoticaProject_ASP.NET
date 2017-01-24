@@ -33,7 +33,7 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-<body onload="readcookie();">
+<body onload="readcookie(); $('li > .active').parent().addClass('active')">
 <nav id="navmenu" class="navmenu navmenu-inverse navmenu-fixed-left offcanvas" role="navigation" runat="server">
   <a class="navmenu-brand"></a>
   <ul class="nav navmenu-nav">
@@ -165,9 +165,6 @@
                 }
             }
         }
-    }
-    window.onload = function () {
-        $('li > .active').parent().addClass('active')
     }
 </script>
 </body>
