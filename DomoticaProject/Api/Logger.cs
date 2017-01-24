@@ -11,7 +11,7 @@ namespace DomoticaProject.Api
         public void log(string message)
         {
 
-            StreamWriter writer = new System.IO.StreamWriter("C://users//youri//Desktop//logfile.txt", true);
+            StreamWriter writer = new System.IO.StreamWriter("C://users//IEUSER//Desktop//logfile.txt", true);
             writer.WriteLine("[" + GetIPAddress()  + "    " + getDate() + "     " + getEmail() + "]" + "    " + message + "\n");
             writer.Close();
         }
