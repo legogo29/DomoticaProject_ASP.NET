@@ -14,6 +14,9 @@ namespace DomoticaProject
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Api.Logger log = new Api.Logger();
+            log.log("Visited house.aspx");
+
             daHaus.Connect();
 
             if (daHaus.Connected)
@@ -31,15 +34,13 @@ namespace DomoticaProject
 
         protected void Page_LoadComplete(object sender, EventArgs e)
         {
-            daHaus.RetrieveLamps();
-            daHaus.RetrieveWindows();
-            daHaus.RetrieveHeater();
+            daHaus.UpdateHouse();
             daHaus.Close();
-            PrepareHtmlInputs();
+            PrepareInputs();
         }
 
 
-        protected void PrepareHtmlInputs()
+        protected void PrepareInputs()
         {
             CheckBox[] lamps = { lamp0, lamp1, lamp2, lamp3, lamp4 };
             CheckBox[] windows = { window0, window1 };

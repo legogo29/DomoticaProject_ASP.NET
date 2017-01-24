@@ -11,6 +11,9 @@ namespace DomoticaProject
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Api.Logger log = new Api.Logger();
+            log.log("Visited settings.aspx");
+
             if (!IsPostBack)
             {
                 HttpCookie styleCookie = Request.Cookies["styleCookie"];

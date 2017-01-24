@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="swaggybird.aspx.cs" Inherits="DomoticaProject.swaggybird" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-<style>
+    <style>
 canvas {
     border:1px solid #d3d3d3;
     background-color: #f1f1f1;
@@ -8,7 +8,7 @@ canvas {
 </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<script>
+    <script>
     window.onload = function () { startGame(); };
 
 var gamePlayer;
@@ -55,7 +55,8 @@ var gameArea =
     },
     stop : function()
     {
-      clearInterval(this.interval);
+        clearInterval(this.interval);
+        
     }
 }
 
@@ -245,5 +246,10 @@ function clearmove()
   <button type="button" onmousedown="moveleft()" onmouseup="clearmove()"> LEFT</button>
   <button type="button" onmousedown="moveright()" onmouseup="clearmove()"> RIGHT </button>
   <button type="button" onmousedown="movedown()" onmouseup="clearmove()"> DOWN </button>
+
+    <br />
+    <br />
+    <button id ="iButton" runat ="server" onclick ="alert(1)"> Hello </button>
+    <br />
 
 </asp:Content>

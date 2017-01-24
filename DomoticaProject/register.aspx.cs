@@ -13,18 +13,28 @@ namespace DomoticaProject
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Api.Logger log = new Api.Logger();
+            log.log("Visited register.aspx");
 
+            if (Request.Cookies["login_cookie"] != null)
+            {
+                Response.Redirect("default.aspx");
+            }
         }
+
+        CustomMembership.MembershipProvider provider_instance = new CustomMembership.MembershipProvider();
 
         protected void button_Click(object sender, EventArgs e)
         {
             OleDbConnection conn = new OleDbConnection();
-            
+           
             try
             {
                 if (isEmailAvailable(input_email.Text) == true && isDisplaynameAvailable(input_displayname.Text) == true)
                 {
                     conn.ConnectionString = ConfigurationManager.ConnectionStrings["database"].ToString();
+                    
+                    String hashed_password = (provider_instance.HashPassword(input_passwordA.Value));
 
                     OleDbCommand cmd = new OleDbCommand();
                     cmd.CommandText = "INSERT INTO account(email, voornaam, achternaam, wachtwoord, display_name) " +
@@ -39,7 +49,7 @@ namespace DomoticaProject
                     cmd.Parameters.AddWithValue("@email", input_email.Text);
                     cmd.Parameters.AddWithValue("@voornaam", input_voornaam.Text);
                     cmd.Parameters.AddWithValue("@achternaam", input_achternaam.Text);
-                    cmd.Parameters.AddWithValue("@wachtwoord", input_passwordA.Value);
+                    cmd.Parameters.AddWithValue("@wachtwoord", hashed_password);
                     cmd.Parameters.AddWithValue("@display_name", input_displayname.Text);
 
                     cmd.ExecuteNonQuery();

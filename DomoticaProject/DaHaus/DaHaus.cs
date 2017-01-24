@@ -34,14 +34,62 @@ namespace DomoticaProject
             Heater = new Heater(0);
         }
 
+        public string Request;
+
         private string ip;
-        private int port;    
-        private string request;
+        public string Ip
+        {
+            get
+            {
+                return ip;
+            }
+        }
+
+        private int port;
+        public int Port
+        {
+            get
+            {
+                return port;
+            }
+        }
+
+        private string exceptionMessage;
+        public string ExceptionMessage
+        {
+            get
+            {
+                return exceptionMessage;
+            }
+        }
+
         private string response;
-        private string exceptionMessage;  
+        public string Response
+        {
+            get
+            {
+                return response;
+            }
+        }
+
+        private bool requestSend;
+        public bool RequestSend
+        {
+            get
+            {
+                return requestSend;
+            }
+        }
+
         private bool responseReceived;
-        private bool requestSend;   
-                      
+        public bool ResponseReceived
+        {
+            get
+            {
+                return responseReceived;
+            }
+        }
+
         private bool connected;
         public bool Connected
         {
@@ -51,7 +99,7 @@ namespace DomoticaProject
 
                 try
                 {
-                    connected = client.Connected;     
+                    connected = client.Connected;
                 }
                 catch (Exception exception)
                 {
@@ -79,7 +127,7 @@ namespace DomoticaProject
         {
             if (Connected)
             {
-                request = "exit\r\n";
+                Request = "exit\r\n";
                 SendRequest();
             }
 
@@ -115,7 +163,7 @@ namespace DomoticaProject
                 responseReceived = false;
 
                 stream = client.GetStream();
-                sendBuffer = Encoding.ASCII.GetBytes(request);
+                sendBuffer = Encoding.ASCII.GetBytes(Request);
 
                 try
                 {
@@ -151,46 +199,46 @@ namespace DomoticaProject
 
         public void TurnOnLamp(int index)
         {
-            request = String.Format("lamp {0} on\r\n", index);
+            Request = String.Format("lamp {0} on\r\n", index);
             SendRequest();
 
-            if (requestSend)
+            if (RequestSend)
                 Lamps[index].State = Lamp.States.On;
         }
 
         public void TurnOffLamp(int index)
         {
-            request = String.Format("lamp {0} off\r\n", index);
+            Request = String.Format("lamp {0} off\r\n", index);
             SendRequest();
 
-            if (requestSend)
+            if (RequestSend)
                 Lamps[index].State = Lamp.States.Off;
         }
 
         public void OpenWindow(int index)
         {
-            request = String.Format("window {0} open\r\n", index);
+            Request = String.Format("window {0} open\r\n", index);
             SendRequest();
 
-            if (requestSend)
+            if (RequestSend)
                 Windows[index].State = Window.States.Open;
         }
 
         public void CloseWindow(int index)
         {
-            request = String.Format("window {0} close\r\n", index);
+            Request = String.Format("window {0} close\r\n", index);
             SendRequest();
 
-            if (requestSend)
+            if (RequestSend)
                 Windows[index].State = Window.States.Closed;
         }
 
         public void ChangeHeaterDegree(float degree)
         {
-            request = String.Format("heater {0:.0}\r\n", degree);
+            Request = String.Format("heater {0:.0}\r\n", degree);
             SendRequest();
 
-            if (requestSend)
+            if (RequestSend)
                 Heater.Degree = degree;
         }
 
@@ -200,10 +248,10 @@ namespace DomoticaProject
 
             foreach (Lamp lamp in Lamps)
             {
-                request = String.Format("lamp {0}\r\n", lamp.Index);
+                Request = String.Format("lamp {0}\r\n", lamp.Index);
                 SendRequest();
 
-                match = Regex.Match(response, @"\b(?:On|Off)\b");
+                match = Regex.Match(Response, @"\b(?:On|Off)\b");
 
                 if (match.Value != "")
                 {
@@ -228,10 +276,10 @@ namespace DomoticaProject
 
             foreach (Window window in Windows)
             {
-                request = String.Format("window {0}\r\n", window.Index);
+                Request = String.Format("window {0}\r\n", window.Index);
                 SendRequest();
 
-                match = Regex.Match(response, @"\b(?:Open|Closed|Half)\b");
+                match = Regex.Match(Response, @"\b(?:Open|Closed|Half)\b");
 
                 if (match.Value != "")
                 {
@@ -255,13 +303,20 @@ namespace DomoticaProject
 
         public void RetrieveHeater()
         {
-            request = String.Format("heater\r\n");
+            Request = String.Format("heater\r\n");
             SendRequest();
 
-            Match match = Regex.Match(response, @"[0-9]{2}(?:\,[0-9])?");
+            Match match = Regex.Match(Response, @"[0-9]{2}(?:\,[0-9])?");
 
             if (match.Value != "")
                 Heater.Degree = float.Parse(match.Value);
-        }      
+        }
+
+        public void UpdateHouse()
+        {
+            RetrieveLamps();
+            RetrieveWindows();
+            RetrieveHeater();
+        }
     }
 }
