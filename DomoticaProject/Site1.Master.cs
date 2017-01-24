@@ -14,20 +14,20 @@ namespace DomoticaProject
             switch(Parent.Page.AppRelativeVirtualPath)
             {
                 case "~/default.aspx":
-                    HL_home.CssClass += " active";
+                    HL_home.CssClass += "active";
                     break;
                 case "~/login.aspx":
                 case "~/logout.aspx":
-                    HL_account.CssClass += " active";
+                    HL_account.CssClass += "active";
                     break;
                 case "~/house.aspx":
-                    HL_house.CssClass += " active";
+                    HL_house.CssClass += "active";
                     break;
                 case "~/games.aspx":
-                    HL_games.CssClass += " active";
+                    HL_games.CssClass += "active";
                     break;
                 case "~/settings.aspx":
-                    HL_settings.CssClass += " active";
+                    HL_settings.CssClass += "active";
                     break;
                 default:
                     break;

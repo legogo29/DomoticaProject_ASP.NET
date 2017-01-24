@@ -166,6 +166,9 @@
             }
         }
     }
+    window.onload = function () {
+        $('li > .active').parent().addClass('active')
+    }
 </script>
 </body>
 </html>

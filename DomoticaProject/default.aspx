@@ -77,22 +77,23 @@
         <h2>Gebruiker</h2>
         <asp:Label ID="Label_displayName" runat="server" Text=""></asp:Label><br />
         <asp:Label ID="Label_email" runat="server" Text=""></asp:Label>
+        <asp:HyperLink ID="HL_login" runat="server" NavigateUrl="~/login.aspx"></asp:HyperLink>
         </div>
     </div>
     </div><!--/.col-xs-6.col-lg-4-->
     <div class="col-xs-6 col-lg-4" id="field5" ondrop="drop(event)" ondragover="allowDrop(event)">
     <div id="panel5" class="panel panel-default" draggable="false" ondragstart="drag(event)">
         <div class="panel-body">
-        <h2>Heading 5</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+        <h2>Help</h2>
+        <p>Als u op de drie streepjes linksboven het venster klikt krijgt u een menu te zien waar u kunt kiezen om da haus te bedienen, een spel te spelen, uit te loggen of terug te keren naar deze pagina</p>
         </div>
     </div>
     </div><!--/.col-xs-6.col-lg-4-->
     <div class="col-xs-6 col-lg-4" id="field6" ondrop="drop(event)" ondragover="allowDrop(event)">
     <div id="panel6" class="panel panel-default" draggable="false" ondragstart="drag(event)">
         <div class="panel-body">
-        <h2>Heading 6</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+        <h2></h2>
+        <p></p>
         </div>
     </div>
     </div><!--/.col-xs-6.col-lg-4-->

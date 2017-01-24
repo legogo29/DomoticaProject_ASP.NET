@@ -22,6 +22,11 @@ namespace DomoticaProject
                 Label_email.Text = "Uw email is " + Request.Cookies["login_cookie"].Values["email"];
 
             }
+            else
+            {
+                Label_email.Text = "U bent niet ingelogd.";
+                HL_login.Text = "Klik hier om in te loggen.";
+            }
         }
     }
 }
