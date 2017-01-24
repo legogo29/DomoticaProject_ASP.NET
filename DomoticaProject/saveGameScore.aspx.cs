@@ -23,6 +23,19 @@ namespace DomoticaProject
             string score = Request.QueryString["score"].ToString();
 
             saveData(email, password, int.Parse(gameId), int.Parse(score));
+
+            if (gameId == "1")
+            {
+                Response.Redirect("swaggybird.aspx");
+            }
+            else if (gameId == "2")
+            {
+                Response.Redirect("minesweeper.aspx");
+            }
+            else
+            {
+                Response.Redirect("games.aspx");
+            }
         }
         
         public static void saveData(string email, string password, int gameId, int score)
