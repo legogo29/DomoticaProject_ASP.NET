@@ -34,7 +34,7 @@ namespace DomoticaProject
             }
             if (Request.Cookies["login_cookie"] != null)
             {
-                lbl_signedInAs.Text = "Signed in as: " + Request.Cookies["login_cookie"].Values["display_name"];
+                lbl_signedInAs.Text = "Ingelogd als: " + Request.Cookies["login_cookie"].Values["display_name"];
                 HL_account.NavigateUrl = "logout.aspx";
                 HL_account.Text = "Logout";
 

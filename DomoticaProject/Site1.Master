@@ -56,7 +56,7 @@
         <ul id="navul" class="nav navbar-nav navbar-right">
             <li><a><asp:Label ID="lbl_signedInAs" runat="server" Text=""></asp:Label></a></li>
             <li><a id="editLink" onclick="toggleEdit()"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></li>
-            <li><a href="#settings"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a></li>
+            <%--<li><a href="#settings"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a></li>--%>
         </ul>
 </div>
 

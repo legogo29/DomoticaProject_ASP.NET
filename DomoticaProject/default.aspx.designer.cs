@@ -13,12 +13,21 @@ namespace DomoticaProject {
     public partial class _default {
         
         /// <summary>
-        /// Label_panel4 control.
+        /// Label_displayName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label_panel4;
+        protected global::System.Web.UI.WebControls.Label Label_displayName;
+        
+        /// <summary>
+        /// Label_email control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label_email;
     }
 }
