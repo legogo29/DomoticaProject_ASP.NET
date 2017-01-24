@@ -272,13 +272,13 @@ function clearmove()
 
 </script>
 
-  <button type="button" onmousedown="moveup()" onmouseup="clearmove()"> UP</button>
-  <button type="button" onmousedown="moveleft()" onmouseup="clearmove()"> LEFT</button>
-  <button type="button" onmousedown="moveright()" onmouseup="clearmove()"> RIGHT </button>
-  <button type="button" onmousedown="movedown()" onmouseup="clearmove()"> DOWN </button>
+  <button type="button" onmousedown="moveup()" onmouseup="clearmove()" class="btn btn-default"> UP</button>
+  <button type="button" onmousedown="moveleft()" onmouseup="clearmove()" class="btn btn-default"> LEFT</button>
+  <button type="button" onmousedown="moveright()" onmouseup="clearmove()" class="btn btn-default"> RIGHT </button>
+  <button type="button" onmousedown="movedown()" onmouseup="clearmove()" class="btn btn-default"> DOWN </button>
 
     <br />
     <br />
-    <button id ="iButton" runat ="server" onclick ="alert(1)"> Hello </button>
+    <%--<button id ="iButton" runat ="server" onclick ="alert(1)"> Hello </button>--%>
     <br />
 </asp:Content>

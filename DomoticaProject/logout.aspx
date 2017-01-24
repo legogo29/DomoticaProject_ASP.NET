@@ -2,5 +2,5 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:Button ID="logoutButton" runat="server" Text="logout" OnClick="logoutButton_Click" />
+    <asp:Button ID="logoutButton" runat="server" Text="logout" OnClick="logoutButton_Click" CssClass="btn btn-default"/>
 </asp:Content>

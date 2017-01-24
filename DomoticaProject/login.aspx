@@ -8,24 +8,24 @@
     <div id="panellogin" class="panel panel-default" draggable="false" ondragstart="drag(event)">
         <div class="panel-body">
             <h2>Log in</h2>
-            <div class="input-group">
-                <span class="input-group-addon">User Name:</span>
+            <div class="form-group">
+                <label for="UserName">User Name (email adres):</label>
                 <asp:TextBox runat="server" ID="UserName" CssClass="form-control"></asp:TextBox>
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="UserName" ErrorMessage="User Name is required." ValidationGroup="login_field" ToolTip="User Name is required." ID="UserNameRequired">*</asp:RequiredFieldValidator>
             </div>
-            <div class="input-group">
-                <span class="input-group-addon">Password:</span>
+            <div class="form-group">
+                <label for="Password">Password:</label>
                 <asp:TextBox runat="server" TextMode="Password" ID="Password" CssClass="form-control"></asp:TextBox>
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="Password" ErrorMessage="Password is required." ValidationGroup="login_field" ToolTip="Password is required." ID="PasswordRequired">*</asp:RequiredFieldValidator>
             </div>
             <div class="">
-                <asp:CheckBox runat="server" Text="Remember me next time." ID="RememberMe"></asp:CheckBox>
+                <a href="register.aspx">Nog geen account?</a>
             </div>
             <div>
                 <asp:Literal runat="server" ID="FailureText" EnableViewState="False"></asp:Literal>
             </div>
             <div>
-                <asp:Button runat="server" CommandName="Login" Text="Log In" ValidationGroup="login_field" ID="LoginButton" OnClick="LoginButton_Click"></asp:Button>
+                <asp:Button runat="server" CommandName="Login" Text="Log In" ValidationGroup="login_field" ID="LoginButton" OnClick="LoginButton_Click" CssClass="btn btn-default"></asp:Button>
             </div>
         </div>
     </div>
