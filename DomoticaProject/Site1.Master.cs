@@ -32,9 +32,9 @@ namespace DomoticaProject
                 default:
                     break;
             }
-            if (Request.Cookies["userCookie"] != null)
+            if (Request.Cookies["login_cookie"] != null)
             {
-                lbl_signedInAs.Text = "Signed in as: " + Request.Cookies["userCookie"].Value;
+                lbl_signedInAs.Text = "Signed in as: " + Request.Cookies["login_cookie"].Values["display_name"];
                 HL_account.NavigateUrl = "logout.aspx";
                 HL_account.Text = "Logout";
 
@@ -75,6 +75,7 @@ namespace DomoticaProject
                 }
             }
         }
+
 
         protected void Btn_Settings_Click(object sender, EventArgs e)
         {

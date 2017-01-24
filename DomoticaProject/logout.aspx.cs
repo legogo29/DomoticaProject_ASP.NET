@@ -11,12 +11,13 @@ namespace DomoticaProject
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Api.Logger log = new Api.Logger();
+            log.log("Visited logout.aspx");
         }
 
         protected void logoutButton_Click(object sender, EventArgs e)
         {
-            HttpCookie CookieCookie = new HttpCookie("userCookie");
+            HttpCookie CookieCookie = new HttpCookie("login_cookie");
 
             CookieCookie.Value = "SignedOut";
             CookieCookie.Expires = DateTime.Now.AddHours(-1.0);
