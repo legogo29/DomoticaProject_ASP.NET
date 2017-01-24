@@ -280,7 +280,7 @@ function minesTimer() {
 }
 
 function lost() {
-    alert("you lost :(");
+    //alert("you lost :(");
     ctx.fillStyle = textColor;
     //ctx.fillRect(fieldX[x], fieldY[y], fieldSize, fieldSize);
     ctx.font = fieldSize * .75 + FontAwesome;
@@ -315,7 +315,7 @@ function won() {
         var email = response.substr(0, response.indexOf('&'));
         var password = response.substr(response.indexOf('password'));
         var gameId = "gameid=2";
-        var score = "score=" + "7";
+        var score = "score=" + time;
 
         window.location.replace("saveGameScore.aspx?" + email.toString() + "&" + password.toString() + "&" + gameId.toString() + "&" + score.toString());
     }

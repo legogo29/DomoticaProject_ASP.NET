@@ -48,7 +48,7 @@
                         <RowStyle BorderStyle="Solid" CssClass="table" />
                    </asp:GridView>
                 <br />
-                    <asp:AccessDataSource ID="AccessDataSource2" runat="server" DataFile="~/App_Data/pd_database.accdb" SelectCommand="SELECT TOP 10 [score], [email] FROM [speelt] WHERE [spel_id ]= 2 ORDER BY [score] DESC; "></asp:AccessDataSource>
+                    <asp:AccessDataSource ID="AccessDataSource2" runat="server" DataFile="~/App_Data/pd_database.accdb" SelectCommand="SELECT TOP 10 [score], [email] FROM [speelt] WHERE [spel_id ]= 2 ORDER BY [score] ASC; "></asp:AccessDataSource>
         
                 </div>    
               
