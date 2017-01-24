@@ -16,14 +16,19 @@ namespace DomoticaProject
         {
             Api.Logger log = new Api.Logger();
             log.log("Visited saveGameScore.aspx");
+
+            string email = Request.QueryString["email"].ToString();
+            string password = Request.QueryString["password"].ToString();
+            string gameId = Request.QueryString["gameid"].ToString();
+            string score = Request.QueryString["score"].ToString();
+
+            saveData(email, password, int.Parse(gameId), int.Parse(score));
         }
-
-        CustomMembership.MembershipProvider provider_instance = new CustomMembership.MembershipProvider();
-
-        public static void saveData(int gameId, int score)
+        
+        public static void saveData(string email, string password, int gameId, int score)
         {
 
-            string email = "youri.klaassens@email.com";
+            CustomMembership.MembershipProvider provider_instance = new CustomMembership.MembershipProvider();
 
             OleDbConnection conn = new OleDbConnection();
             conn.ConnectionString = ConfigurationManager.ConnectionStrings["database"].ToString();
@@ -33,15 +38,8 @@ namespace DomoticaProject
             writer.WriteLine("Method saveData called");
             writer.Close();
 
-
-            //HttpCookie cookie = Request.Cookies["login_cookie"];
-            //if(cookie == null)
-            //{
-            //    Console.WriteLine("Null cookie");
-            //}
-
-            //if(isValidUser(cookie) == true)
-            //{
+            if (isValidUser(email, password))
+            {
                 try
                 {
                     cmd.Connection = conn;
@@ -60,7 +58,7 @@ namespace DomoticaProject
 
 
                     int rows_added = cmd.ExecuteNonQuery();
-                    
+
                 }
                 catch (Exception ex)
                 {
@@ -70,17 +68,16 @@ namespace DomoticaProject
                     conn.Close();
 
                 }
-            //}
-            
-            //end
+                //}
+
+                //end
+            }
         }
 
-        public Boolean isValidUser(HttpCookie cookie)
+        public static Boolean isValidUser(string email, string password)
         {
 
-            string email = cookie.Values["email"].ToString();
-            string password = cookie.Values["password"].ToString();
-
+            CustomMembership.MembershipProvider provider_instance = new CustomMembership.MembershipProvider();
             OleDbConnection conn = new OleDbConnection();
             conn.ConnectionString = ConfigurationManager.ConnectionStrings["database"].ToString();
             OleDbCommand cmd = new OleDbCommand();

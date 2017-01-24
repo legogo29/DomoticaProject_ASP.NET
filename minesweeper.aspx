@@ -9,4 +9,6 @@
       </div>
     </div>
     <script src="js/MineSweeper.js"></script>
+
+
 </asp:Content>

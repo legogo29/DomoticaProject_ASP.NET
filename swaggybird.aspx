@@ -56,6 +56,19 @@ var gameArea =
     stop : function()
     {
         clearInterval(this.interval);
+
+        var response = getCookie("login_cookie");
+
+        if (response != "undefined")
+        {
+            var email = response.substr(0, response.indexOf('&'));
+            var password = response.substr(response.indexOf('password'));
+            var gameId = "gameid=1";
+            var score = "score=" + gameArea.frameNo.toString();
+
+            window.location.replace("saveGameScore.aspx?" + email.toString() + "&" + password.toString() + "&" + gameId.toString() + "&" + score.toString());
+        }
+
         
     }
 }
@@ -213,6 +226,23 @@ background.update();
 
 }
 
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+
 
 function movedown()
 {
@@ -251,5 +281,4 @@ function clearmove()
     <br />
     <button id ="iButton" runat ="server" onclick ="alert(1)"> Hello </button>
     <br />
-
 </asp:Content>
