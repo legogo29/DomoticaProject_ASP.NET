@@ -301,11 +301,40 @@ function lost() {
     }
     ctx.font = fieldSize + font;
     playing = false;
+
+
 }
 
 function won() {
     alert("You win :)");
     playing = false;
+
+    var response = getCookie("login_cookie");
+
+    if (response != "undefined") {
+        var email = response.substr(0, response.indexOf('&'));
+        var password = response.substr(response.indexOf('password'));
+        var gameId = "gameid=2";
+        var score = "score=" + "7";
+
+        window.location.replace("saveGameScore.aspx?" + email.toString() + "&" + password.toString() + "&" + gameId.toString() + "&" + score.toString());
+    }
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
 }
 
 //http://stackoverflow.com/a/14853974
