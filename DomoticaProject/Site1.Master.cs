@@ -45,31 +45,31 @@ namespace DomoticaProject
                 switch (int.Parse(styleCookie.Value))
                 {
                     case 1:
-                        bootstrapStyle.Attributes["href"] = "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css";
+                        bootstrapStyle.Attributes["href"] = "style/bootstrap/bootstrap.min.css";
                         customStyle.Attributes["href"] = "style/Max.css";
                         break;
                     case 2:
-                        bootstrapStyle.Attributes["href"] = "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css";
+                        bootstrapStyle.Attributes["href"] = "style/bootstrap/bootstrap.min.css";
                         customStyle.Attributes["href"] = "style/Tim.css";
                         break;
                     case 3:
-                        bootstrapStyle.Attributes["href"] = "https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/paper/bootstrap.min.css";
+                        bootstrapStyle.Attributes["href"] = "style/bootstrap/paper-bootstrap.min.css";
                         customStyle.Attributes["href"] = "style/bootswatch/paper.css";
                         break;
                     case 4:
-                        bootstrapStyle.Attributes["href"] = "https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css";
+                        bootstrapStyle.Attributes["href"] = "style/bootstrap/superhero-bootstrap.min.css";
                         customStyle.Attributes["href"] = "style/bootswatch/superhero.css";
                         break;
                     case 5:
-                        bootstrapStyle.Attributes["href"] = "https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/darkly/bootstrap.min.css";
+                        bootstrapStyle.Attributes["href"] = "style/bootstrap/darkly-bootstrap.min.css";
                         customStyle.Attributes["href"] = "style/bootswatch/darkly.css";
                         break;
                     case 6:
-                        bootstrapStyle.Attributes["href"] = "https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css";
+                        bootstrapStyle.Attributes["href"] = "style/bootstrap/flatly-bootstrap.min.css";
                         customStyle.Attributes["href"] = "style/bootswatch/flatly.css";
                         break;
                     default:
-                        bootstrapStyle.Attributes["href"] = "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css";
+                        bootstrapStyle.Attributes["href"] = "style/bootstrap/bootstrap.min.css";
                         customStyle.Attributes["href"] = "";
                         break;
                 }

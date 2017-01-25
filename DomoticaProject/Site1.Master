@@ -7,13 +7,12 @@
     <title></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" id="bootstrapStyle" runat="server" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
+    <link rel="stylesheet" id="bootstrapStyle" runat="server" href="style/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="style/bootstrap/jasny-bootstrap.min.css">
     <style>body{padding-top:70px;}</style>
     <link rel="stylesheet" id="customStyle" runat="server" />
     <link rel="stylesheet" href="style/Style.css">
-    <%--<script src="https://use.fontawesome.com/03e759f745.js"></script>--%>
-    <link href="https://use.fontawesome.com/03e759f745.css" media="all" rel="stylesheet">
+    <link href="style/bootstrap/FA/font-awesome.min.css" media="all" rel="stylesheet">
     <script>  
         // AJAX requests
         function loadDoc(url, cFunction) {
@@ -69,10 +68,10 @@
     </form>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
+<script src="js/jasny-bootstrap.min.js"></script>
 
 <script>
     //menu toggle
