@@ -12,7 +12,7 @@
     <style>body{padding-top:70px;}</style>
     <link rel="stylesheet" id="customStyle" runat="server" />
     <link rel="stylesheet" href="style/Style.css">
-    <link href="style/bootstrap/FA/font-awesome.min.css" media="all" rel="stylesheet">
+    <link href="style/bootstrap/font-awesome.min.css" media="all" rel="stylesheet">
     <script>  
         // AJAX requests
         function loadDoc(url, cFunction) {

@@ -95,9 +95,10 @@
     <Content Include="settings.aspx" />
     <Content Include="style\bootstrap\bootstrap.min.css" />
     <Content Include="style\bootstrap\darkly-bootstrap.min.css" />
-    <Content Include="style\bootstrap\FA\font-awesome.min.css" />
+    <Content Include="style\bootstrap\font-awesome.min.css" />
     <Content Include="style\bootstrap\flatly-bootstrap.min.css" />
-    <Content Include="style\bootstrap\fonts\fontawesome-webfont.svg" />
+    <Content Include="style\fonts\fontawesome-webfont.svg" />
+    <Content Include="style\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="style\bootstrap\jasny-bootstrap.min.css" />
     <Content Include="style\bootstrap\paper-bootstrap.min.css" />
     <Content Include="style\bootstrap\superhero-bootstrap.min.css" />
@@ -244,11 +245,15 @@
     <Content Include="style\bootswatch\superhero.less" />
     <Content Include="style\bootswatch\flatly.less" />
     <Content Include="style\bootswatch\darkly.less" />
-    <Content Include="style\bootstrap\fonts\fontawesome-webfont.eot" />
-    <Content Include="style\bootstrap\fonts\fontawesome-webfont.ttf" />
-    <Content Include="style\bootstrap\fonts\fontawesome-webfont.woff" />
-    <Content Include="style\bootstrap\fonts\fontawesome-webfont.woff2" />
-    <Content Include="style\bootstrap\fonts\FontAwesome.otf" />
+    <Content Include="style\fonts\fontawesome-webfont.eot" />
+    <Content Include="style\fonts\fontawesome-webfont.ttf" />
+    <Content Include="style\fonts\fontawesome-webfont.woff" />
+    <Content Include="style\fonts\fontawesome-webfont.woff2" />
+    <Content Include="style\fonts\FontAwesome.otf" />
+    <Content Include="style\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="style\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="style\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="style\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
